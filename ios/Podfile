@@ -1,0 +1,25 @@
+# You Podfile should look similar to this file. React Native currently does not support use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+
+target 'TotemApp' do
+
+  pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga/Yoga.podspec'
+  pod 'React', path: '../node_modules/react-native', :subspecs => [
+    'Core',
+    'BatchedBridge',
+    'RCTActionSheet',
+    'RCTAnimation',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTNetwork',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket'
+  ]
+
+  pod 'GoogleMaps'  # <~~ remove this line if you do not want to support GoogleMaps on iOS
+end
