@@ -4,15 +4,19 @@ import {
   Text,
   View
 } from 'react-native';
-import App from './app/App';
+import { Provider } from 'react-redux';
 
+import App from './app/App';
+import store from './app/redux/store';
 
 export default class TotemApp extends Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <App />
-      </View>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <App />
+        </View>
+      </Provider>
     );
   }
 }
