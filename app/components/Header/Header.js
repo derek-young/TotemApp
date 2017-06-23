@@ -5,7 +5,8 @@ import {
   View
 } from 'react-native';
 import { Link } from 'react-router-native';
-// import NavButton from './NavButton';
+
+import { toggleMenu } from '../../redux/actions';
 import headerStyles from './headerStyles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -32,14 +33,13 @@ const Header = () => (
       </Text>
     </Link>
     <TouchableHighlight
-      onPress={() => console.log("clicked")}
+      onPress={toggleMenu}
       underlayColor="#bffffd"
       style={headerStyles.icon}
     >
       <Icon
         name="bars"
         size={30}
-
       />
     </TouchableHighlight>
   </View>

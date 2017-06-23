@@ -3,7 +3,7 @@ import {
   Text,
   View
 } from 'react-native';
-import { NativeRouter, Route } from 'react-router-native';
+import { Route } from 'react-router-native';
 import { connect } from 'react-redux';
 import styles from './styles';
 
@@ -17,25 +17,26 @@ import Schedule from './components/Schedule/Schedule';
 
 class App extends Component {
   render() {
-    const { menuVisible, menuItems } = this.props;
+    const { menuVisible, menuItems, history } = this.props;
 
     return (
-      <NativeRouter>
-        <View style={styles.container}>
-          <Header />
-          {/* <Route exact path="/" component={HomeView}/> */}
-          <Route path="/map" component={MapViewer}/>
-          <Route path="/group" component={Group}/>
-          <Route path="/agenda" component={Agenda}/>
-          <Route path="/schedule" component={Schedule}/>
-          {/* <Route path="/choosevenue" component={ChooseVenue}/> */}
-          {/* <Route path="/creategroup" component={CreateGroup}/> */}
-          <Menu menuItems={menuItems} />
-        </View>
-      </NativeRouter>
+      <View style={styles.container}>
+        <Header />
+        <Route path="/map" component={MapViewer} />
+        <Route path="/group" component={Group} />
+        <Route path="/agenda" component={Agenda} />
+        <Route path="/schedule" component={Schedule} />
+        {/* <Route path="/choosevenue" component={ChooseVenue}/> */}
+        {/* <Route path="/creategroup" component={CreateGroup}/> */}
+        {menuVisible && <Menu menuItems={menuItems} history={history} />}
+      </View>
     );
   }
 }
+
+// App.contextTypes = {
+//   router: React.PropTypes.object.isRequired
+// };
 
 export default connect((store) => ({
   menuVisible: store.menu.menuVisible,

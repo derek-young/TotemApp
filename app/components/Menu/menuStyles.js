@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { Platform, StyleSheet, Dimensions } from 'react-native';
 
 var { width, height } = Dimensions.get('window');
 
@@ -14,15 +14,22 @@ export default StyleSheet.create({
     backgroundColor: 'transparent'
   },
   menu: {
-    paddingTop: 20,
     backgroundColor: 'black',
     width: 150,
     height
   },
   menuItem: {
-    height: 70
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 70,
+    width: 150,
+    borderBottomWidth: 1,
+    borderBottomColor: '#2d2e2f'
   },
   'menuItem__text': {
-    color: 'white'
+    marginTop: 5,
+    color: 'white',
+    fontWeight: '500',
+    fontFamily: (Platform.OS === 'ios') ? 'Helvetica Neue' : 'Roboto'
   }
 });
