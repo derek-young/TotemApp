@@ -1,37 +1,23 @@
 import React from 'react';
 import {
+  Image,
   Text,
   TouchableHighlight,
   View
 } from 'react-native';
 import { Link } from 'react-router-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { toggleMenu } from '../../redux/actions';
 import headerStyles from './headerStyles';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import logo from '../../img/totemlogo.png';
 
 const Header = () => (
   <View style={headerStyles.main}>
-    <Link to="group">
-      <Text>
-        Group
-      </Text>
-    </Link>
-    <Link to="map">
-      <Text>
-        Map
-      </Text>
-    </Link>
-    <Link to="agenda">
-      <Text>
-        Agenda
-      </Text>
-    </Link>
-    <Link to="schedule">
-      <Text>
-        Schedule
-      </Text>
-    </Link>
+    <View></View>
+    <View>
+      <Image source={logo} />
+    </View>
     <TouchableHighlight
       onPress={toggleMenu}
       underlayColor="#bffffd"

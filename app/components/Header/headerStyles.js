@@ -6,10 +6,12 @@ export default StyleSheet.create({
     height: 60,
     backgroundColor: '#bffffd',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingRight: 20,
+    paddingLeft: 20
   },
   icon: {
-    opacity: 0.7
+    opacity: 0.6
   }
 });
