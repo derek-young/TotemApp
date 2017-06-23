@@ -11,20 +11,19 @@ import store from './app/redux/store';
 
 /* Components */
 import App from './app/App';
-import MapViewer from './app/components/MapViewer/MapViewer';
-import Group from './app/components/Group/Group';
-import Agenda from './app/components/Agenda/Agenda';
-import Schedule from './app/components/Schedule/Schedule';
+import Auth from './app/components/Auth/Auth';
+import PrivateRoute from './app/components/Auth/PrivateRoute';
 
 export default class TotemApp extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={{ flex: 1 }}>
-          <NativeRouter>
-            <Route path="/" component={App} />
-          </NativeRouter>
-        </View>
+        <NativeRouter>
+          <View style={{ flex: 1 }}>
+            <PrivateRoute isAuthenticated={false} path="/" component={App} />
+            <Route path="/auth" component={Auth} />
+          </View>
+        </NativeRouter>
       </Provider>
     );
   }

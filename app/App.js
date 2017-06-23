@@ -15,6 +15,9 @@ import MapViewer from './components/MapViewer/MapViewer';
 import Agenda from './components/Agenda/Agenda';
 import Schedule from './components/Schedule/Schedule';
 
+// Initialize Firebase
+require('./firebase');
+
 class App extends Component {
   render() {
     const { menuVisible, menuItems, history } = this.props;
@@ -33,10 +36,6 @@ class App extends Component {
     );
   }
 }
-
-// App.contextTypes = {
-//   router: React.PropTypes.object.isRequired
-// };
 
 export default connect((store) => ({
   menuVisible: store.menu.menuVisible,
