@@ -6,10 +6,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { signin } from '../../redux/actions';
 import styles from '../../styles';
 import authStyles from './authStyles';
-
-const onSignInClick = () => console.log('signin')
 
 const Auth = () => (
   <View style={[styles.container, authStyles.main]}>
@@ -18,7 +17,7 @@ const Auth = () => (
       <Icon.Button
         name="facebook"
         backgroundColor="#3b5998"
-        onPress={onSignInClick}>
+        onPress={signin}>
         Login with Facebook
       </Icon.Button>
     </View>
