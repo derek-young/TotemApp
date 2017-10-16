@@ -5,14 +5,13 @@ const defaults = {
   groupId: null,
   friendList: [],
   dataRetrieved: false,
-  facebookUsername: null,
   facebookUID: null
 };
 
 export default function userReducer(state = defaults, action) {
   switch(action.type) {
-    case 'SET_FB_USERNAME': {
-      return { ...state, facebookUsername: action.payload.name };
+    case 'DATA_RETRIEVED_FROM_FIREBASE': {
+      return { ...state, dataRetrieved: true };
     }
     case 'SIGNIN_SUCCESS': {
       const { uid, name } = action.payload;

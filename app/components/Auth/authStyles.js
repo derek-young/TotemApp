@@ -14,5 +14,10 @@ export default StyleSheet.create({
   button: {
     marginTop: 20,
     width: 175
+  },
+  loading: {
+    flex: 1,
+  	alignItems: 'center',
+    justifyContent: 'center'
   }
 });

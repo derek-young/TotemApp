@@ -17,17 +17,3 @@ export function updateUserGroupID(id) {
 
   firebaseOn('/groups/' + id, updateGroup);
 }
-
-export function initialUserData(user) {
-  return dispatch({
-    type: 'INITIAL_USER_DATA',
-    userData: user
-  });
-}
-
-export function setFBUsername(name) {
-  return dispatch({
-    type: 'SET_FB_USERNAME',
-    payload: { name }
-  });
-}

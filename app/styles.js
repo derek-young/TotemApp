@@ -9,5 +9,8 @@ export default StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject
+  },
+  scrollView: {
+    overflow: 'scroll'
   }
 });

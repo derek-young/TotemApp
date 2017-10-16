@@ -3,54 +3,71 @@ import {
   Text,
   View
 } from 'react-native';
-import { Route } from 'react-router-native';
+import { withRouter, Route } from 'react-router-native';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
+
 import styles from './styles';
 
 /* Components */
-import Menu from './components/Menu/Menu';
-import Header from './components/Header/Header';
-import Group from './components/Group/Group';
-import MapViewer from './components/MapViewer/MapViewer';
 import Agenda from './components/Agenda/Agenda';
+import Auth from './components/Auth/Auth';
+import Group from './components/Group/Group';
+import Header from './components/Header/Header';
+import HomeView from './components/HomeView';
+import MapViewer from './components/MapViewer/MapViewer';
+import Menu from './components/Menu/Menu';
+import PrivateRoute from './components/Auth/PrivateRoute';
 import Schedule from './components/Schedule/Schedule';
 
-import {
-  signInSuccess,
-  firebaseOnce,
-  getUserData,
-  geolocate,
-  getFriends
-} from './redux/actions';
+import { handleAuthStateChange } from './redux/actions';
 
 // Initialize Firebase
-require('./firebase');
+import './firebase';
 
 class App extends Component {
   componentWillMount() {
-    // firebase.auth().onAuthStateChanged(user => {
-    //   console.log('user on auth state change', user)
-    //   if (user) {
-    //     geolocate();
-    //     signInSuccess(user.uid, user.displayName);
-    //     getUserData(user.uid);
-    //
-    //     // Need FB token
-    //     // firebaseOnce('/users', fireUsers => getFriends(fireUsers));
-    //   }
-    // });
+    firebase.auth().onAuthStateChanged(user => {
+      console.log('user on auth state change', user)
+      if (user) {
+        handleAuthStateChange(user);
+      }
+    });
   }
 
   render() {
-    const { menuVisible, menuItems, history } = this.props;
+    const {
+      authenticated,
+      dataRetrieved,
+      menuVisible,
+      menuItems,
+      history
+    } = this.props;
 
     return (
       <View style={styles.container}>
-        <Header />
-        <Route path="/map" component={MapViewer} />
-        <Route path="/group" component={Group} />
-        <Route path="/agenda" component={Agenda} />
-        <Route path="/schedule" component={Schedule} />
+        {(authenticated && dataRetrieved) && <Header />}
+        <Route exact path="/" component={HomeView}/>
+        <PrivateRoute
+          isAuthenticated={authenticated}
+          path="/map"
+          component={MapViewer}
+        />
+        <PrivateRoute
+          isAuthenticated={authenticated}
+          path="/group"
+          component={Group}
+        />
+        <PrivateRoute
+          isAuthenticated={authenticated}
+          path="/agenda"
+          component={Agenda}
+        />
+        <PrivateRoute
+          isAuthenticated={authenticated}
+          path="/schedule"
+          component={Schedule}
+        />
         {/* <Route path="/choosevenue" component={ChooseVenue}/> */}
         {/* <Route path="/creategroup" component={CreateGroup}/> */}
         {menuVisible && <Menu menuItems={menuItems} history={history} />}
@@ -59,7 +76,9 @@ class App extends Component {
   }
 }
 
-export default connect((store) => ({
-  menuVisible: store.menu.menuVisible,
-  menuItems: store.menu.menuItems
-}))(App);
+export default withRouter(connect(({ auth, menu, user }) => ({
+  authenticated: auth.authenticated,
+  dataRetrieved: user.dataRetrieved,
+  menuVisible: menu.menuVisible,
+  menuItems: menu.menuItems
+}))(App));
