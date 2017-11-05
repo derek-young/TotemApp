@@ -17,6 +17,12 @@ export default function groupReducer(state = defaults, action) {
     case 'UPDATE_GROUP': {
       return { ...state, ...action.payload.group }
     }
+    case 'UPDATE_VENUE_ID': {
+      return {
+        ...state,
+        venueId: action.payload.id
+      };
+    }
     default:
       return state;
   }

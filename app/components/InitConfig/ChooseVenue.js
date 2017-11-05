@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, Text, View, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-native';
+import { Link, withRouter } from 'react-router-native';
 
 import styles from '../../styles';
 import localStyles from './configStyles';
@@ -20,7 +20,6 @@ class ChooseVenue extends Component {
 
   render() {
     const { venues = {} } = this.props;
-    console.log("venues in choose venue", venues)
 
     return (
       <View style={localStyles.main}>
@@ -34,39 +33,41 @@ class ChooseVenue extends Component {
             const { name, thumbnail } = venues[key];
 
             return (
-              <Link key={index} to="/createGroup">
-                <View
-                  onClick={() => updateVenueId(key)}>
+              <TouchableHighlight
+                key={index}
+                onPress={this.handleVenueClick}>
+                <View>
                   <Image
                     style={localStyles.thumbnail}
                     source={{ uri: thumbnail }}>
-                    <View>
+                    <View style={localStyles['image-overlay']}>
                       <Text style={localStyles.row}>
                         {name}
                       </Text>
                     </View>
                   </Image>
                 </View>
-              </Link>
+              </TouchableHighlight>
             );
           })}
         </ScrollView>
         <View style={localStyles.footer}>
-          <View>
-            <Link
-              style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-              to="/creategroup">
-              <Text style={{ fontSize: 16, color: 'white' }}>
-                Skip
-              </Text>
-            </Link>
-          </View>
+          <Link to="/creategroup">
+            <Text style={{ fontSize: 16, color: 'white' }}>
+              Skip
+            </Text>
+          </Link>
         </View>
       </View>
     );
   }
+
+  handleVenueClick = () => {
+    updateVenueId(key);
+    this.props.history.push('/createGroup');
+  }
 }
 
-export default connect(store => ({
+export default withRouter(connect(store => ({
 	venues: store.venue.venues
-}))(ChooseVenue)
+}))(ChooseVenue));

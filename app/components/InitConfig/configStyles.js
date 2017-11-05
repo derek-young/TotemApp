@@ -18,14 +18,27 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   footer: {
-    backgroundColor: '#222',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     height: 50,
+    backgroundColor: '#222',
     position: 'absolute',
-    bottom: 0,
+    bottom: 0
+  },
+  'image-overlay': {
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   row: {
-    fontSize: 16,
+    color: 'white',
+    fontSize: 20,
+    maxWidth: '70%',
+    textAlign: 'center'
   },
   thumbnail: {
     width: '100%',

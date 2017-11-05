@@ -25,3 +25,10 @@ export function updateGroup(group) {
     dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
   }
 }
+
+export function updateVenueId(id) {
+  return dispatch({
+    type: 'UPDATE_VENUE_ID',
+    payload: { id }
+  });
+}
