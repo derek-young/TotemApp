@@ -14,7 +14,7 @@ const defaults = {
   geofences: {}
 };
 
-export default function configReducer(state = defaults, action) {
+export default function venueReducer(state = defaults, action) {
   switch(action.type) {
     case 'SET_VENUES': {
       return {
@@ -24,13 +24,16 @@ export default function configReducer(state = defaults, action) {
     }
     case 'UPDATE_VENUE_DATA': {
       const newState = { ...state };
-      newState.venue = action.payload.venue;
-      if (action.payload.venue.geofences) {
-        newState.geofences = action.payload.venue.geofences;
+      const { venue } = action.payload;
+      newState.venue = venue;
+
+      if (venue && venue.geofences) {
+        newState.geofences = venue.geofences;
       }
+
       return newState;
     }
+    default:
+      return state;
   }
-
-  return state;
 };

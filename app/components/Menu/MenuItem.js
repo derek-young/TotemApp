@@ -21,7 +21,7 @@ const MenuItem = ({ path, text, icon, color, history }) => (
         name={icon}
         size={25}
       />
-      <Text style={[ menuStyles['menuItem__text'], { color } ]}>
+      <Text style={[ menuStyles.menuItem__text, { color } ]}>
         {text}
       </Text>
     </View>

@@ -7,6 +7,18 @@ export default StyleSheet.create({
     position: 'relative',
     ...StyleSheet.absoluteFillObject,
   },
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 10,
+  },
+  button: {
+    width: 100
+  },
+  errorText: {
+    color: 'red'
+  },
   header: {
     display: 'flex',
     justifyContent: 'center',
@@ -16,6 +28,18 @@ export default StyleSheet.create({
   headerText: {
     color: 'lightgrey',
     textAlign: 'center'
+  },
+  input: {
+    height: '100%',
+    backgroundColor: 'white',
+    padding: 5,
+    marginBottom: 5
+  },
+  inputWrapper: {
+    marginTop: 40,
+    marginBottom: 30,
+    height: 40,
+    width: '80%'
   },
   footer: {
     display: 'flex',

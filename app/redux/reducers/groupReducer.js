@@ -14,6 +14,17 @@ export const defaults = {
 
 export default function groupReducer(state = defaults, action) {
   switch(action.type) {
+    case 'UPDATE_GROUP_MEMBER': {
+      const { user, uid } = action.payload;
+
+      return {
+        ...state,
+        members: {
+          ...state.members,
+          [uid]: user
+        }
+      };
+    }
     case 'UPDATE_GROUP': {
       return { ...state, ...action.payload.group }
     }

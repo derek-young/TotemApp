@@ -3,8 +3,7 @@ import { Image, ScrollView, Text, View, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-native';
 
-import styles from '../../styles';
-import localStyles from './configStyles';
+import configStyles from './configStyles';
 
 /*  Actions  */
 import {
@@ -22,26 +21,26 @@ class ChooseVenue extends Component {
     const { venues = {} } = this.props;
 
     return (
-      <View style={localStyles.main}>
-        <View style={localStyles.header}>
-          <Text style={localStyles.headerText}>
+      <View style={configStyles.main}>
+        <View style={configStyles.header}>
+          <Text style={configStyles.headerText}>
             {'Select a Venue'.toUpperCase()}
           </Text>
         </View>
         <ScrollView>
-          {Object.keys(venues).map((key, index) => {
+          {Object.keys(venues).map(key => {
             const { name, thumbnail } = venues[key];
 
             return (
               <TouchableHighlight
-                key={index}
-                onPress={this.handleVenueClick}>
+                key={key}
+                onPress={() => this.handleVenueClick(key)}>
                 <View>
                   <Image
-                    style={localStyles.thumbnail}
+                    style={configStyles.thumbnail}
                     source={{ uri: thumbnail }}>
-                    <View style={localStyles['image-overlay']}>
-                      <Text style={localStyles.row}>
+                    <View style={configStyles['image-overlay']}>
+                      <Text style={configStyles.row}>
                         {name}
                       </Text>
                     </View>
@@ -51,8 +50,8 @@ class ChooseVenue extends Component {
             );
           })}
         </ScrollView>
-        <View style={localStyles.footer}>
-          <Link to="/creategroup">
+        <View style={configStyles.footer}>
+          <Link to="/create-group">
             <Text style={{ fontSize: 16, color: 'white' }}>
               Skip
             </Text>
@@ -62,9 +61,9 @@ class ChooseVenue extends Component {
     );
   }
 
-  handleVenueClick = () => {
+  handleVenueClick = key => {
     updateVenueId(key);
-    this.props.history.push('/createGroup');
+    this.props.history.push('/create-group');
   }
 }
 

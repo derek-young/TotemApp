@@ -5,7 +5,7 @@ const defaults = {
   errorMessage: ''
 };
 
-export default function auth(state = defaults, action) {
+export default function authReducer(state = defaults, action) {
   switch(action.type) {
     case 'AUTHENTICATING':
       return {
@@ -23,7 +23,7 @@ export default function auth(state = defaults, action) {
       return {
         ...state,
         hasError: true,
-        errorMessage: errorMessage
+        errorMessage
       };
     default:
       return state;

@@ -15,5 +15,5 @@ export function updateUserGroupID(id) {
     payload: { id }
   });
 
-  firebaseOn('/groups/' + id, updateGroup);
+  firebaseOn(`/groups/${  id}`, updateGroup);
 }

@@ -14,7 +14,7 @@ import logo from '../../img/totemlogo.png';
 
 const Header = () => (
   <View style={headerStyles.main}>
-    <View></View>
+    <View />
     <View>
       <Image source={logo} />
     </View>

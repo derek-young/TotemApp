@@ -25,8 +25,8 @@ const MapViewer = () => {
         provider={PROVIDER_GOOGLE}
         style={mapStyles.map}
         mapType={'terrain'}
-        showsUserLocation={true}
-        showsMyLocationButton={true}
+        showsUserLocation
+        showsMyLocationButton
         showsPointsOfInterest={false}
         region={{
           latitude: 33.681653,

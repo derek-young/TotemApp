@@ -7,9 +7,11 @@ import {
   firebaseSet,
   fetchVenues,
   setVenues,
+  updateUserGroupID
 } from '../actions';
 
 import store from '../../redux/store';
+
 const { dispatch } = store;
 
 export function signin() {
@@ -66,16 +68,16 @@ function getFriends({ uid, accessToken, fireUsers }) {
       }
     }
 
-    //saves user friends in the database
+    // saves user friends in the database
     return firebaseSet(`users/${uid}/friends`, friendsWithAccounts);
   }).catch((error) => {
     console.log('Error getting friends from facebook', error);
   });
 }
 
-export function handleAuthStateChange({ uid, displayName }) {
+export function handleAuthStateChange({ uid, displayName: name }) {
   // geolocate();
-  signinSuccess({ uid, displayName });
+  signinSuccess({ uid, name });
   getUserData(uid);
 
   // Need FB token

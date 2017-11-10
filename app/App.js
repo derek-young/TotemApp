@@ -12,6 +12,7 @@ import styles from './styles';
 /* Components */
 import Agenda from './components/Agenda/Agenda';
 import Auth from './components/Auth/Auth';
+import CreateGroup from './components/InitConfig/CreateGroup';
 import Group from './components/Group/Group';
 import Header from './components/Header/Header';
 import HomeView from './components/HomeView';
@@ -28,7 +29,6 @@ import './firebase';
 class App extends Component {
   componentWillMount() {
     firebase.auth().onAuthStateChanged(user => {
-      console.log('user on auth state change', user)
       if (user) {
         handleAuthStateChange(user);
       }
@@ -68,8 +68,12 @@ class App extends Component {
           path="/schedule"
           component={Schedule}
         />
+        <PrivateRoute
+          isAuthenticated={authenticated}
+          path="/create-group"
+          component={CreateGroup}
+        />
         {/* <Route path="/choosevenue" component={ChooseVenue}/> */}
-        {/* <Route path="/creategroup" component={CreateGroup}/> */}
         {menuVisible && <Menu menuItems={menuItems} history={history} />}
       </View>
     );
