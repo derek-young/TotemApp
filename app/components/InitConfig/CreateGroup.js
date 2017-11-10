@@ -41,7 +41,8 @@ class ChooseVenue extends Component {
           </View>
           <TouchableOpacity
             onPress={this.handleCreateClick}
-            style={[ styles.button, configStyles.button ]}>
+            style={[ styles.button, configStyles.button ]}
+          >
             <Text>Create</Text>
           </TouchableOpacity>
         </View>

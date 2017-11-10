@@ -38,7 +38,8 @@ class ChooseVenue extends Component {
                 <View>
                   <Image
                     style={configStyles.thumbnail}
-                    source={{ uri: thumbnail }}>
+                    source={{ uri: thumbnail }}
+                  >
                     <View style={configStyles['image-overlay']}>
                       <Text style={configStyles.row}>
                         {name}

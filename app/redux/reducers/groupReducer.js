@@ -14,6 +14,15 @@ export const defaults = {
 
 export default function groupReducer(state = defaults, action) {
   switch(action.type) {
+    case 'USERS_SORT': {
+      const members = objToArray(state.members);
+      const sortedUsers = members.sort(action.payload.method);
+      
+      return {
+        ...state,
+        members: arrToObj(sortedUsers)
+      };
+    }
     case 'UPDATE_GROUP_MEMBER': {
       const { user, uid } = action.payload;
 
@@ -38,3 +47,22 @@ export default function groupReducer(state = defaults, action) {
       return state;
   }
 };
+
+function objToArray(obj) {
+  const result = [];
+  const keys = Object.keys(obj);
+
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
+    result.push({ ...obj[key], key });
+  }
+
+  return result;
+}
+
+function arrToObj(arr) {
+  return arr.reduce((acc, curr) => {
+    acc[curr.key] = curr;
+    return acc;
+  }, {});
+}

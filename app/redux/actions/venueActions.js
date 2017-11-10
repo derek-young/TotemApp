@@ -31,3 +31,30 @@ export function updateVenueNames(venues) {
     payload: { venues }
   });
 }
+
+export function getArtist(key) {
+  const currentTime = new Date().getTime();
+  const scheduleItems = store.getState().venue.venue.scheduleitems;
+  const geoFences = store.getState().venue.geofences;
+  const userGeofence = geoFences[key];
+
+  for (let i = 0; i < scheduleItems.length; i += 1) {
+    const item = scheduleItems[i];
+    if (userGeofence && item) {
+      if (userGeofence.name === item.geofence) {
+        const startTime = localTimeMilliseconds(Date.parse(item.starttime));
+        const endTime = localTimeMilliseconds(Date.parse(item.endtime));
+        const timeInRange = startTime <= currentTime && currentTime < endTime;
+
+        if (timeInRange) {
+          return item.name.toProperCase();
+        }
+      }
+    }
+  }
+}
+
+function localTimeMilliseconds(milliSeconds) {
+  const timeOffset = new Date(milliSeconds).getTimezoneOffset();
+  return milliSeconds + (timeOffset * 1000 * 60);
+}

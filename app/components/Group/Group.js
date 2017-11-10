@@ -1,36 +1,41 @@
 import React from 'react';
 import {
   ScrollView,
-  Text,
   View
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { sortUsers } from '../../redux/actions';
+import { connect } from 'react-redux';
 
 import groupStyles from './groupStyles';
 
-const icons = [
-  { icon: 'sort-alpha-asc', method: 'sortAZ', color: groupStyles.button.alpha },
-  { icon: 'map-signs', method: 'geofence', color: groupStyles.button.geofence },
-  { icon: 'street-view', method: 'proximity', color: groupStyles.button.proximity }
-];
+import Header from './Header';
+import Row from './Row';
 
-const Group = () => (
+const Group = ({ user, members }) => (
   <View>
-    <View style={groupStyles.header}>
-      {icons.map(({ icon, method, color }) => (
-        <TouchableHighlight onPress={() => sortUsers(method)}>
-          <Icon name={icon} size={30} color="#900" />
-        </TouchableHighlight>
-      ))}
-      <Icon name="sort-alpha-asc" size={30} color="#900" />
-    </View>
+    <Header />
     <ScrollView>
-      <Text>
-        Group View
-      </Text>
+      {Object.keys(members).map(userKey => {
+        // Anchor current user info at top of view
+        const member = members[userKey];
+        if (userKey === user.uid) {
+          return (
+            <Row key={userKey} member={member} uid={userKey} />
+          );
+        }
+      })}
+      {Object.keys(members).map(userKey => {
+        const member = members[userKey];
+        if (member && userKey !== user.uid) {
+          return (
+            <Row key={userKey} member={member} uid={userKey} />
+          );
+        }
+      })}
     </ScrollView>
   </View>
 );
 
-export default Group;
+export default connect((store) => ({
+  user: store.user,
+  members: store.group.members
+}))(Group);
