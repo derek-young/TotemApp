@@ -11,7 +11,7 @@ import Header from './Header';
 import Row from './Row';
 
 const Group = ({ user, members }) => (
-  <View>
+  <View style={{ height: '100%' }}>
     <Header />
     <ScrollView>
       {Object.keys(members).map(userKey => {

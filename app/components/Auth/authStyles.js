@@ -1,11 +1,12 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
   main: {
     paddingTop: 120,
-    alignItems: 'center'
+    alignItems: 'center',
+    height: '100%'
   },
   logo: {
     width: width - 100,
@@ -16,8 +17,9 @@ export default StyleSheet.create({
     width: 175
   },
   loading: {
-    flex: 1,
+    display: 'flex',
   	alignItems: 'center',
-    justifyContent: 'center'
+    height: '100%',
+    paddingTop: 90
   }
 });

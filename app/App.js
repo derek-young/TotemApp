@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View
-} from 'react-native';
+import { View } from 'react-native';
 import { withRouter, Route } from 'react-router-native';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
+import LinearGradient from 'react-native-linear-gradient';
 
 import styles from './styles';
 
 /* Components */
 import Agenda from './components/Agenda/Agenda';
-import Auth from './components/Auth/Auth';
 import CreateGroup from './components/InitConfig/CreateGroup';
 import Group from './components/Group/Group';
 import Header from './components/Header/Header';
@@ -56,17 +53,17 @@ class App extends Component {
         <PrivateRoute
           isAuthenticated={authenticated}
           path="/group"
-          component={Group}
+          component={() => this.createLinearGradient(Group)}
         />
         <PrivateRoute
           isAuthenticated={authenticated}
           path="/agenda"
-          component={Agenda}
+          component={() => this.createLinearGradient(Agenda)}
         />
         <PrivateRoute
           isAuthenticated={authenticated}
           path="/schedule"
-          component={Schedule}
+          component={() => this.createLinearGradient(Schedule)}
         />
         <PrivateRoute
           isAuthenticated={authenticated}
@@ -78,6 +75,15 @@ class App extends Component {
       </View>
     );
   }
+
+  createLinearGradient = Child => (
+    <LinearGradient
+      start={{ x: 0.0, y: 0.25 }} end={{ x: 0.5, y: 1.0 }}
+      colors={[ '#ffe482', 'rgba(255, 120, 113, 0.5)' ]}
+    >
+      <Child />
+    </LinearGradient>
+  )
 }
 
 export default withRouter(connect(({ auth, menu, user }) => ({

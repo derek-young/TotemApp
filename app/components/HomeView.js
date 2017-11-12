@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../redux/store.js';
-import firebase from 'firebase';
+import LinearGradient from 'react-native-linear-gradient';
 
 /*  Components  */
 import MapViewer from './MapViewer/MapViewer';
@@ -9,18 +8,26 @@ import ChooseVenue from './InitConfig/ChooseVenue';
 import Auth from './Auth/Auth';
 import Loading from './Auth/Loading';
 
-export class HomeView extends React.Component {
-
+class HomeView extends Component {
   render() {
     const { auth, user } = this.props;
     const hasGroup = !!user.groupId;
 
     return (
-      !auth.authenticated ? <Auth /> :
-      !user.dataRetrieved ? <Loading /> :
+      !auth.authenticated ? this.createLinearGradient(Auth) :
+      !user.dataRetrieved ? this.createLinearGradient(Loading) :
       !hasGroup ? <ChooseVenue /> : <MapViewer />
     );
   }
+
+  createLinearGradient = Child => (
+    <LinearGradient
+      start={{ x: 0.0, y: 0.25 }} end={{ x: 0.5, y: 1.0 }}
+      colors={[ '#ffe482', 'rgba(255, 120, 113, 0.5)' ]}
+    >
+      <Child />
+    </LinearGradient>
+  )
 }
 
 export default connect(store => ({

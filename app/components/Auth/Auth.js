@@ -1,10 +1,9 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import logoLarge from '../../img/logo_large.png';
 
 import { signin } from '../../redux/actions';
-import styles from '../../styles';
 import authStyles from './authStyles';
 
 const Auth = () => (

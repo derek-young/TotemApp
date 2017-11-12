@@ -11,7 +11,7 @@ import { getArtist } from '../../redux/actions';
 import rowStyles from './rowStyles';
 
 const Row = ({
-  member: { geofence, img, label, position = {}}
+  member: { geofence, img, name, position = {}}
 }) => {
   const artist = geofence && geofence.key ? ` - ${getArtist(geofence.key)}` : '';
 
@@ -24,11 +24,15 @@ const Row = ({
         />
       </View>
       <View style={rowStyles.center}>
-        <Text>{label}</Text>
-        <Text>
-          {geofence && geofence.name ? geofence.name + artist : ''}
-        </Text>
-        <Text>
+        <Text style={rowStyles.label}>{name}</Text>
+        {
+          (geofence && geofence.name)
+          &&
+          <Text>
+            {geofence.name + artist}
+          </Text>
+        }
+        <Text style={rowStyles.subtext}>
           Last updated: {moment(position.timestamp).fromNow()}
         </Text>
       </View>
