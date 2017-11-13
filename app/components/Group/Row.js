@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Image,
   Text,
+  TouchableOpacity,
   View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -36,9 +37,9 @@ const Row = ({
           Last updated: {moment(position.timestamp).fromNow()}
         </Text>
       </View>
-      <View>
+      <TouchableOpacity style={rowStyles.right}>
         <Icon name="ellipsis-v" size={20} color="#000" />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }

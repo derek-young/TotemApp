@@ -14,7 +14,8 @@ export default StyleSheet.create({
   center: {
     flex: 1,
     justifyContent: 'center',
-    paddingLeft: 10
+    paddingLeft: 10,
+    paddingRight: 10
   },
   image: {
     width: 70,
@@ -22,6 +23,12 @@ export default StyleSheet.create({
   },
   label: {
     fontSize: 18,
+  },
+  right: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: 20
   },
   subtext: {
     fontSize: 10,
