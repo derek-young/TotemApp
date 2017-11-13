@@ -4,8 +4,11 @@ import {
   View
 } from 'react-native';
 
+import Header from './Header';
+
 const Schedule = () => (
-  <View>
+  <View style={{ height: '100%' }}>
+    <Header />
     <Text>
       Schedule View
     </Text>

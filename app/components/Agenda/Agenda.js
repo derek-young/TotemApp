@@ -4,8 +4,11 @@ import {
   View
 } from 'react-native';
 
+import Header from './Header';
+
 const Agenda = () => (
-  <View>
+  <View style={{ height: '100%' }}>
+    <Header />
     <Text>
       Agenda View
     </Text>

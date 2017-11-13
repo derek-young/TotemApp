@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
 
+import { totemBlue } from '../../colors';
+
 export default StyleSheet.create({
   main: {
     alignSelf: 'stretch',
     height: 60,
-    backgroundColor: '#bffffd',
+    backgroundColor: totemBlue,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
