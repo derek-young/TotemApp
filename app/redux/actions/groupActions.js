@@ -18,7 +18,7 @@ export function createGroup(groupName) {
 
   group.groupName = groupName;
   group.memberKeys[user.uid] = user.name;
-  updates[`/groups/${  groupKey}`] = group;
+  updates[`/groups/${groupKey}`] = group;
 
   firebaseSet(`/users/${user.uid}/groupId`, groupKey);
 
@@ -35,7 +35,7 @@ export function updateGroup(group) {
   Object.keys(group.memberKeys).forEach(key => addUserListener(key));
 
   if (group.venueId) {
-    firebaseOnce(`/venues/${  group.venueId}`, updateVenue);
+    firebaseOnce(`/venues/${group.venueId}`, updateVenue);
   } else {
     // Add code to render map on user's current location
 

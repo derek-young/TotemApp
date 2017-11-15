@@ -14,7 +14,7 @@ const icons = [
   { icon: 'street-view', method: 'proximity', color: '#ffbfbf' }
 ];
 
-const Header = () => (
+const GroupHeader = () => (
   <View style={headerStyles.main}>
     {icons.map(({ icon, method, color }) => (
       <TouchableHighlight
@@ -28,4 +28,4 @@ const Header = () => (
   </View>
 );
 
-export default Header;
+export default GroupHeader;

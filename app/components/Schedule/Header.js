@@ -69,5 +69,4 @@ class ScheduleHeader extends Component {
   }
 }
 
-
 export default ScheduleHeader;

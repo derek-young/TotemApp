@@ -1,12 +1,21 @@
-import { firebaseOnce } from '../actions';
+import { firebaseOnce, firebaseUpdate, firebaseKeyGen } from '../actions';
 import store from '../../redux/store';
-import MOCK_VENUE_DATA from '../../../mock_data/mock_venue_data';
 
 const { dispatch } = store;
 
+function createVenue(venue) {
+  const updates = {};
+  const venueKey = firebaseKeyGen('/venues/');
+
+  venue.key = venueKey;
+
+  updates[`/venues/${venueKey}`] = venue;
+
+  return firebaseUpdate(updates);
+}
+
 export function fetchVenues(callback) {
-  return callback(MOCK_VENUE_DATA);
-  // return firebaseOnce('/venues', callback);
+  return firebaseOnce('/venues', callback);
 }
 
 export function setVenues(venues) {
