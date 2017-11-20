@@ -1,13 +1,15 @@
 import axios from 'axios';
 import firebase from 'firebase';
-import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 import {
+  firebaseOn,
   firebaseOnce,
   firebaseSet,
   fetchVenues,
   setVenues,
-  updateUserGroupID
+  updateGroup,
+  updateUserData
 } from '../actions';
 
 import store from '../../redux/store';
@@ -62,7 +64,7 @@ function getFriends({ uid, accessToken, fireUsers }) {
       facebookUIDandFirebaseKey[fireUsers[key].facebookUID] = key
     ));
 
-    for (let i = 0; i < facebookFriends.length; i++) {
+    for (let i = 0; i < facebookFriends.length; i += 1) {
       if (facebookUIDandFirebaseKey[facebookFriends[i].id]) {
         friendsWithAccounts[facebookUIDandFirebaseKey[facebookFriends[i].id]] = true;
       }
@@ -75,9 +77,9 @@ function getFriends({ uid, accessToken, fireUsers }) {
   });
 }
 
-export function handleAuthStateChange({ uid, displayName: name }) {
+export function handleAuthStateChange({ uid }) {
   // geolocate();
-  signinSuccess({ uid, name });
+  signinSuccess({ uid });
   getUserData(uid);
 
   // Need FB token
@@ -88,26 +90,29 @@ function signinInProgress() {
   return dispatch({ type: 'AUTHENTICATING' });
 }
 
-function signinSuccess({ uid, name }) {
+function signinSuccess({ uid }) {
   return dispatch({
     type: 'SIGNIN_SUCCESS',
-    payload: { uid, name }
+    payload: { uid }
   });
 }
 
-function getUserData(id) {
-  firebaseOnce(`users/${id}`, data => {
+function getUserData(uid) {
+  return firebaseOnce(`users/${uid}`, data => {
     const hasGroup = !!data.groupId;
 
+    updateUserData(data);
+
     if (hasGroup) {
-      updateUserGroupID(data.groupId);
+      // Add listener to group for changes
+      firebaseOn(`/groups/${data.groupId}`, updateGroup);
     }
 
-    fetchVenues(venues => {
+    return fetchVenues(venues => {
       setVenues(venues);
 
       if (!hasGroup) {
-        dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
+        dispatch({ type: 'USER_DATA_RETRIEVED' });
       }
     });
   });

@@ -31,7 +31,7 @@ export function updateVenue(venue) {
     payload: { venue }
   });
 
-  return dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
+  return dispatch({ type: 'USER_DATA_RETRIEVED' });
 }
 
 export function updateVenueNames(venues) {

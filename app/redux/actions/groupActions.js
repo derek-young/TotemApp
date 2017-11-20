@@ -39,7 +39,7 @@ export function updateGroup(group) {
   } else {
     // Add code to render map on user's current location
 
-    dispatch({ type: 'DATA_RETRIEVED_FROM_FIREBASE' });
+    dispatch({ type: 'USER_DATA_RETRIEVED' });
   }
 }
 

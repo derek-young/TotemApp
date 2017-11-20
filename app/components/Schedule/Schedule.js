@@ -14,20 +14,14 @@ const Schedule = ({ agenda, scheduleItems }) => (
   <View style={{ height: '100%' }}>
     <Header />
     <ScrollView>
-      {Object.keys(scheduleItems).map(key => {
-        const selected = (agenda && agenda.includes(key));
-
-        return (
-          <Row
-            key={key}
-            selected={selected}
-            toggle={selected ?
-              () => removeAgendaItem(key) :
-              () => addAgendaItem(key)}
-            {...scheduleItems[key]}
-          />
-        );
-      })}
+      {Object.keys(scheduleItems).map(key => (
+        <Row
+          key={key}
+          selected={agenda[key]}
+          toggleItem={agenda[key] ? () => removeAgendaItem(key) : () => addAgendaItem(key)}
+          {...scheduleItems[key]}
+        />
+      ))}
     </ScrollView>
   </View>
 );

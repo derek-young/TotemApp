@@ -17,7 +17,7 @@ export default function groupReducer(state = defaults, action) {
     case 'USERS_SORT': {
       const members = objToArray(state.members);
       const sortedUsers = members.sort(action.payload.method);
-      
+
       return {
         ...state,
         members: arrToObj(sortedUsers)
@@ -35,7 +35,10 @@ export default function groupReducer(state = defaults, action) {
       };
     }
     case 'UPDATE_GROUP': {
-      return { ...state, ...action.payload.group }
+      return {
+        ...state,
+        ...action.payload.group
+      };
     }
     case 'UPDATE_VENUE_ID': {
       return {

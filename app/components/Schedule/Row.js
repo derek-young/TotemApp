@@ -9,8 +9,20 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import rowStyles from './rowStyles';
 
-const Row = ({ name, geofence, startTime, endTime, selected, toggle }) => (
-  <View style={rowStyles.main}>
+const ScheduleRow = ({
+  name,
+  geofence,
+  startTime,
+  endTime,
+  selected,
+  toggleItem
+}) => (
+  <View
+    style={
+      selected ?
+      [ rowStyles.main, rowStyles.selected ]
+      : rowStyles.main
+    }>
     <View>
       <Text style={rowStyles.label}>
         {name.toUpperCase()}
@@ -22,7 +34,7 @@ const Row = ({ name, geofence, startTime, endTime, selected, toggle }) => (
         {`${moment(startTime).format('h:mm a')} - ${moment(endTime).format('h:mm a')}`}
       </Text>
     </View>
-    <TouchableOpacity onPress={toggle} style={rowStyles.icon}>
+    <TouchableOpacity onPress={toggleItem} style={rowStyles.icon}>
       <Icon
         style={selected ? rowStyles.removeButton : rowStyles.addButton}
         name={selected ? 'times-circle' : 'plus-circle'}
@@ -32,4 +44,4 @@ const Row = ({ name, geofence, startTime, endTime, selected, toggle }) => (
   </View>
 );
 
-export default Row;
+export default ScheduleRow;
