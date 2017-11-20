@@ -5,8 +5,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import Header from './Header';
-import Row from './Row';
+import Header from './GroupHeader';
+import Row from './GroupRow';
 
 const Group = ({ user, members }) => (
   <View style={{ height: '100%' }}>

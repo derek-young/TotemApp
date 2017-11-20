@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 
 import { addAgendaItem, removeAgendaItem } from '../../redux/actions';
 
-import Header from './Header';
-import Row from './Row';
+import Header from './ScheduleHeader';
+import Row from './ScheduleRow';
 
 const Schedule = ({ agenda, scheduleItems }) => (
   <View style={{ height: '100%' }}>
