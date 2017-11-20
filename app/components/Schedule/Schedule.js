@@ -10,9 +10,13 @@ import { addAgendaItem, removeAgendaItem } from '../../redux/actions';
 import Header from './ScheduleHeader';
 import Row from './ScheduleRow';
 
-const Schedule = ({ agenda, scheduleItems }) => (
+const Schedule = ({
+  agenda,
+  schedule,
+  scheduleItems,
+}) => (
   <View style={{ height: '100%' }}>
-    <Header />
+    <Header {...schedule} />
     <ScrollView>
       {Object.keys(scheduleItems).map(key => (
         <Row
@@ -26,7 +30,8 @@ const Schedule = ({ agenda, scheduleItems }) => (
   </View>
 );
 
-export default connect(({ user, venue }) => ({
+export default connect(({ user, schedule, venue }) => ({
   agenda: user.agenda,
   scheduleItems: venue.venue.scheduleItems,
+  schedule
 }))(Schedule);
