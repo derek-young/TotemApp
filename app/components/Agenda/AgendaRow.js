@@ -7,23 +7,10 @@ import {
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import rowStyles from './rowStyles';
 import sharedRowStyles from '../sharedStyles/scheduleRowStyles';
 
-const ScheduleRow = ({
-  name,
-  geofence,
-  startTime,
-  endTime,
-  selected,
-  toggleItem
-}) => (
-  <View
-    style={
-      selected ?
-      [ sharedRowStyles.main, rowStyles.selected ]
-      : sharedRowStyles.main
-    }>
+const ScheduleRow = ({ name, geofence, startTime, endTime }) => (
+  <View style={sharedRowStyles.main}>
     <View>
       <Text style={sharedRowStyles.label}>
         {name.toUpperCase()}
@@ -35,11 +22,13 @@ const ScheduleRow = ({
         {`${moment(startTime).format('h:mm a')} - ${moment(endTime).format('h:mm a')}`}
       </Text>
     </View>
-    <TouchableOpacity onPress={toggleItem} style={sharedRowStyles.icon}>
+    <TouchableOpacity
+      onPress={() => console.log('open additional options popup')}
+      style={sharedRowStyles.icon}
+    >
       <Icon
-        style={selected ? rowStyles.removeButton : rowStyles.addButton}
-        name={selected ? 'times-circle' : 'plus-circle'}
-        size={24}
+        name="ellipsis-v"
+        size={20}
       />
     </TouchableOpacity>
   </View>

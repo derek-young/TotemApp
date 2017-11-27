@@ -7,9 +7,9 @@ export default StyleSheet.create({
     backgroundColor: 'black',
   },
   top: {
+    height: 50,
     display: 'flex',
     flexDirection: 'row',
-    height: 50,
     shadowColor: 'white',
     shadowOffset: { width: 0, height: 8 },
     shadowRadius: 8,

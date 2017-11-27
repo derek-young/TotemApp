@@ -1,18 +1,33 @@
 import React from 'react';
 import {
-  Text,
+  ScrollView,
   View
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import Header from './AgendaHeader';
+import Row from './AgendaRow';
 
-const Agenda = () => (
+const Agenda = ({ agenda, days, scheduleItems, selectedDay }) => (
   <View style={{ height: '100%' }}>
-    <Header />
-    <Text>
-      Agenda View
-    </Text>
+    <Header
+      days={days}
+      selectedDay={selectedDay}
+    />
+    <ScrollView>
+      {Object.keys(agenda).map(key => (
+        <Row
+          key={key}
+          {...scheduleItems[key]}
+        />
+      ))}
+    </ScrollView>
   </View>
-);
+)
 
-export default Agenda;
+export default connect(({ user, schedule, venue }) => ({
+  agenda: user.agenda,
+  days: schedule.days,
+  scheduleItems: venue.venue.scheduleItems,
+  selectedDay: schedule.selectedDay
+}))(Agenda);
