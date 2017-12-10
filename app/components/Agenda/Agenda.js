@@ -18,6 +18,7 @@ const Agenda = ({ agenda, days, scheduleItems, selectedDay }) => (
       {Object.keys(agenda).map(key => (
         <Row
           key={key}
+          itemKey={key}
           {...scheduleItems[key]}
         />
       ))}
