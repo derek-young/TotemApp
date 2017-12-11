@@ -20,7 +20,7 @@ const AgendaPopover = ({
   name,
   formattedTime,
   geofence,
-  imgurl,
+  img,
   itemKey,
   show,
   startTime,
@@ -40,8 +40,8 @@ const AgendaPopover = ({
       visible={show}
     >
       <TouchableHighlight style={sharedPopoverStyles.container}>
-        <View style={popoverStyles.main}>
-          <View style={popoverStyles.header}>
+        <View style={sharedPopoverStyles.main}>
+          <View style={sharedPopoverStyles.header}>
             <Text style={popoverStyles.title}>
               {name}
             </Text>
@@ -49,11 +49,11 @@ const AgendaPopover = ({
               <Icon name="times" size={20} />
             </TouchableOpacity>
           </View>
-          <View style={popoverStyles.body}>
-            <View style={popoverStyles['body-top']}>
-              {imgurl && <Image source={imgurl} />}
+          <View style={sharedPopoverStyles.body}>
+            <View style={sharedPopoverStyles['body-top']}>
+              {img && <Image source={img} />}
               <View>
-                <Text style={popoverStyles['body-text']}>
+                <Text style={sharedPopoverStyles['body-text']}>
                   {geofence}
                 </Text>
                 <Text>
@@ -67,17 +67,17 @@ const AgendaPopover = ({
                 </Text>
               </View>
             </View>
-            <View style={popoverStyles['body-bottom']}>
-              <Text style={popoverStyles['body-text']}>
+            <View style={sharedPopoverStyles['body-bottom']}>
+              <Text style={sharedPopoverStyles['body-text']}>
                 Who else is going?
               </Text>
             </View>
           </View>
           <TouchableHighlight
             onPress={() => removeAgendaItem(itemKey)}
-            style={popoverStyles.button}
+            style={sharedPopoverStyles.button}
           >
-            <Text style={popoverStyles['button-text']}>
+            <Text style={sharedPopoverStyles['button-text']}>
               {'Remove From Adgenda'.toUpperCase()}
             </Text>
           </TouchableHighlight>

@@ -15,17 +15,31 @@ const Group = ({ user, members }) => (
       {Object.keys(members).map(userKey => {
         // Anchor current user info at top of view
         const member = members[userKey];
-        if (userKey === user.uid) {
+        const isUser = userKey === user.uid;
+
+        if (isUser) {
           return (
-            <Row key={userKey} member={member} uid={userKey} />
+            <Row
+              key={userKey}
+              isUser={isUser}
+              uid={userKey}
+              {...member}
+            />
           );
         }
       })}
       {Object.keys(members).map(userKey => {
         const member = members[userKey];
-        if (member && userKey !== user.uid) {
+        const isUser = userKey === user.uid;
+
+        if (member && !isUser) {
           return (
-            <Row key={userKey} member={member} uid={userKey} />
+            <Row
+              key={userKey}
+              isUser={isUser}
+              uid={userKey}
+              {...member}
+            />
           );
         }
       })}
