@@ -10,7 +10,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import sharedPopoverStyles from '../sharedStyles/popoverStyles';
 import leaveGroupStyles from './leaveGroupStyles';
 
-const LeaveGroupPopover = ({ close, show }) => (
+import { removeUserFromGroup } from '../../redux/actions';
+
+const LeaveGroupPopover = ({ close, openGroupPopover, show }) => (
   <Modal
     transparent
     visible={show}
@@ -22,8 +24,40 @@ const LeaveGroupPopover = ({ close, show }) => (
           <Text style={leaveGroupStyles.title}>
             Peace Out
           </Text>
-          <TouchableOpacity onPress={close}>
-            <Icon name="times" size={20} />
+          <TouchableOpacity style={{ height: '100%' }} onPress={close}>
+            <Icon name="times" size={20} color="#FFF" />
+          </TouchableOpacity>
+        </View>
+        <Text style={leaveGroupStyles['body-text']}>
+          Are you sure you want to leave this group?
+        </Text>
+        <Text style={{ color: '#FFF' }}>
+          The group will be deleted if you are the only member.
+        </Text>
+        <View style={leaveGroupStyles.footer}>
+          <TouchableOpacity
+            style={[ leaveGroupStyles.button, leaveGroupStyles.cancel ]}
+            onPress={() => {
+              close();
+              openGroupPopover();
+            }}
+          >
+            <Icon name="times" size={20} color="#FF695E" />
+            <Text style={leaveGroupStyles['cancel-text']}>
+              No
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[ leaveGroupStyles.button, leaveGroupStyles.confirm ]}
+            onPress={() => {
+              close();
+              removeUserFromGroup();
+            }}
+          >
+            <Icon name="check" size={20} color="#2ECC40" />
+            <Text style={leaveGroupStyles['confirm-text']}>
+              Yes
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

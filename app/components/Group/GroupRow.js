@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 
 import Popover from './GroupPopover';
+import LeaveGroupPopover from './LeaveGroupPopover';
 
 import { getArtist } from '../../redux/actions';
 import rowStyles from './rowStyles';
@@ -59,11 +60,20 @@ class Row extends React.Component {
           artist={artist}
           close={this.closePopover}
           closeLeaveGroup={this.closeLeaveGroup}
+          openGroupPopover={this.openPopover}
           openLeaveGroup={this.openLeaveGroup}
           show={showPopover}
           showLeaveGroup={showLeaveGroup}
           {...this.props}
         />
+        {
+          showLeaveGroup &&
+          <LeaveGroupPopover
+            close={this.closeLeaveGroup}
+            openGroupPopover={this.openPopover}
+            show={showLeaveGroup}
+          />
+        }
       </View>
     );
   }

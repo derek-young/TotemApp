@@ -3,6 +3,7 @@ import {
   addUserListener,
   firebaseKeyGen,
   firebaseOnce,
+  firebaseRemove,
   firebaseSet,
   firebaseUpdate,
   updateUserGroupID,
@@ -26,19 +27,44 @@ export function createGroup(groupName) {
   .then(() => updateUserGroupID(groupKey));
 }
 
+export function removeUserFromGroup() {
+  const { user, group: { memberKeys }} = store.getState();
+  const memberCount = Object.keys(memberKeys).length;
+
+  if (memberCount === 1) {
+    firebaseRemove(`groups/${user.groupId}`);
+  } else {
+    firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`);
+  }
+
+  firebaseRemove(`users/${user.uid}/groupId`);
+  updateUserGroupID('');
+  resetGroup();
+}
+
+function resetGroup() {
+  return dispatch({
+    type: 'RESET_GROUP'
+  });
+}
+
 export function updateGroup(group) {
   dispatch({
     type: 'UPDATE_GROUP',
     payload: { group }
   });
 
-  Object.keys(group.memberKeys).forEach(key => addUserListener(key));
+  if (group) {
+    Object.keys(group.memberKeys).forEach(key => addUserListener(key));
 
-  if (group.venueId) {
-    firebaseOnce(`/venues/${group.venueId}`, updateVenue);
+    if (group.venueId) {
+      firebaseOnce(`/venues/${group.venueId}`, updateVenue);
+    } else {
+      // Add code to render map on user's current location
+
+      dispatch({ type: 'USER_DATA_RETRIEVED' });
+    }
   } else {
-    // Add code to render map on user's current location
-
     dispatch({ type: 'USER_DATA_RETRIEVED' });
   }
 }

@@ -10,6 +10,7 @@ import styles from './styles';
 /* Components */
 import Agenda from './components/Agenda/Agenda';
 import CreateGroup from './components/InitConfig/CreateGroup';
+import ChooseVenue from './components/InitConfig/ChooseVenue';
 import Group from './components/Group/Group';
 import Header from './components/Header/Header';
 import HomeView from './components/HomeView';
@@ -38,12 +39,13 @@ class App extends Component {
       dataRetrieved,
       menuVisible,
       menuItems,
-      history
+      history,
+      location: { pathname }
     } = this.props;
 
     return (
       <View style={styles.container}>
-        {(authenticated && dataRetrieved) && <Header />}
+        {(authenticated && dataRetrieved) && <Header path={pathname} />}
         <Route exact path="/" component={HomeView}/>
         <PrivateRoute
           isAuthenticated={authenticated}
@@ -67,10 +69,14 @@ class App extends Component {
         />
         <PrivateRoute
           isAuthenticated={authenticated}
+          path="/choose-venue"
+          component={ChooseVenue}
+        />
+        <PrivateRoute
+          isAuthenticated={authenticated}
           path="/create-group"
           component={CreateGroup}
         />
-        {/* <Route path="/choosevenue" component={ChooseVenue}/> */}
         {menuVisible && <Menu menuItems={menuItems} history={history} />}
       </View>
     );

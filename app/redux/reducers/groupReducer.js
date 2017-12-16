@@ -1,4 +1,4 @@
-export const defaults = {
+const defaults = {
   groupName: '',
   memberKeys: {},
   members: {},
@@ -14,6 +14,9 @@ export const defaults = {
 
 export default function groupReducer(state = defaults, action) {
   switch(action.type) {
+    case 'RESET_GROUP': {
+      return defaults;
+    }
     case 'USERS_SORT': {
       const members = objToArray(state.members);
       const sortedUsers = members.sort(action.payload.method);

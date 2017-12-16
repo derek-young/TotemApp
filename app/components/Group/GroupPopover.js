@@ -12,19 +12,15 @@ import rowStyles from './rowStyles';
 import sharedPopoverStyles from '../sharedStyles/popoverStyles';
 import popoverStyles from './popoverStyles';
 
-import LeaveGroupPopover from './LeaveGroupPopover';
-
 const GroupPopover = ({
   artist,
   close,
-  closeLeaveGroup,
   geofence,
   isUser,
   name,
   openLeaveGroup,
   position = {},
   show,
-  showLeaveGroup,
 }) => (
   <Modal
     transparent
@@ -82,17 +78,16 @@ const GroupPopover = ({
           isUser &&
           <View>
             <TouchableOpacity
-              onPress={openLeaveGroup}
+              onPress={() => {
+                close();
+                openLeaveGroup();
+              }}
               style={sharedPopoverStyles.button}
             >
               <Text style={sharedPopoverStyles['button-text']}>
                 {'Leave Group'.toUpperCase()}
               </Text>
             </TouchableOpacity>
-            <LeaveGroupPopover
-              close={closeLeaveGroup}
-              show={showLeaveGroup}
-            />
           </View>
         }
       </View>

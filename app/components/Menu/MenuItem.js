@@ -4,7 +4,6 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { toggleMenu } from '../../redux/actions';

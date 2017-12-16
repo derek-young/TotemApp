@@ -16,8 +16,8 @@ const Menu = ({ menuItems, history }) => (
     underlayColor="transparent"
     onPress={toggleMenu}>
     <Animated.View style={menuStyles.menu}>
-      {menuItems.map((item, i) => (
-        <MenuItem key={i} history={history} {...item} />
+      {menuItems.map(item => (
+        <MenuItem key={item.path} history={history} {...item} />
       ))}
       <Text style={{ color: 'white', textAlign: 'center' }}>
         v0.0.0

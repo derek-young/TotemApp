@@ -3,20 +3,30 @@ import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 
 /*  Components  */
-import MapViewer from './MapViewer/MapViewer';
-import ChooseVenue from './InitConfig/ChooseVenue';
 import Auth from './Auth/Auth';
 import Loading from './Auth/Loading';
 
 class HomeView extends Component {
-  render() {
-    const { auth, user } = this.props;
+  componentDidUpdate() {
+    const { auth, history, user } = this.props;
     const hasGroup = !!user.groupId;
 
+    if (auth.authenticated && user.dataRetrieved) {
+      if (hasGroup) {
+        history.push('map');
+      } else {
+        history.push('choose-venue');
+      }
+    }
+  }
+
+  render() {
+    const { auth } = this.props;
+
     return (
-      !auth.authenticated ? this.createLinearGradient(Auth) :
-      !user.dataRetrieved ? this.createLinearGradient(Loading) :
-      !hasGroup ? <ChooseVenue /> : <MapViewer />
+      !auth.authenticated ?
+      this.createLinearGradient(Auth) :
+      this.createLinearGradient(Loading)
     );
   }
 

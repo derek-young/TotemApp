@@ -1,8 +1,10 @@
 import store from '../../redux/store';
 import {
+  firebaseOn,
   firebaseUpdate,
-  firebaseRemove
-} from './firebaseActions';
+  firebaseRemove,
+  updateGroup
+} from '../actions';
 
 const { dispatch } = store;
 
@@ -37,4 +39,16 @@ export function updateUserData(user) {
     type: 'UPDATE_USER_DATA',
     payload: { user }
   });
+}
+
+export function updateUserGroupID(id) {
+  dispatch({
+    type: 'UPDATE_USER_GROUP_ID',
+    payload: { id }
+  });
+
+  // Add listener to group changes
+  if (id.length) {
+    firebaseOn(`/groups/${id}`, updateGroup);
+  }
 }
