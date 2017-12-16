@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-native';
 import {
   Modal,
   Text,
@@ -12,7 +13,7 @@ import leaveGroupStyles from './leaveGroupStyles';
 
 import { removeUserFromGroup } from '../../redux/actions';
 
-const LeaveGroupPopover = ({ close, openGroupPopover, show }) => (
+const LeaveGroupPopover = ({ close, history, openGroupPopover, show }) => (
   <Modal
     transparent
     visible={show}
@@ -52,6 +53,7 @@ const LeaveGroupPopover = ({ close, openGroupPopover, show }) => (
             onPress={() => {
               close();
               removeUserFromGroup();
+              history.push('choose-venue');
             }}
           >
             <Icon name="check" size={20} color="#2ECC40" />
@@ -65,4 +67,4 @@ const LeaveGroupPopover = ({ close, openGroupPopover, show }) => (
   </Modal>
 );
 
-export default LeaveGroupPopover;
+export default withRouter(LeaveGroupPopover);

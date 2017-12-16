@@ -21,6 +21,7 @@ export function firebaseSet(url, payload) {
 }
 
 export function firebaseRemove(url) {
+  console.log('url to remove', url)
   return firebase.database().ref(url).remove();
 }
 

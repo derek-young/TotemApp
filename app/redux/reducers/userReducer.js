@@ -29,15 +29,21 @@ export default function userReducer(state = defaults, action) {
         agenda: newAgenda
       };
     }
+    case 'SIGNIN_SUCCESS': {
+      const { uid } = action.payload;
+      return { ...state, uid };
+    }
     case 'USER_DATA_RETRIEVED': {
       return {
         ...state,
         dataRetrieved: true
       };
     }
-    case 'SIGNIN_SUCCESS': {
-      const { uid } = action.payload;
-      return { ...state, uid };
+    case 'UPDATE_USER_GROUP_ID': {
+      return {
+        ...state,
+        groupId: action.payload.id
+      };
     }
     case 'UPDATE_USER_DATA': {
       return {
