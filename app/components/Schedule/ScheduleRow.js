@@ -29,7 +29,7 @@ const ScheduleRow = ({
         {name.toUpperCase()}
       </Text>
       <Text style={sharedRowStyles.subtext}>
-        {geofence}
+        {geofence.name}
       </Text>
       <Text style={sharedRowStyles.subtext}>
         {`${moment(startTime).format('h:mm a')} - ${moment(endTime).format('h:mm a')}`}

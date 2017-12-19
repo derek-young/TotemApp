@@ -32,7 +32,7 @@ class AgendaRow extends React.Component {
             {name.toUpperCase()}
           </Text>
           <Text style={sharedRowStyles.subtext}>
-            {geofence}
+            {geofence.name}
           </Text>
           <Text style={sharedRowStyles.subtext}>
             {formattedTime}

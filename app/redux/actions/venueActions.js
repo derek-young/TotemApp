@@ -1,4 +1,9 @@
-import { firebaseOnce, firebaseUpdate, firebaseKeyGen } from '../actions';
+import {
+  buildScheduleDays,
+  firebaseOnce,
+  firebaseUpdate,
+  firebaseKeyGen
+} from '../actions';
 import store from '../../redux/store';
 
 const { dispatch } = store;
@@ -30,6 +35,8 @@ export function updateVenue(venue) {
     type: 'UPDATE_VENUE_DATA',
     payload: { venue }
   });
+
+  buildScheduleDays(Object.values(venue.scheduleItems));
 
   return dispatch({ type: 'USER_DATA_RETRIEVED' });
 }

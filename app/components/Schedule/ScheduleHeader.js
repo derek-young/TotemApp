@@ -45,7 +45,7 @@ class ScheduleHeader extends Component {
             onPress={toggleMenu}
             style={headerStyles.selector}>
             <Text style={headerStyles.headerText}>
-              {selectedStage}
+              {selectedStage.name}
             </Text>
           </TouchableOpacity>
         </View>
@@ -69,7 +69,11 @@ class ScheduleHeader extends Component {
               onValueChange={this.handleStageChange}
             >
               {stages.map(stage => (
-                <Picker.Item key={stage} label={stage} value={stage} />
+                <Picker.Item
+                  key={stage.key}
+                  label={stage.name}
+                  value={stage}
+                />
               ))}
             </Picker>
           </View>

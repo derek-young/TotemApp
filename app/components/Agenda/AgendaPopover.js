@@ -54,7 +54,7 @@ const AgendaPopover = ({
               {img && <Image source={img} />}
               <View>
                 <Text style={sharedPopoverStyles['body-text']}>
-                  {geofence}
+                  {geofence.name}
                 </Text>
                 <Text>
                   {moment(startTime).format('dddd, MMM Do')}

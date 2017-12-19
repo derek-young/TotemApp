@@ -1,12 +1,17 @@
 const defaults = {
-  days: [ 'Friday', 'Saturday', 'Sunday' ],  // Update to moment object
-  stages: [ 'All Stages', 'Sahara', 'Yuma', 'Mojave', 'Goji' ],
+  days: [],
   selectedDay: 'Friday',
-  selectedStage: 'All Stages',
+  selectedStage: { key: 'all', name: 'All Stages' },
 };
 
-export default function userReducer(state = defaults, action) {
+export default function scheduleReducer(state = defaults, action) {
   switch(action.type) {
+    case 'SET_DAYS': {
+      return {
+        ...state,
+        days: action.payload
+      };
+    }
     case 'UPDATE_DAY': {
       return {
         ...state,

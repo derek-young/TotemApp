@@ -32,7 +32,6 @@ export function removeUserFromGroup() {
   const memberCount = Object.keys(memberKeys).length;
 
   if (memberCount === 1) {
-    console.log('groupid',user.groupId)
     firebaseRemove(`groups/${user.groupId}`);
   } else {
     firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`);
