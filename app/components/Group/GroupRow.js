@@ -40,10 +40,10 @@ class Row extends React.Component {
         <View style={rowStyles.center}>
           <Text style={rowStyles.label}>{name}</Text>
           {
-            (geofence && geofence.name)
+            (geofence && !!geofence.name)
             &&
             <Text>
-              {geofence.name + artist}
+              {geofence.name.concat(artist)}
             </Text>
           }
           <Text style={rowStyles.subtext}>

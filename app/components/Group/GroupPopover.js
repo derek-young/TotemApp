@@ -44,10 +44,10 @@ const GroupPopover = ({
                   {name}
                 </Text>
                 {
-                  (geofence && geofence.name)
+                  (geofence && !!geofence.name)
                   &&
                   <Text style={sharedPopoverStyles['body-text']}>
-                    {geofence}
+                    {geofence.name}
                   </Text>
                 }
                 {(!!artist) && <Text>{artist}</Text>}

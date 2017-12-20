@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-  Text,
   View,
   Dimensions
 } from 'react-native';
 import MapView, {
-  Marker,
   Overlay,
   PROVIDER_GOOGLE
 } from 'react-native-maps';
@@ -13,11 +11,15 @@ import MapView, {
 import image from '../../img/coachella_map.jpg';
 import mapStyles from './mapStyles';
 
+import Markers from './Markers';
+
 const MapViewer = () => {
   const { width, height } = Dimensions.get('window');
   const ASPECT_RATIO = width / height;
-  const NW_OVERLAY_COORD = [33.685693, -116.242197];
-  const SE_OVERLAY_COORD = [33.677613, -116.234443];
+  const LAT = 40.049721; // 33.681653
+  const LNG = -105.2816957; // -116.238320
+  const NW_OVERLAY_COORD = [LAT + 0.00404, LNG - 0.003877];
+  const SE_OVERLAY_COORD = [LAT - 0.00404, LNG + 0.003877];
 
   return (
     <View style={mapStyles.container}>
@@ -26,23 +28,17 @@ const MapViewer = () => {
         style={mapStyles.map}
         mapType={'terrain'}
         showsUserLocation
-        showsMyLocationButton
         showsPointsOfInterest={false}
         region={{
-          latitude: 33.681653,
-          longitude: -116.238320,
+          latitude: LAT,
+          longitude: LNG,
           latitudeDelta: 0.0122,
           longitudeDelta: 0.0122 * ASPECT_RATIO
         }}>
+        <Markers />
         <Overlay
           bounds={[ NW_OVERLAY_COORD, SE_OVERLAY_COORD ]}
           image={image}
-        />
-        <Marker
-          coordinate={{
-            latitude: 33.681653,
-            longitude: -116.238320
-          }}
         />
       </MapView>
     </View>

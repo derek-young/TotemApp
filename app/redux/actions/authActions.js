@@ -7,6 +7,7 @@ import {
   firebaseOnce,
   firebaseSet,
   fetchVenues,
+  geolocate,
   setVenues,
   updateGroup,
   updateUserData
@@ -78,7 +79,7 @@ function getFriends({ uid, accessToken, fireUsers }) {
 }
 
 export function handleAuthStateChange({ uid }) {
-  // geolocate();
+  geolocate();
   signinSuccess({ uid });
   getUserData(uid);
 

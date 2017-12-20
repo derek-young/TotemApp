@@ -5,6 +5,7 @@ import {
   updateGroupMember
 } from '../actions';
 
+// Add listener to Firebase for any changes to group - returns the entire group
 export function addUserListener(userId) {
   return firebaseOn(`/users/${  userId}`, data => {
     updateGroupMember(data, userId);
@@ -47,10 +48,12 @@ export function getGeofence(coordinates) {
   const { geofences = {} } = store.getState().venue;
   const basecamp = store.getState().group.totem.coords;
 
-  if (inFenceRadius(basecamp, coordinates)) return {
-    name: 'Basecamp',
-    key: 'basecamp'
-  };
+  if (basecamp && inFenceRadius(basecamp, coordinates)) {
+    return {
+      name: 'Basecamp',
+      key: 'basecamp'
+    };
+  }
 
   const keys = Object.keys(geofences);
   for (let i = 0; i < keys.length; i += 1) {
