@@ -1,6 +1,6 @@
 const defaults = {
   days: [],
-  selectedDay: 'Friday',
+  selectedDay: {},
   selectedStage: { key: 'all', name: 'All Stages' },
 };
 
@@ -9,7 +9,8 @@ export default function scheduleReducer(state = defaults, action) {
     case 'SET_DAYS': {
       return {
         ...state,
-        days: action.payload
+        days: action.payload,
+        selectedDay: action.payload[0]
       };
     }
     case 'UPDATE_DAY': {

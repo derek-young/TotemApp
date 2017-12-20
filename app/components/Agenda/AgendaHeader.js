@@ -35,7 +35,7 @@ class AgendaHeader extends Component {
           style={headerStyles.selector}
         >
           <Text style={headerStyles.headerText}>
-            {selectedDay}
+            {selectedDay.format('dddd')}
           </Text>
         </TouchableOpacity>
         {
@@ -47,7 +47,11 @@ class AgendaHeader extends Component {
             style={headerStyles.picker}
           >
             {days.map(day => (
-              <Picker.Item key={day} label={day} value={day} />
+              <Picker.Item
+                key={day}
+                label={day.format('dddd')}
+                value={day}
+              />
             ))}
           </Picker>
         }

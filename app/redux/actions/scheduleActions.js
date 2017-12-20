@@ -28,7 +28,7 @@ function setDays(days) {
 export function updateDay(day) {
   return dispatch({
     type:'UPDATE_DAY',
-    payload: day
+    payload: moment(day)
   });
 }
 

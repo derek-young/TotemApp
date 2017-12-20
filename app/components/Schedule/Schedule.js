@@ -21,15 +21,13 @@ const Schedule = ({
   },
   scheduleItems,
 }) => {
-  console.log('selectedDay', selectedDay);
-
   const displayItems = Object.keys(scheduleItems).filter(key => {
     const { geofenceKey, startTime } = scheduleItems[key];
+    const formattedStart = moment(startTime).format('YYYYMMDD');
+    const dateFilter = formattedStart === selectedDay.format('YYYYMMDD');
     const stageFilter = stageKey === 'all' || stageKey === geofenceKey;
 
-    console.log(moment(startTime).format('dddd'))
-
-    return stageFilter;
+    return stageFilter && dateFilter;
   });
 
   const stages = [{ key: 'all', name: 'All Stages' }].concat(
