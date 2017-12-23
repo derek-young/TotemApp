@@ -13,6 +13,7 @@ const defaults = {
 };
 
 export default function groupReducer(state = defaults, action) {
+  console.log("group reducer hit", action.type)
   switch(action.type) {
     case 'RESET_GROUP': {
       return defaults;
@@ -33,7 +34,9 @@ export default function groupReducer(state = defaults, action) {
         ...state,
         members: {
           ...state.members,
-          [uid]: user
+          [uid]: {
+            ...user
+          }
         }
       };
     }

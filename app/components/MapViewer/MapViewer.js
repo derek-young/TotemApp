@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
+  Dimensions,
+  Image,
   View,
-  Dimensions
 } from 'react-native';
 import MapView, {
+  Marker,
   Overlay,
   PROVIDER_GOOGLE
 } from 'react-native-maps';
@@ -11,15 +14,15 @@ import MapView, {
 import image from '../../img/coachella_map.jpg';
 import mapStyles from './mapStyles';
 
-import Markers from './Markers';
-
-const MapViewer = () => {
+const MapViewer = ({ members, totem }) => {
   const { width, height } = Dimensions.get('window');
   const ASPECT_RATIO = width / height;
   const LAT = 40.049721; // 33.681653
   const LNG = -105.2816957; // -116.238320
   const NW_OVERLAY_COORD = [LAT + 0.00404, LNG - 0.003877];
   const SE_OVERLAY_COORD = [LAT - 0.00404, LNG + 0.003877];
+
+  const basecampIcon = require('../../img/totem-icon.png');
 
   return (
     <View style={mapStyles.container}>
@@ -35,7 +38,49 @@ const MapViewer = () => {
           latitudeDelta: 0.0122,
           longitudeDelta: 0.0122 * ASPECT_RATIO
         }}>
-        <Markers />
+        {
+          true && // !!totem.coords &&
+          <Marker
+            image={basecampIcon}
+            // coordinate={totem.coords}
+            coordinate={{
+              latitude: 40.049,
+              longitude: -105.28155
+            }}
+            // onClick={toggleTotemInfo}
+          />
+        }
+        {Object.keys(members).map(key => {
+
+          const member = members[key];
+
+          // const icon = {
+          //   url: member.img,
+          //   scaledSize: new google.maps.Size(30, 30),
+          //   origin: new google.maps.Point(0,0),
+          //   anchor: new google.maps.Point(15, 15),
+          //   labelOrigin: new google.maps.Point(15, 35)
+          // };
+
+          const { img, position: { lat, lng } = {} } = member;
+
+          console.log('img', img)
+
+          return (
+            <Marker
+              key={key}
+              coordinate={{
+                latitude: 40.049721, // lat
+                longitude: -105.2816957 // lng
+              }}
+            >
+              <Image
+                source={{ uri: img }}
+                style={{ height: 50, width: 50 }}
+              />
+            </Marker>
+          );
+        })}
         <Overlay
           bounds={[ NW_OVERLAY_COORD, SE_OVERLAY_COORD ]}
           image={image}
@@ -45,6 +90,9 @@ const MapViewer = () => {
   );
 }
 
-
-
-export default MapViewer;
+export default connect(({ group }) => ({
+  members: group.members,
+  totem: group.totem,
+  showTotemInfo: group.showTotemInfo,
+  placeTotem: group.placeTotem
+}))(MapViewer);
