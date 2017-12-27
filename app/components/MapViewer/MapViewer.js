@@ -64,8 +64,6 @@ const MapViewer = ({ members, totem }) => {
 
           const { img, position: { lat, lng } = {} } = member;
 
-          console.log('img', img)
-
           return (
             <Marker
               key={key}

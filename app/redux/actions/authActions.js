@@ -1,6 +1,11 @@
 import axios from 'axios';
 import firebase from 'firebase';
-import { LoginManager, AccessToken } from 'react-native-fbsdk';
+import {
+  AccessToken,
+  GraphRequest,
+  GraphRequestManager,
+  LoginManager,
+} from 'react-native-fbsdk';
 
 import {
   firebaseOn,
@@ -27,16 +32,20 @@ export function signin() {
 
 function fbSigninSuccess(fbSigninResult) {
   if (!fbSigninResult.isCancelled) {
-    AccessToken.getCurrentAccessToken()
-    .then(({ accessToken }) => {
-      const credential = firebase.auth.FacebookAuthProvider.credential(accessToken);
-
-      firebase.auth().signInWithCredential(credential)
-      .then(result => fireSigninSuccess(result, accessToken))
-      .catch(err => console.log('Error on Firebase Auth', err));
-    })
-    .catch(err => console.log('Error on getCurrentAccessToken', err));
+    signInFirebase();
   }
+}
+
+function signInFirebase() {
+  return AccessToken.getCurrentAccessToken()
+  .then(({ accessToken }) => {
+    const credential = firebase.auth.FacebookAuthProvider.credential(accessToken);
+
+    return firebase.auth().signInWithCredential(credential)
+    .then(result => fireSigninSuccess(result, accessToken))
+    .catch(err => console.log('Error on Firebase Auth', err));
+  })
+  .catch(err => console.log('Error on getCurrentAccessToken', err));
 }
 
 function fireSigninSuccess(result, accessToken) {
@@ -49,7 +58,7 @@ function fireSigninSuccess(result, accessToken) {
   .then(() => firebaseSet(`users/${uid}/lastTimeLoggedIn`, firebase.database.ServerValue.TIMESTAMP))
   .then(() => firebaseOnce('/users', fireUsers => fireUsers)) // get users
   .then(fireUsers => getFriends({ uid, accessToken, fireUsers }))
-  .catch(error => console.log('error setting props', error));
+  .catch(error => console.log('Error setting props', error));
 }
 
 function getFriends({ uid, accessToken, fireUsers }) {
@@ -80,11 +89,43 @@ function getFriends({ uid, accessToken, fireUsers }) {
 
 export function handleAuthStateChange({ uid }) {
   geolocate();
-  signinSuccess({ uid });
   getUserData(uid);
 
-  // Need FB token
   // firebaseOnce('/users', fireUsers => getFriends(fireUsers));
+  AccessToken.getCurrentAccessToken()
+  .then(({ accessToken }) => {
+    const config = {
+      parameters: {
+        fields: { string: 'picture.type(large)' },
+        access_token: { string: accessToken.toString() }
+      }
+    };
+
+    const infoRequest = new GraphRequest('/me', config, updateData);
+
+    new GraphRequestManager().addRequest(infoRequest).start();
+  });
+
+  function updateData(err, res) {
+    if (err) {
+      console.log('Graph request error: ', err)
+      setLastLoggedIn();
+    } else {
+      const { picture } = res;
+      const { url } = picture.data;
+
+      firebaseSet(`users/${uid}/img`, url)
+      .then(setLastLoggedIn);
+    }
+  }
+
+  function setLastLoggedIn() {
+    firebaseSet(
+      `users/${uid}/lastTimeLoggedIn`,
+      firebase.database.ServerValue.TIMESTAMP
+    )
+    .then(() => signinSuccess({ uid }));
+  }
 }
 
 function signinInProgress() {
