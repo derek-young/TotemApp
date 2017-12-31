@@ -74,7 +74,7 @@ const MapViewer = ({ members, totem }) => {
             >
               <Image
                 source={{ uri: img }}
-                style={{ height: 50, width: 50 }}
+                style={mapStyles['profile-icon']}
               />
             </Marker>
           );
