@@ -3,16 +3,21 @@ import { connect } from 'react-redux';
 import {
   Dimensions,
   Image,
-  View,
+  Text,
+  View
 } from 'react-native';
 import MapView, {
+  Callout,
   Marker,
   Overlay,
   PROVIDER_GOOGLE
 } from 'react-native-maps';
+import moment from 'moment';
 
 import image from '../../img/coachella_map.jpg';
 import mapStyles from './mapStyles';
+
+import Totem from './Totem';
 
 const MapViewer = ({ members, totem }) => {
   const { width, height } = Dimensions.get('window');
@@ -21,8 +26,6 @@ const MapViewer = ({ members, totem }) => {
   const LNG = -105.2816957; // -116.238320
   const NW_OVERLAY_COORD = [LAT + 0.00404, LNG - 0.003877];
   const SE_OVERLAY_COORD = [LAT - 0.00404, LNG + 0.003877];
-
-  const basecampIcon = require('../../img/totem-icon.png');
 
   return (
     <View style={mapStyles.container}>
@@ -40,29 +43,13 @@ const MapViewer = ({ members, totem }) => {
         }}>
         {
           true && // !!totem.coords &&
-          <Marker
-            image={basecampIcon}
-            // coordinate={totem.coords}
-            coordinate={{
-              latitude: 40.049,
-              longitude: -105.28155
-            }}
-            // onClick={toggleTotemInfo}
-          />
+          <Totem totem={totem} />
         }
         {Object.keys(members).map(key => {
-
           const member = members[key];
-
-          // const icon = {
-          //   url: member.img,
-          //   scaledSize: new google.maps.Size(30, 30),
-          //   origin: new google.maps.Point(0,0),
-          //   anchor: new google.maps.Point(15, 15),
-          //   labelOrigin: new google.maps.Point(15, 35)
-          // };
-
           const { img, position: { lat, lng } = {} } = member;
+
+          console.log('member', member)
 
           return (
             <Marker
@@ -76,6 +63,20 @@ const MapViewer = ({ members, totem }) => {
                 source={{ uri: img }}
                 style={mapStyles['profile-icon']}
               />
+              <Callout>
+                <View style={mapStyles['info-window']}>
+                  <Text>{member.name}</Text>
+                  {
+                    !!(member.geofence && member.geofence.name) &&
+                    <Text>
+                      {member.geofence.name}
+                    </Text>
+                  }
+                  <Text style={mapStyles.subtext}>
+                    {moment(member.position.timestamp).fromNow()}
+                  </Text>
+                </View>
+              </Callout>
             </Marker>
           );
         })}
@@ -90,7 +91,5 @@ const MapViewer = ({ members, totem }) => {
 
 export default connect(({ group }) => ({
   members: group.members,
-  totem: group.totem,
-  showTotemInfo: group.showTotemInfo,
-  placeTotem: group.placeTotem
+  totem: group.totem
 }))(MapViewer);

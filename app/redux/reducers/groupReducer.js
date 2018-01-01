@@ -8,7 +8,6 @@ const defaults = {
     name: 'Basecamp',
     meetupTime: null
   },
-  showTotemInfo: false,
   placeTotem: false,
 };
 

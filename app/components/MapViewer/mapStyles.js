@@ -9,5 +9,13 @@ export default StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 20
+  },
+  'info-window': {
+    width: 100
+  },
+  subtext: {
+    color: 'darkgrey',
+    fontStyle: 'italic',
+    fontSize: 12,
   }
 });
