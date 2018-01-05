@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { withRouter } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 
@@ -12,15 +13,19 @@ import rowStyles from './rowStyles';
 import sharedPopoverStyles from '../sharedStyles/popoverStyles';
 import popoverStyles from './popoverStyles';
 
+import { showUserOnMap } from '../../redux/actions';
+
 const GroupPopover = ({
   artist,
   close,
   geofence,
+  history,
   isUser,
   name,
   openLeaveGroup,
   position = {},
   show,
+  uid,
 }) => (
   <Modal
     transparent
@@ -61,6 +66,10 @@ const GroupPopover = ({
                 <Icon name="comment-o" size={18} color="#757575" />
               </TouchableOpacity>
               <TouchableOpacity
+                onPress={() => {
+                  history.push('map')
+                  showUserOnMap({ uid });
+                }}
                 style={popoverStyles.action}
               >
                 <Icon name="map-marker" size={18} color="#757575" />
@@ -95,4 +104,4 @@ const GroupPopover = ({
   </Modal>
 );
 
-export default GroupPopover;
+export default withRouter(GroupPopover);

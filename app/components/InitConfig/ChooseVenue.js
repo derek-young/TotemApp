@@ -5,7 +5,6 @@ import { Link, withRouter } from 'react-router-native';
 
 import configStyles from './configStyles';
 
-/*  Actions  */
 import {
   fetchVenues,
   setVenues,
@@ -64,7 +63,7 @@ class ChooseVenue extends Component {
 
   handleVenueClick = key => {
     updateVenueId(key);
-    this.props.history.push('/create-group');
+    this.props.history.push('create-group');
   }
 }
 

@@ -3,7 +3,6 @@ import {
   Animated,
   Text,
   TouchableHighlight,
-  View
 } from 'react-native';
 
 import { toggleMenu } from '../../redux/actions';

@@ -28,8 +28,8 @@ const Totem = ({ totem, placeTotem }) => {
         source={basecampIcon}
         style={{ height: 80, width: 40 }}
       />
-      <Callout>
-        <View style={mapStyles['info-window']}>
+      <Callout style={mapStyles['callout-window']}>
+        <View>
           <Text>Basecamp</Text>
           {
             totem.meetupTime && !placeTotem &&

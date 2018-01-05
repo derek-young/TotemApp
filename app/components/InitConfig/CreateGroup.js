@@ -57,7 +57,7 @@ class ChooseVenue extends Component {
     if (this.state.groupName) {
       createGroup(groupName)
       .then(() => {
-        this.props.history.push('/group');
+        this.props.history.push('group');
       });
     } else {
       this.setError('Please enter a name for your group');

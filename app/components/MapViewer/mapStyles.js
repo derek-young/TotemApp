@@ -10,8 +10,9 @@ export default StyleSheet.create({
     width: 40,
     borderRadius: 20
   },
-  'info-window': {
-    width: 100
+  'callout-window': {
+    flex: 1,
+    position: 'relative'
   },
   subtext: {
     color: 'darkgrey',

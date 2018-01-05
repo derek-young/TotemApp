@@ -2,6 +2,7 @@ export * from './authActions';
 export * from './firebaseActions';
 export * from './groupActions';
 export * from './locationActions';
+export * from './mapActions';
 export * from './menuActions';
 export * from './scheduleActions';
 export * from './sortActions';
