@@ -5,7 +5,8 @@ const defaults = {
     { path: 'group', text: 'Group', icon: 'users', color: '#dddaff' },
     { path: 'agenda', text: 'Agenda', icon: 'pencil-square-o', color: '#ddffd6' },
     { path: 'schedule', text: 'Schedule', icon: 'clock-o', color: '#fffecc' },
-    { path: 'chat', text: 'Chat', icon: 'comment-o', color: '#ffd5d5' },
+    // TODO: Implement a chat feature for the application
+    // { path: 'chat', text: 'Chat', icon: 'comment-o', color: '#ffd5d5' },
     { path: 'settings', text: 'Profile', icon: 'user', color: '#FFF' }
   ]
 };

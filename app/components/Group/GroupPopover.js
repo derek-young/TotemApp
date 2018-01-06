@@ -16,6 +16,7 @@ import popoverStyles from './popoverStyles';
 import { showUserOnMap } from '../../redux/actions';
 
 const GroupPopover = ({
+  agenda,
   artist,
   close,
   geofence,
@@ -62,9 +63,10 @@ const GroupPopover = ({
               </View>
             </View>
             <View style={popoverStyles['action-wrapper']}>
-              <TouchableOpacity style={popoverStyles.action}>
+              {/* TODO: Implement chat for this application */}
+              {/* <TouchableOpacity style={popoverStyles.action}>
                 <Icon name="comment-o" size={18} color="#757575" />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity
                 onPress={() => {
                   history.push('map')
@@ -77,10 +79,10 @@ const GroupPopover = ({
             </View>
           </View>
           <View style={sharedPopoverStyles['body-bottom']}>
-            {/*  TODO  */}
             <Text>
-              Agenda (items in blue you have in common with this user)
+              Agenda
             </Text>
+            <Text style={rowStyles.subtext}>blue items you share with this user</Text>
           </View>
         </View>
         {
