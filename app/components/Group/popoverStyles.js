@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     marginRight: 5
   },
-  'action-wrapper': {
+  'row-wrapper': {
     display: 'flex',
     flexDirection: 'row'
   },
@@ -20,5 +20,21 @@ export default StyleSheet.create({
     borderColor: 'rgba(34, 36, 38, .15)',
     borderRadius: 2,
     marginRight: 5
+  },
+  agenda: {
+    height: 125,
+    paddingTop: 7,
+  },
+  'agenda-day': {
+    marginBottom: 7,
+  },
+  'agenda-item': {
+    fontSize: 12
+  },
+  'shared-item': {
+    color: '#00a7de'
+  },
+  column: {
+    paddingRight: 10
   }
 });

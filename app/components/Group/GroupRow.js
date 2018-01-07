@@ -8,11 +8,12 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 
+import { getArtist } from '../../redux/actions';
+import styles from '../../styles';
+import rowStyles from './rowStyles';
+
 import Popover from './GroupPopover';
 import LeaveGroupPopover from './LeaveGroupPopover';
-
-import { getArtist } from '../../redux/actions';
-import rowStyles from './rowStyles';
 
 class Row extends React.Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Row extends React.Component {
               {geofence.name.concat(artist)}
             </Text>
           }
-          <Text style={rowStyles.subtext}>
+          <Text style={styles.subtext}>
             Last updated: {moment(position.timestamp).fromNow()}
           </Text>
         </View>

@@ -23,6 +23,7 @@ const Group = ({ user, members }) => (
               key={userKey}
               isUser={isUser}
               uid={userKey}
+              userAgenda={user.agenda}
               {...member}
             />
           );
@@ -38,6 +39,7 @@ const Group = ({ user, members }) => (
               key={userKey}
               isUser={isUser}
               uid={userKey}
+              userAgenda={user.agenda}
               {...member}
             />
           );

@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  'scroll-view': {
+    paddingBottom: 60
+  },
   selected: {
     backgroundColor: 'rgba(219, 255, 252, 0.35)'
   },

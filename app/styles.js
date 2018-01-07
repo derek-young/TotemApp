@@ -23,5 +23,9 @@ export default StyleSheet.create({
   },
   scrollView: {
     overflow: 'scroll'
+  },
+  subtext: {
+    fontSize: 12,
+    color: '#5f6b6d'
   }
 });

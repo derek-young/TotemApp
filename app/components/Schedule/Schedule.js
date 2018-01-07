@@ -6,6 +6,7 @@ import {
 import { connect } from 'react-redux';
 import moment from 'moment';
 
+import scheduleStyles from './scheduleStyles';
 import { addAgendaItem, removeAgendaItem } from '../../redux/actions';
 
 import Header from './ScheduleHeader';
@@ -40,7 +41,7 @@ const Schedule = ({
         stages={stages}
         {...schedule}
       />
-      <ScrollView>
+      <ScrollView contentContainerStyle={scheduleStyles['scroll-view']}>
         {displayItems.map(key => (
           <Row
             key={key}

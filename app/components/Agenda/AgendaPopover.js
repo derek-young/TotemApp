@@ -12,6 +12,7 @@ import moment from 'moment';
 
 import { removeAgendaItem } from '../../redux/actions';
 
+import styles from '../../styles';
 import sharedPopoverStyles from '../sharedStyles/popoverStyles';
 import popoverStyles from './popoverStyles';
 
@@ -56,19 +57,19 @@ const AgendaPopover = ({
                 <Text style={sharedPopoverStyles['body-text']}>
                   {geofence.name}
                 </Text>
-                <Text>
+                <Text style={styles.subtext}>
                   {moment(startTime).format('dddd, MMM Do')}
                 </Text>
-                <Text>
+                <Text style={styles.subtext}>
                   {formattedTime}
                 </Text>
-                <Text>
+                <Text style={styles.subtext}>
                   {moment(startTime).startOf('hour').fromNow()}
                 </Text>
               </View>
             </View>
             <View style={sharedPopoverStyles['body-bottom']}>
-              <Text style={sharedPopoverStyles['body-text']}>
+              <Text>
                 Who else is going?
               </Text>
             </View>

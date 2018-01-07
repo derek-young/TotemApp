@@ -7,7 +7,7 @@ import {
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import rowStyles from './rowStyles';
+import scheduleStyles from './scheduleStyles';
 import sharedRowStyles from '../sharedStyles/scheduleRowStyles';
 
 const ScheduleRow = ({
@@ -21,7 +21,7 @@ const ScheduleRow = ({
   <View
     style={
       selected ?
-      [ sharedRowStyles.main, rowStyles.selected ]
+      [ sharedRowStyles.main, scheduleStyles.selected ]
       : sharedRowStyles.main
     }>
     <View>
@@ -37,7 +37,7 @@ const ScheduleRow = ({
     </View>
     <TouchableOpacity onPress={toggleItem} style={sharedRowStyles.icon}>
       <Icon
-        style={selected ? rowStyles.removeButton : rowStyles.addButton}
+        style={selected ? scheduleStyles.removeButton : scheduleStyles.addButton}
         name={selected ? 'times-circle' : 'plus-circle'}
         size={24}
       />

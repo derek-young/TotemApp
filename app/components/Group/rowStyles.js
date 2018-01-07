@@ -29,9 +29,5 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingRight: 20
-  },
-  subtext: {
-    fontSize: 10,
-    color: '#5f6b6d'
   }
 });
