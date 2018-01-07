@@ -8,6 +8,7 @@ import moment from 'moment';
 
 import scheduleStyles from './scheduleStyles';
 import { addAgendaItem, removeAgendaItem } from '../../redux/actions';
+import { sortByDateAscending } from '../../helpers';
 
 import Header from './ScheduleHeader';
 import Row from './ScheduleRow';
@@ -29,6 +30,11 @@ const Schedule = ({
     const stageFilter = stageKey === 'all' || stageKey === geofenceKey;
 
     return stageFilter && dateFilter;
+  }).sort((keyA, keyB) => {
+    const itemA = scheduleItems[keyA];
+    const itemB = scheduleItems[keyB];
+
+    return sortByDateAscending(itemA, itemB);
   });
 
   const stages = [{ key: 'all', name: 'All Stages' }].concat(

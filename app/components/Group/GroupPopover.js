@@ -16,6 +16,7 @@ import sharedPopoverStyles from '../sharedStyles/popoverStyles';
 import popoverStyles from './popoverStyles';
 
 import { showUserOnMap } from '../../redux/actions';
+import { sortByDateAscending } from '../../helpers';
 
 const GroupPopover = ({
   agenda = {},
@@ -49,20 +50,31 @@ const GroupPopover = ({
     }
   */
   const agendaListItems = {};
-
-  Object.keys(agenda).map(key => {
+  const sortedAgenda = Object.keys(agenda).map(key => {
     const item = scheduleItems[key];
+    item.key = key;
+
+    return item;
+  }).sort(sortByDateAscending);
+
+  sortedAgenda.map(item => {
     const { name: itemGeofence = '' } = geofences[item.geofenceKey] || {};
-    const day = moment(item.startTime).format('dddd');
+    const day = moment(item.startTime).format('dddd, MM/DD');
 
     agendaListItems[day] = agendaListItems[day] || new ListItemDay();
 
     agendaListItems[day].times.push({
       label: moment(item.startTime).format('h:mm a'),
-      key
+      key: item.key
     });
-    agendaListItems[day].artists.push({ label: item.name, key });
-    agendaListItems[day].geofences.push({ label: itemGeofence, key });
+    agendaListItems[day].artists.push({
+      label: item.name,
+      key: item.key
+    });
+    agendaListItems[day].geofences.push({
+      label: itemGeofence,
+      key: item.key
+    });
   });
 
   return (
@@ -73,9 +85,7 @@ const GroupPopover = ({
       <View style={sharedPopoverStyles.container}>
         <View style={sharedPopoverStyles.main}>
           <View style={sharedPopoverStyles.header}>
-            <Text>
-              Day Selector Dropdown
-            </Text>
+            <View />
             <TouchableOpacity onPress={close}>
               <Icon name="times" size={20} />
             </TouchableOpacity>

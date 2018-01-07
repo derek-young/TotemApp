@@ -38,7 +38,7 @@ class ScheduleHeader extends Component {
             onPress={toggleMenu}
             style={headerStyles.selector}>
             <Text style={headerStyles.headerText}>
-              {selectedDay.format('dddd')}
+              {selectedDay.format('dddd, MM/DD')}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -61,7 +61,7 @@ class ScheduleHeader extends Component {
               {days.map(day => (
                 <Picker.Item
                   key={day}
-                  label={day.format('dddd')}
+                  label={day.format('dddd, MM/DD')}
                   value={day}
                 />
               ))}
