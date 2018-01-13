@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 
@@ -18,20 +19,22 @@ import popoverStyles from './popoverStyles';
 
 const AgendaPopover = ({
   close,
-  name,
   formattedTime,
   geofence,
   img,
   itemKey,
+  members,
+  name,
   show,
   startTime,
-  users = {},
-  user
+  uid,
 }) => {
-  Object.keys(users).map(userKey => {
-    const friend = users[userKey];
-    if (friend.agenda && friend.agenda[itemKey] && userKey !== user.uid)  {
-      return friend.label + ', ';
+  const whoElseIsGoing = [];
+
+  Object.keys(members).map(key => {
+    const member = members[key];
+    if (member.agenda && member.agenda[itemKey] && key !== uid)  {
+      return whoElseIsGoing.push(member.name);
     }
   });
 
@@ -72,6 +75,17 @@ const AgendaPopover = ({
               <Text>
                 Who else is going?
               </Text>
+              {
+                whoElseIsGoing.length
+                ?
+                <Text>
+                  {whoElseIsGoing.join(', ')}
+                </Text>
+                :
+                <Text style={styles.subtext}>
+                   No one in your group has added this item
+                </Text>
+              }
             </View>
           </View>
           <TouchableHighlight
@@ -88,4 +102,7 @@ const AgendaPopover = ({
   );
 }
 
-export default AgendaPopover;
+export default connect(({ group, user }) => ({
+  members: group.members,
+  uid: user.uid
+}))(AgendaPopover);
