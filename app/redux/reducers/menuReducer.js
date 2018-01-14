@@ -7,7 +7,7 @@ const defaults = {
     { path: 'schedule', text: 'Schedule', icon: 'clock-o', color: '#fffecc' },
     // TODO: Implement a chat feature for the application
     // { path: 'chat', text: 'Chat', icon: 'comment-o', color: '#ffd5d5' },
-    { path: 'settings', text: 'Profile', icon: 'user', color: '#FFF' }
+    { path: 'profile', text: 'Profile', icon: 'user', color: '#ffd5d5' }
   ]
 };
 

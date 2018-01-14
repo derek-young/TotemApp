@@ -16,6 +16,7 @@ import Header from './components/Header/Header';
 import HomeView from './components/HomeView';
 import MapViewer from './components/MapViewer/MapViewer';
 import Menu from './components/Menu/Menu';
+import Profile from './components/Profile/Profile';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import Schedule from './components/Schedule/Schedule';
 
@@ -66,6 +67,11 @@ class App extends Component {
           isAuthenticated={authenticated}
           path="/schedule"
           component={() => this.createLinearGradient(Schedule)}
+        />
+        <PrivateRoute
+          isAuthenticated={authenticated}
+          path="/profile"
+          component={() => this.createLinearGradient(Profile)}
         />
         <PrivateRoute
           isAuthenticated={authenticated}
