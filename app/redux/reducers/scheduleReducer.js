@@ -13,6 +13,9 @@ export default function scheduleReducer(state = defaults, action) {
         selectedDay: action.payload[0]
       };
     }
+    case 'RESET_SCHEDULE': {
+      return defaults;
+    }
     case 'UPDATE_DAY': {
       return {
         ...state,

@@ -13,6 +13,9 @@ export default function authReducer(state = defaults, action) {
         authenticating: true,
       };
     }
+    case 'RESET_AUTH': {
+      return defaults;
+    }
     case 'SIGNIN_SUCCESS': {
       return {
         ...state,

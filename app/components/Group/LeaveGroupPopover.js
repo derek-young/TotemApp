@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import sharedConfirmStyles from '../sharedStyles/confirmPopoverStyles';
 import sharedPopoverStyles from '../sharedStyles/popoverStyles';
-import leaveGroupStyles from './leaveGroupStyles';
 
 import { removeUserFromGroup } from '../../redux/actions';
 
@@ -19,37 +19,43 @@ const LeaveGroupPopover = ({ close, history, openGroupPopover, show }) => (
     visible={show}
   >
     <View style={sharedPopoverStyles.container}>
-      <View style={leaveGroupStyles.main}>
-        <View style={leaveGroupStyles.header}>
+      <View style={sharedConfirmStyles.main}>
+        <View style={sharedConfirmStyles.header}>
           <Icon name="hand-peace-o" size={45} color="#FFF" />
-          <Text style={leaveGroupStyles.title}>
+          <Text style={sharedConfirmStyles.title}>
             Peace Out
           </Text>
-          <TouchableOpacity style={{ height: '100%' }} onPress={close}>
+          <TouchableOpacity
+            style={{ height: '100%' }}
+            onPress={() => {
+              close();
+              openGroupPopover();
+            }}
+          >
             <Icon name="times" size={20} color="#FFF" />
           </TouchableOpacity>
         </View>
-        <Text style={leaveGroupStyles['body-text']}>
+        <Text style={sharedConfirmStyles['body-text']}>
           Are you sure you want to leave this group?
         </Text>
         <Text style={{ color: '#FFF' }}>
           The group will be deleted if you are the only member.
         </Text>
-        <View style={leaveGroupStyles.footer}>
+        <View style={sharedConfirmStyles.footer}>
           <TouchableOpacity
-            style={[ leaveGroupStyles.button, leaveGroupStyles.cancel ]}
+            style={[ sharedConfirmStyles.button, sharedConfirmStyles.cancel ]}
             onPress={() => {
               close();
               openGroupPopover();
             }}
           >
             <Icon name="times" size={20} color="#FF695E" />
-            <Text style={leaveGroupStyles['cancel-text']}>
+            <Text style={sharedConfirmStyles['cancel-text']}>
               No
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[ leaveGroupStyles.button, leaveGroupStyles.confirm ]}
+            style={[ sharedConfirmStyles.button, sharedConfirmStyles.confirm ]}
             onPress={() => {
               close();
               removeUserFromGroup();
@@ -57,7 +63,7 @@ const LeaveGroupPopover = ({ close, history, openGroupPopover, show }) => (
             }}
           >
             <Icon name="check" size={20} color="#2ECC40" />
-            <Text style={leaveGroupStyles['confirm-text']}>
+            <Text style={sharedConfirmStyles['confirm-text']}>
               Yes
             </Text>
           </TouchableOpacity>

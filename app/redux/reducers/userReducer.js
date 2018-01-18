@@ -29,6 +29,9 @@ export default function userReducer(state = defaults, action) {
         agenda: newAgenda
       };
     }
+    case 'RESET_USER': {
+      return defaults;
+    }
     case 'SIGNIN_SUCCESS': {
       const { uid } = action.payload;
       return { ...state, uid };

@@ -18,6 +18,12 @@ export function buildScheduleDays(scheduleItems) {
   setDays(Object.values(days));
 }
 
+export function resetSchedule() {
+  return dispatch({
+    type: 'RESET_SCHEDULE'
+  });
+}
+
 function setDays(days) {
   return dispatch({
     type:'SET_DAYS',

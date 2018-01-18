@@ -31,12 +31,14 @@ export function geolocate() {
     const lng = pos.coords.longitude;
     const geofence = getGeofence({ lat, lng });
 
-    firebaseSet(`users/${uid}/geofence`, geofence);
-    firebaseSet(`users/${uid}/position`, {
-      timestamp: pos.timestamp,
-      lat,
-      lng
-    });
+    if (uid) {
+      firebaseSet(`users/${uid}/geofence`, geofence);
+      firebaseSet(`users/${uid}/position`, {
+        timestamp: pos.timestamp,
+        lat,
+        lng
+      });
+    }
   }
 
   function error(err) {

@@ -10,6 +10,9 @@ export default function mapReducer(state = defaults, action) {
         calloutsToShow: {}
       };
     }
+    case 'RESET_MAP': {
+      return defaults;
+    }
     case 'SHOW_USER_ON_MAP': {
       const { uid, show } = action.payload;
 

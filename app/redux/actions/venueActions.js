@@ -23,6 +23,12 @@ export function fetchVenues(callback) {
   return firebaseOnce('/venues', callback);
 }
 
+export function resetVenue() {
+  return dispatch({
+    type: 'RESET_VENUE'
+  });
+}
+
 export function setVenues(venues) {
   return dispatch({
     type: 'SET_VENUES',

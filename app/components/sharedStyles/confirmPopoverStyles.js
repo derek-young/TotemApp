@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { deepskyblue } from '../../colors';
 
 const margin = 50;
 const pSize = 30;
@@ -42,6 +43,9 @@ export default StyleSheet.create({
   confirm: {
     borderColor: '#2ECC40'
   },
+  ok: {
+    borderColor: deepskyblue
+  },
   'cancel-text': {
     color: '#FF695E',
     fontSize: 20,
@@ -52,10 +56,15 @@ export default StyleSheet.create({
     fontSize: 20,
     marginLeft: 10
   },
+  'ok-text': {
+    color: deepskyblue,
+    fontSize: 20,
+  },
   title: {
     color: 'white',
     fontSize: hSize,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginTop: 6
   },
   'body-text': {
     color: 'white',

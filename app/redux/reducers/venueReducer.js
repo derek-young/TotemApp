@@ -16,6 +16,9 @@ const defaults = {
 
 export default function venueReducer(state = defaults, action) {
   switch(action.type) {
+    case 'RESET_VENUE': {
+      return defaults;
+    }
     case 'SET_VENUES': {
       return {
         ...state,

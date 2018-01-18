@@ -34,6 +34,12 @@ export function removeAgendaItem(key) {
   return firebaseRemove(agendaItemPath);
 }
 
+export function resetUser() {
+  return dispatch({
+    type: 'RESET_USER'
+  });
+}
+
 export function updateUserData(user) {
   return dispatch({
     type: 'UPDATE_USER_DATA',

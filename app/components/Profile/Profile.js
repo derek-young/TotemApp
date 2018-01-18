@@ -9,6 +9,10 @@ import {
 
 import profileStyles from './profileStyles';
 
+import LogoutPopover from './LogoutPopover';
+import PrivacyPopover from './PrivacyPopover';
+import TermsPopover from './TermsPopover';
+
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -23,14 +27,14 @@ class Profile extends Component {
       {
         header: 'My Account',
         buttons: [
-          { label: 'Logout', action: () => console.log('logout') }
+          { label: 'Logout', popover: 'showLogout' }
         ]
       },
       {
         header: 'Additional Information',
         buttons: [
-          { label: 'Terms of Service', action: () => console.log('terms') },
-          { label: 'Privacy Policy', action: () => console.log('privacy') }
+          { label: 'Terms of Service', popover: 'showTerms' },
+          { label: 'Privacy Policy', popover: 'showPrivacyPolicy' }
         ]
       }
     ];
@@ -38,6 +42,7 @@ class Profile extends Component {
 
   render() {
     const { name, img } = this.props;
+    const { showLogout, showPrivacyPolicy, showTerms } = this.state;
 
     return (
       <View style={{ height: '100%' }}>
@@ -58,10 +63,10 @@ class Profile extends Component {
                   {header}
                 </Text>
               </View>
-              {buttons.map(({ label, action }) => (
+              {buttons.map(({ label, popover }) => (
                 <View key={label} style={profileStyles.row}>
                   <TouchableOpacity
-                    onPress={action}
+                    onPress={() => this.openPopover({ popover })}
                     style={profileStyles.button}
                   >
                     <Text>
@@ -73,9 +78,54 @@ class Profile extends Component {
             </View>
           ))}
         </View>
+        {
+          showLogout &&
+          <LogoutPopover
+            close={this.closeLogout}
+            show={showLogout}
+          />
+        }
+        {
+          showPrivacyPolicy &&
+          <PrivacyPopover
+            close={this.closePrivacy}
+            show={showPrivacyPolicy}
+          />
+        }
+        {
+          showTerms &&
+          <TermsPopover
+            close={this.closeTerms}
+            show={showTerms}
+          />
+        }
       </View>
     );
   }
+
+  closeLogout = () => (
+    this.setState({
+      showLogout: false
+    })
+  )
+
+  closePrivacy = () => (
+    this.setState({
+      showPrivacyPolicy: false
+    })
+  )
+
+  closeTerms = () => (
+    this.setState({
+      showTerms: false
+    })
+  )
+
+  openPopover = ({ popover }) => (
+    this.setState({
+      [popover]: true
+    })
+  )
 }
 
 export default connect(({ user }) => ({

@@ -54,5 +54,22 @@ export default StyleSheet.create({
   },
   'button-text': {
     color: 'white'
-  }
+  },
+  cancel: {
+    borderColor: '#FF695E',
+    marginRight: 8
+  },
+  confirm: {
+    borderColor: '#2ECC40'
+  },
+  'cancel-text': {
+    color: '#FF695E',
+    fontSize: 20,
+    marginLeft: 10
+  },
+  'confirm-text': {
+    color: '#2ECC40',
+    fontSize: 20,
+    marginLeft: 10
+  },
 });

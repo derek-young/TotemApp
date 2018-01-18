@@ -42,7 +42,7 @@ export function removeUserFromGroup() {
   resetGroup();
 }
 
-function resetGroup() {
+export function resetGroup() {
   return dispatch({
     type: 'RESET_GROUP'
   });

@@ -65,6 +65,7 @@
         "render",
         "everything-else"
       ]
-    }]
+    }],
+    semi: ["error", "always"]
   }
 }

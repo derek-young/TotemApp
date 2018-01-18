@@ -11,8 +11,14 @@ import {
   firebaseOn,
   firebaseOnce,
   firebaseSet,
+  firebaseSignout,
   fetchVenues,
   geolocate,
+  resetGroup,
+  resetMap,
+  resetSchedule,
+  resetUser,
+  resetVenue,
   setVenues,
   updateGroup,
   updateUserData
@@ -21,6 +27,20 @@ import {
 import store from '../../redux/store';
 
 const { dispatch } = store;
+
+export function signout() {
+  return firebaseSignout().then(() => {
+    resetGroup();
+    resetMap();
+    resetSchedule();
+    resetUser();
+    resetVenue();
+
+    return dispatch({
+      type: 'RESET_AUTH'
+    });
+  });
+}
 
 export function signin() {
   signinInProgress();

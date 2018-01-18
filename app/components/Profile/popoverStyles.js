@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 const margin = 50;
-const pSize = 30;
 const hSize = 40;
 
 export default StyleSheet.create({
@@ -35,31 +34,9 @@ export default StyleSheet.create({
     borderRadius: 3,
     borderStyle: 'solid',
   },
-  cancel: {
-    borderColor: '#FF695E',
-    marginRight: 8
-  },
-  confirm: {
-    borderColor: '#2ECC40'
-  },
-  'cancel-text': {
-    color: '#FF695E',
-    fontSize: 20,
-    marginLeft: 10
-  },
-  'confirm-text': {
-    color: '#2ECC40',
-    fontSize: 20,
-    marginLeft: 10
-  },
   title: {
     color: 'white',
     fontSize: hSize,
     fontWeight: 'bold'
-  },
-  'body-text': {
-    color: 'white',
-    fontSize: pSize,
-    marginBottom: 10
-  },
+  }
 });

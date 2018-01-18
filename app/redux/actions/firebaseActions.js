@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 export function firebaseOn(url, callback) {
-  const db = firebase.database()
+  const db = firebase.database();
   return db.ref(url).on('value', snapshot => (
     callback(snapshot.val())
   ));
@@ -30,4 +30,8 @@ export function firebaseUpdate(updates) {
 
 export function firebaseKeyGen(path) {
   return firebase.database().ref().child(path).push().key;
+}
+
+export function firebaseSignout() {
+  return firebase.auth().signOut();
 }

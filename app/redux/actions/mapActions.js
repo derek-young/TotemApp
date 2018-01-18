@@ -8,6 +8,12 @@ export function clearCallouts() {
   });
 }
 
+export function resetMap() {
+  return dispatch({
+    type: 'RESET_MAP'
+  });
+}
+
 export function showUserOnMap({ uid, show = true }) {
   return dispatch({
     type: 'SHOW_USER_ON_MAP',
