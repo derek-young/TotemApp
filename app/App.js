@@ -19,6 +19,7 @@ import Menu from './components/Menu/Menu';
 import Profile from './components/Profile/Profile';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import Schedule from './components/Schedule/Schedule';
+import SpeedDial from './components/SpeedDial/SpeedDial';
 
 import { handleAuthStateChange } from './redux/actions';
 
@@ -84,6 +85,7 @@ class App extends Component {
           component={CreateGroup}
         />
         {menuVisible && <Menu menuItems={menuItems} history={history} />}
+        {(authenticated && dataRetrieved) && <SpeedDial />}
       </View>
     );
   }
