@@ -10,14 +10,14 @@ import { toggleMenu } from '../../redux/actions';
 import headerStyles from './headerStyles';
 import logo from '../../img/totemlogo.png';
 
-const Header = ({ path }) => (
+const Header = ({ isSetupView }) => (
   <View style={headerStyles.main}>
     <View />
     <View>
       <Image source={logo} />
     </View>
     {
-      (path !== '/choose-venue' && path !== '/create-group') ?
+      !isSetupView ?
       <TouchableHighlight
         onPress={toggleMenu}
         underlayColor="#bffffd"

@@ -49,7 +49,12 @@ const LeaveGroupPopover = ({ close, history, openGroupPopover, show }) => (
               openGroupPopover();
             }}
           >
-            <Icon name="times" size={20} color="#FF695E" />
+            <Icon
+              name="times"
+              size={20}
+              color="#FF695E"
+              style={{ marginRight: 10 }}
+            />
             <Text style={sharedConfirmStyles['cancel-text']}>
               No
             </Text>
@@ -62,7 +67,12 @@ const LeaveGroupPopover = ({ close, history, openGroupPopover, show }) => (
               history.push('choose-venue');
             }}
           >
-            <Icon name="check" size={20} color="#2ECC40" />
+            <Icon
+              name="check"
+              size={20}
+              color="#2ECC40"
+              style={{ marginRight: 10 }}
+            />
             <Text style={sharedConfirmStyles['confirm-text']}>
               Yes
             </Text>

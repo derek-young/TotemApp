@@ -36,7 +36,12 @@ const LogoutPopover = ({ close, history, show }) => (
             style={[ sharedConfirmStyles.button, sharedConfirmStyles.cancel ]}
             onPress={close}
           >
-            <Icon name="times" size={20} color="#FF695E" />
+            <Icon
+              name="times"
+              size={20}
+              color="#FF695E"
+              style={{ marginRight: 10 }}
+            />
             <Text style={sharedConfirmStyles['cancel-text']}>
               No
             </Text>
@@ -48,7 +53,12 @@ const LogoutPopover = ({ close, history, show }) => (
               signout().then(() => history.push('/'));
             }}
           >
-            <Icon name="check" size={20} color="#2ECC40" />
+            <Icon
+              name="check"
+              size={20}
+              color="#2ECC40"
+              style={{ marginRight: 10 }}
+            />
             <Text style={sharedConfirmStyles['confirm-text']}>
               Yes
             </Text>

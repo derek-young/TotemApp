@@ -47,13 +47,11 @@ export default StyleSheet.create({
   },
   'cancel-text': {
     color: '#FF695E',
-    fontSize: 20,
-    marginLeft: 10
+    fontSize: 20
   },
   'confirm-text': {
     color: '#2ECC40',
-    fontSize: 20,
-    marginLeft: 10
+    fontSize: 20
   },
   'ok-text': {
     color: 'deepskyblue',

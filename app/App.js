@@ -19,6 +19,8 @@ import Menu from './components/Menu/Menu';
 import Profile from './components/Profile/Profile';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import Schedule from './components/Schedule/Schedule';
+
+import PlaceTotem from './components/SpeedDial/PlaceTotem/PlaceTotem';
 import SpeedDial from './components/SpeedDial/SpeedDial';
 
 import { handleAuthStateChange } from './redux/actions';
@@ -27,6 +29,22 @@ import { handleAuthStateChange } from './redux/actions';
 import './firebase';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showPlaceTotem: false,
+      showAlertFriends: false,
+      showContactES: false
+    };
+
+    this.closePlaceTotem = () => this.closePopover('showPlaceTotem');
+    this.closeAlertFriends = () => this.closePopover('showAlertFriends');
+    this.closeContactES = () => this.closePopover('showContactES');
+    this.openAlertFriends = () => this.openPopover('showAlertFriends');
+    this.openContactES = () => this.openPopover('showContactES');
+  }
+
   componentWillMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -45,9 +63,17 @@ class App extends Component {
       location: { pathname }
     } = this.props;
 
+    const {
+      showPlaceTotem,
+      showAlertFriends,
+      showContactES
+    } = this.state;
+
+    const isSetupView = (pathname === '/choose-venue' || pathname === '/create-group');
+
     return (
       <View style={styles.container}>
-        {(authenticated && dataRetrieved) && <Header path={pathname} />}
+        {(authenticated && dataRetrieved) && <Header isSetupView={isSetupView} />}
         <Route exact path="/" component={HomeView}/>
         <PrivateRoute
           isAuthenticated={authenticated}
@@ -85,7 +111,20 @@ class App extends Component {
           component={CreateGroup}
         />
         {menuVisible && <Menu menuItems={menuItems} history={history} />}
-        {(authenticated && dataRetrieved) && <SpeedDial />}
+        {
+          (authenticated && dataRetrieved && !isSetupView) &&
+          <SpeedDial
+            openPlaceTotem={this.openPlaceTotem}
+            openAlertFriends={this.openAlertFriends}
+            openContactES={this.openContactES}
+          />
+        }
+        {
+          showPlaceTotem &&
+          <PlaceTotem
+            close={this.closePlaceTotem}
+          />
+        }
       </View>
     );
   }
@@ -98,6 +137,25 @@ class App extends Component {
       <Child />
     </LinearGradient>
   )
+
+  closePopover = popover => (
+    this.setState({
+      [popover]: false
+    })
+  )
+
+  openPopover = popover => (
+    this.setState({
+      [popover]: true
+    })
+  )
+
+  openPlaceTotem = () => {
+    this.props.history.push('/map');
+    this.setState({
+      showPlaceTotem: true
+    });
+  }
 }
 
 export default withRouter(connect(({ auth, menu, user }) => ({

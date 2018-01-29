@@ -14,31 +14,37 @@ import ambulance from '../../img/ambulance.png';
 import friendAlert from '../../img/friend-alert.png';
 import totemSquare from '../../img/totemsquare.png';
 
-const actionItems = [
-  {
-    label: 'Place a Totem',
-    imageSource: totemSquare,
-    action: () => console.log('hi')
-  },
-  {
-    label: 'Alert Your Friends',
-    imageSource: friendAlert,
-    action: () => console.log('hi')
-  },
-  {
-    label: 'Contact Emergency Services',
-    imageSource: ambulance,
-    action: () => console.log('hi')
-  }
-];
-
 class SpeedDial extends Component {
   constructor(props) {
     super(props);
 
+    const {
+      openPlaceTotem,
+      openAlertFriends,
+      openContactES
+    } = this.props;
+
     this.state = {
       open: false
     };
+
+    this.actionItems = [
+      {
+        label: 'Place a Totem',
+        imageSource: totemSquare,
+        action: this.closeSpeedDial(openPlaceTotem)
+      },
+      {
+        label: 'Alert Your Friends',
+        imageSource: friendAlert,
+        action: this.closeSpeedDial(openAlertFriends)
+      },
+      {
+        label: 'Contact Emergency Services',
+        imageSource: ambulance,
+        action: this.closeSpeedDial(openContactES)
+      }
+    ];
   }
 
   render() {
@@ -51,7 +57,7 @@ class SpeedDial extends Component {
     return (
       <Animated.View style={speedDialStyles.main}>
         <View>
-          {actionItems.map(({ action, label, imageSource }) => (
+          {this.actionItems.map(({ action, label, imageSource }) => (
             <TouchableOpacity
               key={label}
               onPress={action}
@@ -87,6 +93,10 @@ class SpeedDial extends Component {
       </View>
     );
   }
+
+  closeSpeedDial = callback => (
+    () => this.setState({ open: false }, callback)
+  )
 }
 
 export default SpeedDial;
