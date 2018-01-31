@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { totemBlue } from '../../../colors';
+
 export default StyleSheet.create({
   main: {
   },
@@ -24,10 +26,22 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontSize: 20,
-    marginBottom: 10
+    marginBottom: 25
   },
   'option-text': {
     textAlign: 'center',
     color: 'white'
+  },
+  'select-text': {
+    color: totemBlue
+  },
+  emphasis: {
+    fontStyle: 'italic'
+  },
+  'meetup-time': {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 15
   }
 });

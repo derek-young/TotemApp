@@ -14,11 +14,7 @@ import totemStyles from './placeTotemStyles';
 
 import totemGif from '../../../img/loading.gif';
 
-const hourOptions = ['', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-const minuteOptions = ['', '00', '05'];
-for (let i = 10; i < 60; i += 5) {
-  minuteOptions.push(i);
-}
+import MeetupPicker from './MeetupPicker';
 
 const PlaceTotem = ({ close }) => (
   <Modal
@@ -37,15 +33,18 @@ const PlaceTotem = ({ close }) => (
             <Icon name="times" size={20} color="#FFF" />
           </TouchableOpacity>
         </View>
-        <View style={totemStyles['totem-container']}>
-          <Image source={totemGif} style={{ height: 125, width: 65 }} />
+        <View>
+          <View style={totemStyles['totem-container']}>
+            <Image source={totemGif} style={{ height: 125, width: 65 }} />
+          </View>
+          <Text style={totemStyles['body-text']}>
+            To set a meeting place for your group, touch OK and then anywhere on the map to drop a totem.
+          </Text>
+          <Text style={totemStyles['option-text']}>
+            <Text style={totemStyles.emphasis}>(Optional)</Text> Set a meetup time. The totem will expire 30 minutes after the set time.
+          </Text>
+          <MeetupPicker />
         </View>
-        <Text style={totemStyles['body-text']}>
-          To set a meeting place for your group, touch OK and then anywhere on the map to drop a totem.
-        </Text>
-        <Text style={totemStyles['option-text']}>
-          <Text style={{ fontStyle: 'italic' }}>(Optional)</Text> Set a meetup time. The totem will expire 30 minutes after the set time.
-        </Text>
         <View style={sharedConfirmStyles.footer}>
           <TouchableOpacity
             style={[ sharedConfirmStyles.button, sharedConfirmStyles.cancel ]}
