@@ -1,5 +1,6 @@
 const defaults = {
   calloutsToShow: {},
+  isTotemEnabled: false,
 };
 
 export default function mapReducer(state = defaults, action) {
@@ -8,6 +9,12 @@ export default function mapReducer(state = defaults, action) {
       return {
         ...state,
         calloutsToShow: {}
+      };
+    }
+    case 'PLACE_TOTEM_ON_PRESS': {
+      return {
+        ...state,
+        isTotemEnabled: action.payload
       };
     }
     case 'RESET_MAP': {

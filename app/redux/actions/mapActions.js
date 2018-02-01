@@ -8,6 +8,13 @@ export function clearCallouts() {
   });
 }
 
+export function placeTotemOnPress(bool) {
+  return dispatch({
+    type: 'PLACE_TOTEM_ON_PRESS',
+    payload: bool
+  });
+}
+
 export function resetMap() {
   return dispatch({
     type: 'RESET_MAP'

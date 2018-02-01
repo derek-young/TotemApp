@@ -38,6 +38,15 @@ export default function groupReducer(state = defaults, action) {
         }
       };
     }
+    case 'UPDATE_TOTEM_COORDS': {
+      return {
+        ...state,
+        totem: {
+          ...state.totem,
+          coords: action.payload
+        }
+      };
+    }
     case 'UPDATE_GROUP': {
       return {
         ...state,

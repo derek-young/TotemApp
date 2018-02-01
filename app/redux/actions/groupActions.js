@@ -69,11 +69,25 @@ export function updateGroup(group) {
   }
 }
 
-export function updateGroupMember(user, uid) {
+export function updateGroupMember(payload) {
   return dispatch({
     type: 'UPDATE_GROUP_MEMBER',
-    payload: { user, uid }
+    payload
   });
+}
+
+export function updateTotemCoords(coords) {
+  dispatch({
+    type: 'UPDATE_TOTEM_COORDS',
+    payload: coords
+  });
+
+  const {
+    user: { groupId },
+    group: { totem }
+  } = store.getState();
+
+  firebaseSet(`/groups/${groupId}/totem`, totem);
 }
 
 export function updateVenueId(id) {

@@ -1,10 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
-import { totemBlue } from '../../../colors';
+const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
-  main: {
-  },
   'title-container': {
     flex: 1,
     alignItems: 'center'
@@ -16,6 +14,9 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20
   },
+  section: {
+    marginBottom: 25
+  },
   'totem-container': {
     display: 'flex',
     flexDirection: 'row',
@@ -26,14 +27,52 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontSize: 20,
-    marginBottom: 25
   },
   'option-text': {
     textAlign: 'center',
-    color: 'white'
+    marginBottom: 15,
+    color: 'white',
   },
-  'select-text': {
-    color: totemBlue
+  'picker-container': {
+    position: 'absolute',
+    height: 270,
+    width,
+    bottom: 0,
+    backgroundColor: 'white'
+  },
+  'picker-top': {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  'picker-bottom': {
+    display: 'flex',
+    flexDirection: 'row',
+    borderTopColor: 'lightgrey',
+    borderTopWidth: 1,
+    borderStyle: 'solid',
+    height: 50,
+  },
+  picker: {
+    width: 36,
+  },
+  'picker-button': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '50%',
+  },
+  'first-button': {
+    borderRightColor: 'lightgrey',
+    borderRightWidth: 1,
+    borderStyle: 'solid',
+  },
+  'picker-text': {
+    fontSize: 20
+  },
+  'done-text': {
+    color: 'deepskyblue'
   },
   emphasis: {
     fontStyle: 'italic'

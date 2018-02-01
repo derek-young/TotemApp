@@ -16,7 +16,11 @@ import moment from 'moment';
 
 import image from '../../img/coachella_map.jpg';
 import mapStyles from './mapStyles';
-import { clearCallouts } from '../../redux/actions';
+import {
+  clearCallouts,
+  placeTotemOnPress,
+  updateTotemCoords
+} from '../../redux/actions';
 
 import Totem from './Totem';
 
@@ -47,9 +51,10 @@ class MapViewer extends Component {
     return (
       <View style={mapStyles.container}>
         <MapView
+          mapType={'terrain'}
+          onPress={this.handleMapPress}
           provider={PROVIDER_GOOGLE}
           style={mapStyles.map}
-          mapType={'terrain'}
           showsUserLocation
           showsPointsOfInterest={false}
           region={{
@@ -58,10 +63,7 @@ class MapViewer extends Component {
             latitudeDelta: 0.0122,
             longitudeDelta: 0.0122 * ASPECT_RATIO
           }}>
-          {
-            true && // !!totem.coords &&
-            <Totem totem={totem} />
-          }
+          {totem.coords && <Totem totem={totem} />}
           {Object.keys(members).map(key => {
             const member = members[key];
             const { img, position: { lat, lng } = {} } = member;
@@ -113,6 +115,18 @@ class MapViewer extends Component {
         this.markers[key].showCallout();
       }
     });
+  }
+
+  handleMapPress = e => {
+    const { isTotemEnabled } = this.props;
+
+    if (isTotemEnabled) {
+      const { coordinate: { longitude, latitude }} = e.nativeEvent;
+      const coords = { latitude, longitude, radius: 20 };
+
+      updateTotemCoords(coords);
+      placeTotemOnPress(false);
+    }
   }
 }
 

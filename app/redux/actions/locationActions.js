@@ -8,7 +8,7 @@ import {
 // Add listener to Firebase for any changes to group - returns the entire group
 export function addUserListener(userId) {
   return firebaseOn(`/users/${  userId}`, data => {
-    updateGroupMember(data, userId);
+    updateGroupMember({ user: data, uid: userId });
   });
 };
 
