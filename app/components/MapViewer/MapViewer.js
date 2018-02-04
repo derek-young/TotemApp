@@ -81,18 +81,23 @@ class MapViewer extends Component {
                   source={{ uri: img }}
                   style={mapStyles['profile-icon']}
                 />
-                <Callout style={mapStyles['callout-window']}>
-                  <View>
-                    <Text>{member.name}</Text>
+                <Callout tooltip style={mapStyles['callout-container']}>
+                  <View style={mapStyles['callout-window']}>
+                    <Text>
+                      {member.name}
+                    </Text>
                     {
                       !!(member.geofence && member.geofence.name) &&
-                      <Text>
+                      <Text style={mapStyles.subtext}>
                         {member.geofence.name}
                       </Text>
                     }
                     <Text style={mapStyles.subtext}>
                       {moment(member.position.timestamp).fromNow()}
                     </Text>
+                  </View>
+                  <View style={mapStyles['arrow-container']}>
+                    <View style={mapStyles['down-arrow']} />
                   </View>
                 </Callout>
               </Marker>

@@ -16,6 +16,15 @@ export default function groupReducer(state = defaults, action) {
     case 'RESET_GROUP': {
       return defaults;
     }
+    case 'SET_MEETUP_TIME': {
+      return {
+        ...state,
+        totem: {
+          ...state.totem,
+          meetupTime: action.payload
+        }
+      };
+    }
     case 'USERS_SORT': {
       const members = objToArray(state.members);
       const sortedUsers = members.sort(action.payload.method);

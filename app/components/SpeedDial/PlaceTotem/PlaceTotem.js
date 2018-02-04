@@ -13,7 +13,7 @@ import sharedPopoverStyles from '../../sharedStyles/popoverStyles';
 import totemStyles from './placeTotemStyles';
 
 import totemGif from '../../../img/loading.gif';
-import { placeTotemOnPress } from '../../../redux/actions';
+import { placeTotemOnPress, setMeetupTime } from '../../../redux/actions';
 
 import MeetupPicker from './MeetupPicker';
 
@@ -126,12 +126,48 @@ class PlaceTotem extends Component {
   handleMeridiemChange = meridiem => this.setState({ meridiem })
 
   handleConfirmPress = () => {
+    const { minute, meridiem } = this.state;
+    let { hour } = this.state;
+    const timeIsSet = hour.length > 0;
+
+
+    if (timeIsSet) {
+      if (Number(hour) === 12) {
+        if (meridiem === 'AM') hour = 0;
+      } else {
+        // If meridiem is unset, AM is assumed
+        hour = Number(hour) + (meridiem === 'PM' ? 12 : 0);
+      }
+
+      const meetupTime = this.convertToDate(hour, Number(minute));
+
+      setMeetupTime(meetupTime);
+    }
+
     placeTotemOnPress(true);
     this.props.close();
   }
 
   closePicker = () => this.setState({ showPicker: false })
   openPicker = () => this.setState({ showPicker: true })
+
+  convertToDate = (hours, minutes) => {
+    const now = new Date();
+    const setTime = hours + minutes / 60;
+    const currentTime = now.getHours() + (now.getMinutes() / 60);
+
+    let expiresAt = new Date();
+
+    if (currentTime > setTime) {
+      expiresAt = new Date(expiresAt.getTime() + (24 * 3600 * 1000));
+    }
+
+    expiresAt.setHours(hours);
+    expiresAt.setMinutes(minutes);
+    expiresAt.setSeconds(0);
+
+    return expiresAt.toUTCString();
+  }
 }
 
 export default PlaceTotem;

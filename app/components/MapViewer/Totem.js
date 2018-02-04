@@ -20,13 +20,15 @@ const Totem = ({ totem, placeTotem }) => (
       source={basecampIcon}
       style={{ height: 80, width: 40 }}
     />
-    <Callout style={mapStyles['callout-window']}>
-      <View>
-        <Text>Basecamp</Text>
+    <Callout tooltip style={mapStyles['callout-container']}>
+      <View style={mapStyles['callout-window']}>
+        <Text style={mapStyles.heading}>
+          Basecamp
+        </Text>
         {
           totem.meetupTime && !placeTotem &&
           <View>
-            <Text>
+            <Text style={mapStyles.subtext}>
               {`Meet ${moment(totem.meetupTime).fromNow()}`}
             </Text>
             <Text style={mapStyles.subtext}>
@@ -34,6 +36,9 @@ const Totem = ({ totem, placeTotem }) => (
             </Text>
           </View>
         }
+      </View>
+      <View style={mapStyles['arrow-container']}>
+        <View style={mapStyles['down-arrow']} />
       </View>
     </Callout>
   </Marker>

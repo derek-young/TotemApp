@@ -48,6 +48,15 @@ export function resetGroup() {
   });
 }
 
+export function setMeetupTime(time) {
+  dispatch({
+    type: 'SET_MEETUP_TIME',
+    payload: time
+  });
+
+  updateTotemFirebase();
+}
+
 export function updateGroup(group) {
   dispatch({
     type: 'UPDATE_GROUP',
@@ -82,12 +91,16 @@ export function updateTotemCoords(coords) {
     payload: coords
   });
 
+  updateTotemFirebase();
+}
+
+function updateTotemFirebase() {
   const {
     user: { groupId },
     group: { totem }
   } = store.getState();
 
-  firebaseSet(`/groups/${groupId}/totem`, totem);
+  return firebaseSet(`/groups/${groupId}/totem`, totem);
 }
 
 export function updateVenueId(id) {

@@ -10,13 +10,38 @@ export default StyleSheet.create({
     width: 40,
     borderRadius: 20
   },
+  'callout-container': {
+    position: 'relative',
+  },
   'callout-window': {
     flex: 1,
-    position: 'relative'
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    padding: 10,
+    borderRadius: 3
+  },
+  heading: {
+    fontWeight: 'bold',
+    marginBottom: 3
   },
   subtext: {
-    color: 'darkgrey',
     fontStyle: 'italic',
     fontSize: 12,
+  },
+  'arrow-container': {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 13
+  },
+  'down-arrow': {
+    width: 0,
+    height: 0,
+    borderLeftColor: 'transparent',
+    borderLeftWidth: 10,
+    borderRightColor: 'transparent',
+    borderRightWidth: 10,
+    borderTopColor: 'rgba(255, 255, 255, 0.9)',
+    borderTopWidth: 10,
+    borderStyle: 'solid',
   }
 });
