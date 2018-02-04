@@ -14,7 +14,6 @@ import MapView, {
 } from 'react-native-maps';
 import moment from 'moment';
 
-import image from '../../img/coachella_map.jpg';
 import mapStyles from './mapStyles';
 import {
   clearCallouts,
@@ -40,13 +39,23 @@ class MapViewer extends Component {
   }
 
   render() {
-    const { members, totem } = this.props;
+    const {
+      map: {
+        center,
+        bounds: { northwest, southeast } = {},
+        img: mapImage
+      },
+      members,
+      totem
+    } = this.props;
     const { width, height } = Dimensions.get('window');
     const ASPECT_RATIO = width / height;
-    const LAT = 40.049721; // 33.681653
-    const LNG = -105.2816957; // -116.238320
-    const NW_OVERLAY_COORD = [LAT + 0.00404, LNG - 0.003877];
-    const SE_OVERLAY_COORD = [LAT - 0.00404, LNG + 0.003877];
+
+    let NW_OVERLAY_COORD = null;
+    let SE_OVERLAY_COORD = null;
+
+    if (northwest) NW_OVERLAY_COORD = [ northwest.lat, northwest.lng ];
+    if (southeast) SE_OVERLAY_COORD = [ southeast.lat, southeast.lng ];
 
     return (
       <View style={mapStyles.container}>
@@ -58,8 +67,8 @@ class MapViewer extends Component {
           showsUserLocation
           showsPointsOfInterest={false}
           region={{
-            latitude: LAT,
-            longitude: LNG,
+            latitude: center.lat,
+            longitude: center.lng,
             latitudeDelta: 0.0122,
             longitudeDelta: 0.0122 * ASPECT_RATIO
           }}>
@@ -107,10 +116,13 @@ class MapViewer extends Component {
               </Marker>
             );
           })}
-          <Overlay
-            bounds={[ NW_OVERLAY_COORD, SE_OVERLAY_COORD ]}
-            image={image}
-          />
+          {
+            (mapImage && NW_OVERLAY_COORD && SE_OVERLAY_COORD) &&
+            <Overlay
+              bounds={[ NW_OVERLAY_COORD, SE_OVERLAY_COORD ]}
+              image={mapImage}
+            />
+          }
         </MapView>
       </View>
     );
@@ -139,8 +151,8 @@ class MapViewer extends Component {
   }
 }
 
-
-export default connect(({ map, group }) => ({
+export default connect(({ map, group, venue }) => ({
+  map: venue.venue.map,
   members: group.members,
   totem: group.totem,
   ...map

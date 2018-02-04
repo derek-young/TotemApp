@@ -60,22 +60,23 @@ class Row extends React.Component {
         >
           <Icon name="ellipsis-v" size={20} color="#000" />
         </TouchableOpacity>
-        <Popover
-          artist={artist}
-          close={this.closePopover}
-          closeLeaveGroup={this.closeLeaveGroup}
-          openGroupPopover={this.openPopover}
-          openLeaveGroup={this.openLeaveGroup}
-          show={showPopover}
-          showLeaveGroup={showLeaveGroup}
-          {...this.props}
-        />
+        {
+          showPopover &&
+          <Popover
+            artist={artist}
+            close={this.closePopover}
+            closeLeaveGroup={this.closeLeaveGroup}
+            openGroupPopover={this.openPopover}
+            openLeaveGroup={this.openLeaveGroup}
+            showLeaveGroup={showLeaveGroup}
+            {...this.props}
+          />
+        }
         {
           showLeaveGroup &&
           <LeaveGroupPopover
             close={this.closeLeaveGroup}
             openGroupPopover={this.openPopover}
-            show={showLeaveGroup}
           />
         }
       </View>

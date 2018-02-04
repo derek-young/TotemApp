@@ -13,10 +13,10 @@ import sharedPopoverStyles from '../sharedStyles/popoverStyles';
 
 import { removeUserFromGroup } from '../../redux/actions';
 
-const LeaveGroupPopover = ({ close, history, openGroupPopover, show }) => (
+const LeaveGroupPopover = ({ close, history, openGroupPopover }) => (
   <Modal
     transparent
-    visible={show}
+    visible
   >
     <View style={sharedPopoverStyles.container}>
       <View style={sharedConfirmStyles.main}>
