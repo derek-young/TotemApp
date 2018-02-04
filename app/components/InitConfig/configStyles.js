@@ -17,7 +17,8 @@ export default StyleSheet.create({
     width: 100
   },
   errorText: {
-    color: 'red'
+    color: 'red',
+    backgroundColor: 'transparent'
   },
   header: {
     display: 'flex',
@@ -55,13 +56,13 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
     height: '100%',
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    paddingHorizontal: 40
   },
-  row: {
+  'row-text': {
     color: 'white',
     fontSize: 20,
-    maxWidth: '70%',
     textAlign: 'center'
   },
   thumbnail: {

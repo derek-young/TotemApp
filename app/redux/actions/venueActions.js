@@ -42,7 +42,9 @@ export function updateVenue(venue) {
     payload: { venue }
   });
 
-  buildScheduleDays(Object.values(venue.scheduleItems));
+  if (venue.scheduleItems) {
+    buildScheduleDays(Object.values(venue.scheduleItems));
+  }
 
   return dispatch({ type: 'USER_DATA_RETRIEVED' });
 }

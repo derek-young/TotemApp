@@ -108,7 +108,7 @@ class App extends Component {
         <PrivateRoute
           isAuthenticated={authenticated}
           path="/create-group"
-          component={CreateGroup}
+          component={() => this.createLinearGradient(CreateGroup)}
         />
         {menuVisible && <Menu menuItems={menuItems} history={history} />}
         {

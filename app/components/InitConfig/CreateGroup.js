@@ -22,7 +22,7 @@ class ChooseVenue extends Component {
 
   render() {
     return (
-      <View style={configStyles.main}>
+      <View style={{ height: '100%' }}>
         <View style={configStyles.header}>
           <Text style={configStyles.headerText}>
             {'Join or Create a Group'.toUpperCase()}

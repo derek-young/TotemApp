@@ -40,7 +40,7 @@ class ChooseVenue extends Component {
                     source={{ uri: thumbnail }}
                   >
                     <View style={configStyles['image-overlay']}>
-                      <Text style={configStyles.row}>
+                      <Text numberOfLines={3} style={configStyles['row-text']}>
                         {name}
                       </Text>
                     </View>
