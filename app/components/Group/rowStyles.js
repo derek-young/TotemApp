@@ -4,7 +4,7 @@ export default StyleSheet.create({
   main: {
     display: 'flex',
     flexDirection: 'row',
-    minHeight: 100,
+    height: 100,
     borderBottomColor: 'rgba(99, 52, 1, 0.25)',
     borderBottomWidth: 2,
     borderStyle: 'solid',

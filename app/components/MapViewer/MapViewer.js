@@ -65,16 +65,20 @@ class MapViewer extends Component {
           }}>
           {totem.coords && <Totem totem={totem} />}
           {Object.keys(members).map(key => {
+            const imgDefault = 'https://facebook.github.io/react-native/docs/assets/favicon.png';
             const member = members[key];
-            const { img, position: { lat, lng } = {} } = member;
+            const {
+              img = imgDefault,
+              position: { lat, lng } = {}
+            } = member;
 
             return (
               <Marker
                 key={key}
                 ref={ref => (this.markers[key] = ref)}
                 coordinate={{
-                  latitude: 40.049721, // lat
-                  longitude: -105.2816957 // lng
+                  latitude: lat,
+                  longitude: lng
                 }}
               >
                 <Image

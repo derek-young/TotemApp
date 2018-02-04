@@ -33,10 +33,13 @@ class Row extends React.Component {
     return (
       <View style={rowStyles.main}>
         <View>
-          <Image
-            style={rowStyles.image}
-            source={{ uri: img }}
-          />
+          {
+            img &&
+            <Image
+              style={rowStyles.image}
+              source={{ uri: img }}
+            />
+          }
         </View>
         <View style={rowStyles.center}>
           <Text style={rowStyles.label}>{name}</Text>
