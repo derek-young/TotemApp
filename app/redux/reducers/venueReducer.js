@@ -9,7 +9,7 @@ const defaults = {
     geofences: {},
     map: {},
     name: {},
-    scheduleitems: []
+    scheduleItems: {}
   },
   geofences: {}
 };

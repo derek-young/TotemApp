@@ -43,7 +43,8 @@ class MapViewer extends Component {
       map: {
         center,
         bounds: { northwest, southeast } = {},
-        img: mapImage
+        img: mapImage,
+        zoom = 8
       },
       members,
       totem
@@ -64,13 +65,13 @@ class MapViewer extends Component {
           onPress={this.handleMapPress}
           provider={PROVIDER_GOOGLE}
           style={mapStyles.map}
-          showsUserLocation
+          showsMyLocationButton
           showsPointsOfInterest={false}
           region={{
             latitude: center.lat,
             longitude: center.lng,
-            latitudeDelta: 0.0122,
-            longitudeDelta: 0.0122 * ASPECT_RATIO
+            latitudeDelta: 1 / (zoom * 10),
+            longitudeDelta: 1 / (zoom * 10) * ASPECT_RATIO
           }}>
           {totem.coords && <Totem totem={totem} />}
           {Object.keys(members).map(key => {
