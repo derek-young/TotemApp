@@ -1,11 +1,13 @@
 import { StyleSheet } from 'react-native';
 
+import { popoverTransparency } from '../../colors';
+
 export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, .85)'
+    backgroundColor: popoverTransparency
   },
   main: {
     height: '50%',

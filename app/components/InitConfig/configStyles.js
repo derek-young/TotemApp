@@ -22,13 +22,46 @@ export default StyleSheet.create({
   },
   header: {
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#222',
-    height: 90,
+    minHeight: 90
   },
   headerText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginVertical: 10
+  },
+  options: {
+    display: 'flex',
+    flexDirection: 'row',
+    height: 32,
+    paddingHorizontal: 20,
+  },
+  'filter-wrapper': {
+    display: 'flex',
+    flexDirection: 'row',
+    flexGrow: 1,
+    backgroundColor: 'black',
+    borderRadius: 3,
+  },
+  filter: {
+    flexGrow: 1,
     color: 'lightgrey',
-    textAlign: 'center'
+    lineHeight: 32,
+    marginTop: 2, // Forces vertical alignment of text
+  },
+  'icon-wrapper': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: 32, // Options height minus vertical padding
+  },
+  'menu-wrapper': {
+    marginLeft: 20,
   },
   input: {
     height: '100%',

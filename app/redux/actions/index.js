@@ -1,4 +1,5 @@
 export * from './authActions';
+export * from './configActions';
 export * from './firebaseActions';
 export * from './groupActions';
 export * from './locationActions';

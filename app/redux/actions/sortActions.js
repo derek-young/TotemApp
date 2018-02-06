@@ -28,7 +28,7 @@ export const sortMethods = {
 
     return aDiff - bDiff;
   }
-}
+};
 
 export function sortUsers(method) {
   return dispatch({
@@ -41,3 +41,19 @@ function getDistance(base, target) {
   return Math.abs(base.lat - target.lat)
     + Math.abs(base.lng - target.lng);
 }
+
+export const venueSortMethods = {
+  upcoming: function sortByUpcoming(a, b) {
+    return a.dates.startDate - b.dates.startDate;
+  },
+  alphaAZ: function sortAZ(a, b) {
+    if(a.name < b.name) return -1;
+    if(a.name > b.name) return 1;
+    return 0;
+  },
+  alphaZA: function sortZA(a, b) {
+    if(a.name > b.name) return -1;
+    if(a.name < b.name) return 1;
+    return 0;
+  },
+};

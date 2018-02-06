@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { popoverTransparency } from '../../colors';
+
 const DIAL_DIAMETER = 70;
 const ITEM_IMG_DIAMETER = 60;
 const PADDING = 20;
@@ -10,7 +12,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
     height: '100%',
     width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    backgroundColor: popoverTransparency,
     position: 'absolute',
     paddingHorizontal: PADDING,
     paddingBottom: (PADDING * 2) + DIAL_DIAMETER

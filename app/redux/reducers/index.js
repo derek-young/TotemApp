@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import auth from './authReducer';
+import config from './configReducer';
 import group from './groupReducer';
 import map from './mapReducer';
 import menu from './menuReducer';
@@ -9,6 +10,7 @@ import venue from './venueReducer';
 
 export default combineReducers({
   auth,
+  config,
   group,
   map,
   menu,
