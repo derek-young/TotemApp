@@ -14,10 +14,13 @@ export function addAgendaItem(key) {
     payload: { key }
   });
 
-  const uid = store.getState().user.uid;
+  const {
+    user: { uid },
+    venue: { venue: { key: venueId }}
+  } = store.getState();
   const updates = {};
 
-  updates[`users/${uid}/agenda/${key}`] = true;
+  updates[`users/${uid}/agendas/${venueId}/${key}`] = true;
 
   return firebaseUpdate(updates);
 }
@@ -28,8 +31,11 @@ export function removeAgendaItem(key) {
     payload: { key }
   });
 
-  const uid = store.getState().user.uid;
-  const agendaItemPath = `users/${uid}/agenda/${key}`;
+  const {
+    user: { uid },
+    venue: { venue: { key: venueId }}
+  } = store.getState();
+  const agendaItemPath = `users/${uid}/agendas/${venueId}/${key}`;
 
   return firebaseRemove(agendaItemPath);
 }
@@ -38,6 +44,18 @@ export function resetUser() {
   return dispatch({
     type: 'RESET_USER'
   });
+}
+
+export function setAgendaForVenue(venueKey) {
+  const { agendas } = store.getState().user;
+  const agenda = agendas[venueKey];
+
+  if (agenda) {
+    return dispatch({
+      type: 'SET_AGENDA_FOR_VENUE',
+      payload: { agenda }
+    });
+  }
 }
 
 export function updateUserData(user) {

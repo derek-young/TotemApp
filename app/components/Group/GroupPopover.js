@@ -64,7 +64,7 @@ class GroupPopover extends Component {
                     {
                       (geofence && !!geofence.name)
                       &&
-                      <Text style={sharedPopoverStyles['body-text']}>
+                      <Text>
                         {geofence.name}
                       </Text>
                     }

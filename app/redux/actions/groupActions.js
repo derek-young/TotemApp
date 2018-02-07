@@ -78,10 +78,22 @@ export function updateGroup(group) {
   }
 }
 
-export function updateGroupMember(payload) {
+export function updateGroupMember({ user, uid }) {
+  const { key: venueId } = store.getState().venue.venue;
+  const { agendas } = user;
+  let agenda = {};
+
+  if (venueId && agendas) {
+    agenda = agendas[venueId] || {};
+  }
+
+  // If the user does not have an agenda for this venue,
+  // set the agenda property to an empty object
+  user.agenda = agenda;
+
   return dispatch({
     type: 'UPDATE_GROUP_MEMBER',
-    payload
+    payload: { user, uid }
   });
 }
 

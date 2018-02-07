@@ -28,7 +28,7 @@ class Row extends React.Component {
   render() {
     const { geofence, img, name, position = {} } = this.props;
     const { showPopover, showLeaveGroup } = this.state;
-    const artist = geofence && geofence.key ? ` - ${getArtist(geofence.key)}` : '';
+    const artist = geofence && geofence.key ? getArtist(geofence.key) : null;
 
     return (
       <View style={rowStyles.main}>
@@ -47,7 +47,7 @@ class Row extends React.Component {
             (geofence && !!geofence.name)
             &&
             <Text>
-              {geofence.name.concat(artist)}
+              {`${geofence.name}${artist ? ` - ${artist}` : ''}`}
             </Text>
           }
           <Text style={styles.subtext}>

@@ -151,7 +151,10 @@ class App extends Component {
   )
 
   openPlaceTotem = () => {
-    this.props.history.push('/map');
+    const { location, history } = this.props;
+
+    if (location.pathname !== '/map') history.push('/map');
+
     this.setState({
       showPlaceTotem: true
     });

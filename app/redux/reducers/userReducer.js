@@ -1,5 +1,6 @@
 const defaults = {
   agenda: {},
+  agendas: {},
   uid: null,
   name: null,
   groupId: null,
@@ -31,6 +32,10 @@ export default function userReducer(state = defaults, action) {
     }
     case 'RESET_USER': {
       return defaults;
+    }
+    case 'SET_AGENDA_FOR_VENUE': {
+      const { agenda } = action.payload;
+      return { ...state, agenda };
     }
     case 'SIGNIN_SUCCESS': {
       const { uid } = action.payload;

@@ -41,9 +41,7 @@ export default function groupReducer(state = defaults, action) {
         ...state,
         members: {
           ...state.members,
-          [uid]: {
-            ...user
-          }
+          [uid]: user
         }
       };
     }

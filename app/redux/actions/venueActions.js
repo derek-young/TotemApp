@@ -1,23 +1,11 @@
 import {
   buildScheduleDays,
   firebaseOnce,
-  firebaseUpdate,
-  firebaseKeyGen
+  setAgendaForVenue
 } from '../actions';
 import store from '../../redux/store';
 
 const { dispatch } = store;
-
-function createVenue(venue) {
-  const updates = {};
-  const venueKey = firebaseKeyGen('/venues/');
-
-  venue.key = venueKey;
-
-  updates[`/venues/${venueKey}`] = venue;
-
-  return firebaseUpdate(updates);
-}
 
 export function fetchVenues(callback) {
   return firebaseOnce('/venues', callback);
@@ -42,6 +30,8 @@ export function updateVenue(venue) {
     payload: { venue }
   });
 
+  setAgendaForVenue(venue.key);
+
   if (venue.scheduleItems) {
     buildScheduleDays(Object.values(venue.scheduleItems));
   }
@@ -58,12 +48,14 @@ export function updateVenueNames(venues) {
 
 export function getArtist(key) {
   const currentTime = new Date().getTime();
-  const scheduleItems = store.getState().venue.venue.scheduleitems;
+  const { scheduleItems = {} } = store.getState().venue.venue;
   const geoFences = store.getState().venue.geofences;
   const userGeofence = geoFences[key];
 
-  for (let i = 0; i < scheduleItems.length; i += 1) {
-    const item = scheduleItems[i];
+  const itemsArray = Object.values(scheduleItems);
+
+  for (let i = 0; i < itemsArray.length; i += 1) {
+    const item = itemsArray[i];
     if (userGeofence && item) {
       if (userGeofence.name === item.geofence) {
         const startTime = localTimeMilliseconds(Date.parse(item.starttime));
@@ -76,6 +68,8 @@ export function getArtist(key) {
       }
     }
   }
+
+  return null;
 }
 
 function localTimeMilliseconds(milliSeconds) {

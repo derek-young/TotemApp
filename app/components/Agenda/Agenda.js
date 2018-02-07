@@ -57,7 +57,7 @@ const Agenda = ({ agenda, days, geofences, scheduleItems, selectedDay }) => {
       </ScrollView>
     </View>
   );
-}
+};
 
 export default connect(({ user, schedule, venue }) => ({
   agenda: user.agenda,
