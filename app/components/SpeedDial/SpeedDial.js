@@ -34,11 +34,12 @@ class SpeedDial extends Component {
         imageSource: totemSquare,
         action: this.closeSpeedDial(openPlaceTotem)
       },
-      {
-        label: 'Alert Your Friends',
-        imageSource: friendAlert,
-        action: this.closeSpeedDial(openAlertFriends)
-      },
+      // TODO: Create Alert Friends functionality
+      // {
+      //   label: 'Alert Your Friends',
+      //   imageSource: friendAlert,
+      //   action: this.closeSpeedDial(openAlertFriends)
+      // },
       {
         label: 'Contact Emergency Services',
         imageSource: ambulance,

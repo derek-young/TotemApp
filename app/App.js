@@ -20,6 +20,7 @@ import Profile from './components/Profile/Profile';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import Schedule from './components/Schedule/Schedule';
 
+import ContactES from './components/SpeedDial/EmergencyServices/ContactES';
 import PlaceTotem from './components/SpeedDial/PlaceTotem/PlaceTotem';
 import SpeedDial from './components/SpeedDial/SpeedDial';
 
@@ -123,12 +124,8 @@ class App extends Component {
             openContactES={this.openContactES}
           />
         }
-        {
-          showPlaceTotem &&
-          <PlaceTotem
-            close={this.closePlaceTotem}
-          />
-        }
+        {showPlaceTotem && <PlaceTotem close={this.closePlaceTotem} />}
+        {showContactES && <ContactES close={this.closeContactES} />}
       </View>
     );
   }
