@@ -31,16 +31,16 @@ function setDays(days) {
   });
 }
 
-export function updateDay(day) {
+export function updateFilterDay(day) {
   return dispatch({
-    type:'UPDATE_DAY',
+    type:'UPDATE_FILTER_DAY',
     payload: moment(day)
   });
 }
 
-export function updateStage(stage) {
+export function updateFilterStage(stage) {
   return dispatch({
-    type: 'UPDATE_STAGE',
+    type: 'UPDATE_FILTER_STAGE',
     payload: stage
   });
 }

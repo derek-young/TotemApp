@@ -1,7 +1,10 @@
+import moment from 'moment';
+
 import {
   buildScheduleDays,
   firebaseOnce,
-  setAgendaForVenue
+  setAgendaForVenue,
+  updateFilterDay,
 } from '../actions';
 import store from '../../redux/store';
 
@@ -25,12 +28,23 @@ export function setVenues(venues) {
 }
 
 export function updateVenue(venue) {
+  // Add keys to venue geofences
+  if (venue && venue.geofences) {
+    venue.geofences = Object.keys(venue.geofences).reduce((acc, key) => {
+      venue.geofences[key].key = key;
+      acc[key] = venue.geofences[key];
+
+      return acc;
+    }, {});
+  }
+
   dispatch({
     type: 'UPDATE_VENUE_DATA',
     payload: { venue }
   });
 
   setAgendaForVenue(venue.key);
+  updateFilterDay(moment(venue.dates.startDate));
 
   if (venue.scheduleItems) {
     buildScheduleDays(Object.values(venue.scheduleItems));

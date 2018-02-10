@@ -8,8 +8,8 @@ import {
 
 import headerStyles from './headerStyles';
 import {
-  updateDay,
-  updateStage
+  updateFilterDay,
+  updateFilterStage
 } from '../../redux/actions';
 
 class ScheduleHeader extends Component {
@@ -87,12 +87,12 @@ class ScheduleHeader extends Component {
   }
 
   handleDayChange = day => {
-    updateDay(day);
+    updateFilterDay(day);
     this.toggleMenu(false);
   }
 
   handleStageChange = stage => {
-    updateStage(stage);
+    updateFilterStage(stage);
     this.toggleMenu(false);
   }
 

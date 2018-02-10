@@ -70,7 +70,7 @@ class App extends Component {
     } = this.state;
 
     const isSetupView = (pathname === '/choose-venue' || pathname === '/create-group');
-    const hasScheuleItems = scheduleItems && Object.keys(scheduleItems).length > 0;
+    const hasScheduleItems = scheduleItems && Object.keys(scheduleItems).length > 0;
 
     return (
       <View style={styles.container}>
@@ -113,7 +113,7 @@ class App extends Component {
         />
         {
           menuVisible &&
-          <Menu hasScheuleItems={hasScheuleItems} history={history} />
+          <Menu hasScheduleItems={hasScheduleItems} history={history} />
         }
         {
           (authenticated && dataRetrieved && !isSetupView) &&

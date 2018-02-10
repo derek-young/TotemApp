@@ -8,7 +8,7 @@ import {
 
 import headerStyles from './headerStyles';
 import {
-  updateDay
+  updateFilterDay
 } from '../../redux/actions';
 
 class AgendaHeader extends Component {
@@ -26,17 +26,20 @@ class AgendaHeader extends Component {
       selectedDay,
     } = this.props;
     const { menuOpen } = this.state;
-    const toggleMenu = () => this.toggleMenu(!menuOpen);
 
     return (
       <View style={headerStyles.main}>
         <TouchableOpacity
-          onPress={toggleMenu}
+          onPress={this.toggleMenu}
           style={headerStyles.selector}
         >
-          <Text style={headerStyles.headerText}>
-            {selectedDay.format('dddd, MM/DD')}
-          </Text>
+          {
+            selectedDay
+            &&
+            <Text style={headerStyles.headerText}>
+              {selectedDay.format('dddd, MM/DD')}
+            </Text>
+          }
         </TouchableOpacity>
         {
           menuOpen &&
@@ -60,11 +63,13 @@ class AgendaHeader extends Component {
   }
 
   handleDayChange = day => {
-    updateDay(day);
-    this.toggleMenu(false);
+    updateFilterDay(day);
+    this.toggleMenu(null, false);
   }
 
-  toggleMenu = open => this.setState({ menuOpen: open });
+  toggleMenu = (e, open = !this.state.menuOpen) => (
+    this.setState({ menuOpen: open })
+  )
 }
 
 export default AgendaHeader;
