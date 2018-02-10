@@ -47,7 +47,7 @@ export function geolocate() {
 }
 
 export function getGeofence(coordinates) {
-  const { geofences = {} } = store.getState().venue;
+  const { geofences = {} } = store.getState().venue.venue;
   const basecamp = store.getState().group.totem.coords;
 
   if (basecamp && inFenceRadius(basecamp, coordinates)) {
@@ -58,6 +58,7 @@ export function getGeofence(coordinates) {
   }
 
   const keys = Object.keys(geofences);
+
   for (let i = 0; i < keys.length; i += 1) {
     const key = keys[i];
     const fence = geofences[key];

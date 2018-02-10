@@ -62,7 +62,7 @@ const Agenda = ({ agenda, days, geofences, scheduleItems, selectedDay }) => {
 export default connect(({ user, schedule, venue }) => ({
   agenda: user.agenda,
   days: schedule.days,
-  geofences: venue.geofences,
+  geofences: venue.venue.geofences,
   scheduleItems: venue.venue.scheduleItems,
   selectedDay: schedule.selectedDay
 }))(Agenda);

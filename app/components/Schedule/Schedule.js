@@ -64,7 +64,7 @@ const Schedule = ({
 
 export default connect(({ user, schedule, venue }) => ({
   agenda: user.agenda,
-  geofences: venue.geofences,
+  geofences: venue.venue.geofences,
   scheduleItems: venue.venue.scheduleItems,
   schedule
 }))(Schedule);

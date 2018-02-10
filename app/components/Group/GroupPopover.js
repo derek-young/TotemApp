@@ -220,7 +220,7 @@ function ListItemDay() {
 }
 
 export default withRouter(connect(({ schedule, venue }) => ({
-  geofences: venue.geofences,
+  geofences: venue.venue.geofences,
   scheduleItems: venue.venue.scheduleItems,
   selectedDay: schedule.selectedDay
 }))(GroupPopover));

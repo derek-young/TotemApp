@@ -62,9 +62,8 @@ export function updateVenueNames(venues) {
 
 export function getArtist(key) {
   const currentTime = new Date().getTime();
-  const { scheduleItems = {} } = store.getState().venue.venue;
-  const geoFences = store.getState().venue.geofences;
-  const userGeofence = geoFences[key];
+  const { geofences, scheduleItems = {} } = store.getState().venue.venue;
+  const userGeofence = geofences[key];
 
   const itemsArray = Object.values(scheduleItems);
 

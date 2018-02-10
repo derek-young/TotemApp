@@ -11,7 +11,6 @@ const defaults = {
     name: {},
     scheduleItems: {}
   },
-  geofences: {}
 };
 
 export default function venueReducer(state = defaults, action) {
