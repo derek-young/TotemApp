@@ -26,20 +26,9 @@ export default function venueReducer(state = defaults, action) {
       };
     }
     case 'UPDATE_VENUE_DATA': {
-      const newState = { ...state };
       const { venue } = action.payload;
-      newState.venue = venue;
 
-      if (venue && venue.geofences) {
-        newState.geofences = Object.keys(venue.geofences).reduce((acc, key) => {
-          venue.geofences[key].key = key;
-          acc[key] = venue.geofences[key];
-
-          return acc;
-        }, {});
-      }
-
-      return newState;
+      return { ...state, venue };
     }
     default:
       return state;

@@ -60,7 +60,7 @@ const Schedule = ({
       </ScrollView>
     </View>
   );
-}
+};
 
 export default connect(({ user, schedule, venue }) => ({
   agenda: user.agenda,

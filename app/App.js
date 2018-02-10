@@ -58,9 +58,9 @@ class App extends Component {
       authenticated,
       dataRetrieved,
       menuVisible,
-      menuItems,
       history,
-      location: { pathname }
+      location: { pathname },
+      scheduleItems,
     } = this.props;
 
     const {
@@ -70,6 +70,7 @@ class App extends Component {
     } = this.state;
 
     const isSetupView = (pathname === '/choose-venue' || pathname === '/create-group');
+    const hasScheuleItems = scheduleItems && Object.keys(scheduleItems).length > 0;
 
     return (
       <View style={styles.container}>
@@ -110,7 +111,10 @@ class App extends Component {
           path="/create-group"
           component={() => this.createLinearGradient(CreateGroup)}
         />
-        {menuVisible && <Menu menuItems={menuItems} history={history} />}
+        {
+          menuVisible &&
+          <Menu hasScheuleItems={hasScheuleItems} history={history} />
+        }
         {
           (authenticated && dataRetrieved && !isSetupView) &&
           <SpeedDial
@@ -161,9 +165,9 @@ class App extends Component {
   }
 }
 
-export default withRouter(connect(({ auth, menu, user }) => ({
+export default withRouter(connect(({ auth, menu, user, venue }) => ({
   authenticated: auth.authenticated,
   dataRetrieved: user.dataRetrieved,
   menuVisible: menu.menuVisible,
-  menuItems: menu.menuItems
+  scheduleItems: venue.venue.scheduleItems,
 }))(App));

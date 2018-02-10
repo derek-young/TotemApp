@@ -1,14 +1,5 @@
 const defaults = {
-  menuVisible: false,
-  menuItems: [
-    { path: 'map', text: 'Map', icon: 'map', color: '#f9d6ff' },
-    { path: 'group', text: 'Group', icon: 'users', color: '#dddaff' },
-    { path: 'agenda', text: 'Agenda', icon: 'pencil-square-o', color: '#ddffd6' },
-    { path: 'schedule', text: 'Schedule', icon: 'clock-o', color: '#fffecc' },
-    // TODO: Implement a chat feature for the application
-    // { path: 'chat', text: 'Chat', icon: 'comment-o', color: '#ffd5d5' },
-    { path: 'profile', text: 'Profile', icon: 'user', color: '#ffd5d5' }
-  ]
+  menuVisible: false
 };
 
 export default function menuReducer(state = defaults, action) {
