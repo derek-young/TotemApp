@@ -25,13 +25,10 @@ class GroupPopover extends Component {
       artist,
       close,
       geofence,
-      history,
       isUser,
       name,
-      openLeaveGroup,
       position = {},
       scheduleItems,
-      uid,
       userAgenda,
     } = this.props;
 
@@ -42,10 +39,7 @@ class GroupPopover extends Component {
     }
 
     return (
-      <Modal
-        transparent
-        visible
-      >
+      <Modal transparent>
         <View style={sharedPopoverStyles.container}>
           <View style={sharedPopoverStyles.main}>
             <View style={sharedPopoverStyles.header}>
@@ -80,10 +74,7 @@ class GroupPopover extends Component {
                     <Icon name="comment-o" size={18} color="#757575" />
                   </TouchableOpacity> */}
                   <TouchableOpacity
-                    onPress={() => {
-                      history.push('map')
-                      showUserOnMap({ uid });
-                    }}
+                    onPress={this.handleLocateUserPress}
                     style={popoverStyles.action}
                   >
                     <Icon name="map-marker" size={18} color="#757575" />
@@ -144,10 +135,7 @@ class GroupPopover extends Component {
               isUser &&
               <View>
                 <TouchableOpacity
-                  onPress={() => {
-                    close();
-                    openLeaveGroup();
-                  }}
+                  onPress={this.handleLeaveGroupPress}
                   style={sharedPopoverStyles.button}
                 >
                   <Text style={sharedPopoverStyles['button-text']}>
@@ -208,6 +196,20 @@ class GroupPopover extends Component {
     });
 
     return agendaListItems;
+  }
+
+  handleLeaveGroupPress = () => {
+    const { close, openLeaveGroup } = this.props;
+
+    close(); // Close GroupPopover - layered popovers are buggys
+    openLeaveGroup();
+  }
+
+  handleLocateUserPress = () => {
+    const { history, uid } = this.props;
+
+    history.push('map');
+    showUserOnMap({ uid });
   }
 }
 
