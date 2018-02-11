@@ -22,7 +22,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: margin
+    marginTop: margin,
+    marginBottom: 40
   },
   button: {
     display: 'flex',

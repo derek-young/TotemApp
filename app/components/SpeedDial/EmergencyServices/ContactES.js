@@ -40,7 +40,7 @@ class ContactES extends Component {
                 Are you sure you want to contact emergency services?
               </Text>
             </View>
-            <View style={[ sharedConfirmStyles.footer, { marginBottom: 40 } ]}>
+            <View style={sharedConfirmStyles.footer}>
               <TouchableOpacity
                 style={[ sharedConfirmStyles.button, sharedConfirmStyles.cancel ]}
                 onPress={close}

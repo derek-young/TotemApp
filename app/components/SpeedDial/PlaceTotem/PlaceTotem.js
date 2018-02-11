@@ -50,7 +50,7 @@ class PlaceTotem extends Component {
                 <Icon name="times" size={20} color="#FFF" />
               </TouchableOpacity>
             </View>
-            <View style={totemStyles.section}>
+            <View style={[ totemStyles.section, { flex: 1 } ]}>
               <View style={totemStyles['totem-container']}>
                 <Image source={totemGif} style={{ height: 125, width: 65 }} />
               </View>

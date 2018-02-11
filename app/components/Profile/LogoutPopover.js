@@ -15,12 +15,14 @@ import { signout } from '../../redux/actions';
 
 const LogoutPopover = ({ close, history, show }) => (
   <Modal
+    animationType="fade"
     transparent
     visible={show}
   >
     <View style={sharedPopoverStyles.container}>
       <View style={sharedConfirmStyles.main}>
         <View style={sharedConfirmStyles.header}>
+          <View style={{ width: 20 }} />
           <Text style={sharedConfirmStyles.title}>
             Logout
           </Text>
@@ -28,9 +30,11 @@ const LogoutPopover = ({ close, history, show }) => (
             <Icon name="times" size={20} color="#FFF" />
           </TouchableOpacity>
         </View>
-        <Text style={sharedConfirmStyles['body-text']}>
-          Are you sure you want to logout?
-        </Text>
+        <View style={{ flex: 1 }}>
+          <Text style={sharedConfirmStyles['body-text']}>
+            Are you sure you want to logout?
+          </Text>
+        </View>
         <View style={sharedConfirmStyles.footer}>
           <TouchableOpacity
             style={[ sharedConfirmStyles.button, sharedConfirmStyles.cancel ]}

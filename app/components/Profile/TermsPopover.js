@@ -12,12 +12,14 @@ import sharedPopoverStyles from '../sharedStyles/popoverStyles';
 
 const TermsPopover = ({ close, show }) => (
   <Modal
+    animationType="slide"
     transparent
     visible={show}
   >
     <View style={sharedPopoverStyles.container}>
       <View style={sharedConfirmStyles.main}>
         <View style={sharedConfirmStyles.header}>
+          <View style={{ width: 20 }} />
           <Text style={sharedConfirmStyles.title}>
             Terms of Service
           </Text>
@@ -25,9 +27,11 @@ const TermsPopover = ({ close, show }) => (
             <Icon name="times" size={20} color="#FFF" />
           </TouchableOpacity>
         </View>
-        <Text style={sharedConfirmStyles['body-text']}>
-          Terms
-        </Text>
+        <View style={{ flex: 1 }}>
+          <Text style={sharedConfirmStyles['body-text']}>
+            Terms
+          </Text>
+        </View>
         <View style={sharedConfirmStyles.footer}>
           <TouchableOpacity
             style={[ sharedConfirmStyles.button, sharedConfirmStyles.ok ]}

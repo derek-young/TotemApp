@@ -35,12 +35,14 @@ const LeaveGroupPopover = ({ close, history, openGroupPopover }) => (
             <Icon name="times" size={20} color="#FFF" />
           </TouchableOpacity>
         </View>
-        <Text style={sharedConfirmStyles['body-text']}>
-          Are you sure you want to leave this group?
-        </Text>
-        <Text style={{ color: '#FFF' }}>
-          The group will be deleted if you are the only member.
-        </Text>
+        <View style={{ flex: 1 }}>
+          <Text style={sharedConfirmStyles['body-text']}>
+            Are you sure you want to leave this group?
+          </Text>
+          <Text style={{ color: '#FFF' }}>
+            The group will be deleted if you are the only member.
+          </Text>
+        </View>
         <View style={sharedConfirmStyles.footer}>
           <TouchableOpacity
             style={[ sharedConfirmStyles.button, sharedConfirmStyles.cancel ]}
