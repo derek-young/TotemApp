@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
   Image,
   Text,
+  TouchableOpacity,
   View
 } from 'react-native';
 import {
@@ -12,6 +13,9 @@ import {
 import moment from 'moment';
 
 import mapStyles from './mapStyles';
+import totemStyles from './totemStyles';
+
+import { updateTotemCoords } from '../../redux/actions';
 import basecampIcon from '../../img/loading.gif';
 
 const Totem = ({ totem, placeTotem }) => (
@@ -36,6 +40,17 @@ const Totem = ({ totem, placeTotem }) => (
             </Text>
           </View>
         }
+        {/*  Callouts currently do not suport clickable elements */}
+        {/* <View style={totemStyles.remove}>
+          <TouchableOpacity
+            onPress={() => updateTotemCoords({})}
+            style={totemStyles['remove-button']}
+          >
+            <Text style={totemStyles['remove-text']}>
+              Remove
+            </Text>
+          </TouchableOpacity>
+        </View> */}
       </View>
       <View style={mapStyles['arrow-container']}>
         <View style={mapStyles['down-arrow']} />

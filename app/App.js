@@ -22,6 +22,7 @@ import Schedule from './components/Schedule/Schedule';
 
 import ContactES from './components/SpeedDial/EmergencyServices/ContactES';
 import PlaceTotem from './components/SpeedDial/PlaceTotem/PlaceTotem';
+import RemoveTotem from './components/SpeedDial/RemoveTotem/RemoveTotem';
 import SpeedDial from './components/SpeedDial/SpeedDial';
 
 import { handleAuthStateChange } from './redux/actions';
@@ -35,13 +36,16 @@ class App extends Component {
 
     this.state = {
       showPlaceTotem: false,
+      showRemoveTotem: false,
       showAlertFriends: false,
       showContactES: false
     };
 
     this.closePlaceTotem = () => this.closePopover('showPlaceTotem');
+    this.closeRemoveTotem = () => this.closePopover('showRemoveTotem');
     this.closeAlertFriends = () => this.closePopover('showAlertFriends');
     this.closeContactES = () => this.closePopover('showContactES');
+    this.openRemoveTotem = () => this.openPopover('showRemoveTotem');
     this.openAlertFriends = () => this.openPopover('showAlertFriends');
     this.openContactES = () => this.openPopover('showContactES');
   }
@@ -66,6 +70,7 @@ class App extends Component {
 
     const {
       showPlaceTotem,
+      showRemoveTotem,
       showAlertFriends,
       showContactES
     } = this.state;
@@ -120,11 +125,13 @@ class App extends Component {
           (authenticated && dataRetrieved && !isSetupView) &&
           <SpeedDial
             openPlaceTotem={this.openPlaceTotem}
+            openRemoveTotem={this.openRemoveTotem}
             openAlertFriends={this.openAlertFriends}
             openContactES={this.openContactES}
           />
         }
         {showPlaceTotem && <PlaceTotem close={this.closePlaceTotem} />}
+        {showRemoveTotem && <RemoveTotem close={this.closeRemoveTotem} />}
         {showContactES && <ContactES close={this.closeContactES} />}
       </View>
     );
