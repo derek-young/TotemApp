@@ -46,6 +46,8 @@ class SpeedDial extends Component {
         action: this.closeSpeedDial(openContactES)
       }
     ];
+
+    this.close = () => this.setState({ open: false });
   }
 
   render() {
@@ -57,6 +59,7 @@ class SpeedDial extends Component {
 
     return (
       <Animated.View style={speedDialStyles.main}>
+        <TouchableOpacity style={{ flex: 1 }} onPress={this.close} />
         <View>
           {this.actionItems.map(({ action, label, imageSource }) => (
             <TouchableOpacity
