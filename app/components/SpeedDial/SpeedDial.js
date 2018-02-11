@@ -108,11 +108,11 @@ class SpeedDial extends Component {
     }
 
     // TODO: Create Alert Friends functionality
-    actionItems.push({
-      label: 'Alert Your Friends',
-      imageSource: friendAlert,
-      action: this.closeSpeedDial(openAlertFriends)
-    });
+    // actionItems.push({
+    //   label: 'Alert Your Friends',
+    //   imageSource: friendAlert,
+    //   action: this.closeSpeedDial(openAlertFriends)
+    // });
 
     actionItems.push({
       label: 'Contact Emergency Services',

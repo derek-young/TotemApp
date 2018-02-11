@@ -11,17 +11,22 @@ export default StyleSheet.create({
     top: 0,
     width,
     height,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   menu: {
     backgroundColor: 'black',
     width: 150,
-    height
+    height,
+    paddingTop: 20,
+  },
+  'menu-items': {
+    borderTopWidth: 1,
+    borderTopColor: '#2d2e2f'
   },
   menuItem: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 70,
+    height: 80,
     width: 150,
     borderBottomWidth: 1,
     borderBottomColor: '#2d2e2f'
@@ -29,6 +34,7 @@ export default StyleSheet.create({
   'menuItem__text': {
     marginTop: 5,
     color: 'white',
+    fontSize: 18,
     fontWeight: '500',
     fontFamily: (Platform.OS === 'ios') ? 'Helvetica Neue' : 'Roboto'
   }

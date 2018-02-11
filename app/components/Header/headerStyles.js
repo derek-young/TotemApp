@@ -5,13 +5,13 @@ import { totemBlue } from '../../colors';
 export default StyleSheet.create({
   main: {
     alignSelf: 'stretch',
-    height: 60,
+    height: 80,
     backgroundColor: totemBlue,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingRight: 20,
-    paddingLeft: 20
+    paddingTop: 20,
+    paddingHorizontal: 20,
   },
   icon: {
     opacity: 0.6
