@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import call from 'react-native-phone-call';
+import { connect } from 'react-redux';
 
 import sharedConfirmStyles from '../../sharedStyles/confirmPopoverStyles';
 import sharedPopoverStyles from '../../sharedStyles/popoverStyles';
@@ -14,7 +15,10 @@ import totemStyles from '../PlaceTotem/placeTotemStyles';
 
 class ContactES extends Component {
   render() {
-    const { close } = this.props;
+    const {
+      close,
+      emergency: {  operator } = {}
+    } = this.props;
 
     return (
       <Modal
@@ -36,9 +40,16 @@ class ContactES extends Component {
               <View style={totemStyles['totem-container']}>
                 <Icon name="plus-square" size={60} color="#ff8518" />
               </View>
-              <Text style={totemStyles['body-text']}>
-                Are you sure you want to contact emergency services?
-              </Text>
+              {
+                operator ?
+                <Text style={totemStyles['body-text']}>
+                  Are you sure you want to contact emergency services?
+                </Text>
+                :
+                <Text style={totemStyles['body-text']}>
+                  There is no emergency number registered with this event. Would you like to dial 911?
+                </Text>
+              }
             </View>
             <View style={sharedConfirmStyles.footer}>
               <TouchableOpacity
@@ -77,13 +88,16 @@ class ContactES extends Component {
   }
 
   handleContactESConfirm = () => {
-    this.props.close();
+    const {
+      close,
+      emergency: {  operator = '911' } = {}
+    } = this.props;
 
-    call({
-      number: '9703197300',
-      prompt: false
-    }).catch(console.warn);
+    close();
+    call({ number: operator }).catch(console.warn);
   }
 }
 
-export default ContactES;
+export default connect(({ venue: { venue } }) => ({
+  emergency: venue.emergency
+}))(ContactES);

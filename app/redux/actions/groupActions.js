@@ -57,6 +57,13 @@ export function setMeetupTime(time) {
   updateTotemFirebase();
 }
 
+export function setUserSort(method) {
+  return dispatch({
+    type: 'SET_USER_SORT',
+    payload: { method }
+  });
+}
+
 export function updateGroup(group) {
   dispatch({
     type: 'UPDATE_GROUP',

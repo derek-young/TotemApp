@@ -1,14 +1,10 @@
 import { getGeofence } from './locationActions';
 import store from '../../redux/store';
 
-const { dispatch } = store;
+export const userSortMethods = {
+  alphaAZ: sortAZ,
 
-export const sortMethods = {
-  sortAZ: function sortAZ(a, b) {
-    if(a.label < b.label) return -1;
-    if(a.label > b.label) return 1;
-    return 0;
-  },
+  alphaZA: sortZA,
 
   geofence: function sortGeofence(a, b) {
     const fenceA = getGeofence(a.position).name;
@@ -30,30 +26,28 @@ export const sortMethods = {
   }
 };
 
-export function sortUsers(method) {
-  return dispatch({
-    type: 'USERS_SORT',
-    payload: { method: sortMethods[method] }
-  });
-}
-
-function getDistance(base, target) {
-  return Math.abs(base.lat - target.lat)
-    + Math.abs(base.lng - target.lng);
-}
-
 export const venueSortMethods = {
   upcoming: function sortByUpcoming(a, b) {
     return a.dates.startDate - b.dates.startDate;
   },
-  alphaAZ: function sortAZ(a, b) {
-    if(a.name < b.name) return -1;
-    if(a.name > b.name) return 1;
-    return 0;
-  },
-  alphaZA: function sortZA(a, b) {
-    if(a.name > b.name) return -1;
-    if(a.name < b.name) return 1;
-    return 0;
-  },
+
+  alphaAZ: sortAZ,
+
+  alphaZA: sortZA,
 };
+
+function getDistance(base, target) {
+  return Math.abs(base.lat - target.lat) + Math.abs(base.lng - target.lng);
+}
+
+function sortAZ(a, b) {
+  if(a.name < b.name) return -1;
+  if(a.name > b.name) return 1;
+  return 0;
+}
+
+function sortZA(a, b) {
+  if(a.name > b.name) return -1;
+  if(a.name < b.name) return 1;
+  return 0;
+}

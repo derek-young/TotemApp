@@ -14,7 +14,7 @@ export default StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    width: 175
+    width: 240
   },
   loading: {
     display: 'flex',

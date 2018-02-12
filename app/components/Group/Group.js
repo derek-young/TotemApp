@@ -5,51 +5,57 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
+import { objToArray } from '../../helpers';
+import { userSortMethods } from '../../redux/actions';
+
 import Header from './GroupHeader';
 import Row from './GroupRow';
 
-const Group = ({ user, members }) => (
-  <View style={{ height: '100%' }}>
-    <Header />
-    <ScrollView>
-      {Object.keys(members).map(userKey => {
-        // Anchor current user info at top of view
-        const member = members[userKey];
-        const isUser = userKey === user.uid;
+const Group = ({ user, members, sortMethod }) => {
+  const sortedMembers = objToArray(members).sort(userSortMethods[sortMethod]);
 
-        if (isUser) {
-          return (
-            <Row
-              key={userKey}
-              isUser={isUser}
-              uid={userKey}
-              userAgenda={user.agenda}
-              {...member}
-            />
-          );
-        }
-      })}
-      {Object.keys(members).map(userKey => {
-        const member = members[userKey];
-        const isUser = userKey === user.uid;
+  return (
+    <View style={{ height: '100%' }}>
+      <Header sortMethod={sortMethod} />
+      <ScrollView>
+        {sortedMembers.map(member => {
+          // Anchor current user info at top of view
+          const isUser = member.key === user.uid;
 
-        if (member && !isUser) {
-          return (
-            <Row
-              key={userKey}
-              isUser={isUser}
-              uid={userKey}
-              userAgenda={user.agenda}
-              {...member}
-            />
-          );
-        }
-      })}
-    </ScrollView>
-  </View>
-);
+          if (isUser) {
+            return (
+              <Row
+                key={member.key}
+                isUser={isUser}
+                uid={member.key}
+                userAgenda={user.agenda}
+                {...member}
+              />
+            );
+          }
+        })}
+        {sortedMembers.map(member => {
+          const isUser = member.key === user.uid;
 
-export default connect((store) => ({
-  user: store.user,
-  members: store.group.members
+          if (member && !isUser) {
+            return (
+              <Row
+                key={member.key}
+                isUser={isUser}
+                uid={member.key}
+                userAgenda={user.agenda}
+                {...member}
+              />
+            );
+          }
+        })}
+      </ScrollView>
+    </View>
+  );
+};
+
+export default connect(({ user, group }) => ({
+  members: group.members,
+  sortMethod: group.sortMethod,
+  user,
 }))(Group);

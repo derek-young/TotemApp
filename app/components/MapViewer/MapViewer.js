@@ -26,8 +26,11 @@ import Totem from './Totem';
 class MapViewer extends Component {
   constructor(props) {
     super(props);
+    const { width, height } = Dimensions.get('window');
 
+    this.map = null;
     this.markers = {};
+    this.ASPECT_RATIO = width / height;
   }
 
   componentDidMount() {
@@ -49,8 +52,6 @@ class MapViewer extends Component {
       members,
       totem
     } = this.props;
-    const { width, height } = Dimensions.get('window');
-    const ASPECT_RATIO = width / height;
 
     let NW_OVERLAY_COORD = null;
     let SE_OVERLAY_COORD = null;
@@ -64,14 +65,14 @@ class MapViewer extends Component {
           mapType={'terrain'}
           onPress={this.handleMapPress}
           provider={PROVIDER_GOOGLE}
+          ref={ref => (this.map = ref)}
           style={mapStyles.map}
-          showsMyLocationButton
           showsPointsOfInterest={false}
           region={{
             latitude: center.lat,
             longitude: center.lng,
             latitudeDelta: 1 / (zoom * 10),
-            longitudeDelta: 1 / (zoom * 10) * ASPECT_RATIO
+            longitudeDelta: 1 / (zoom * 10) * this.ASPECT_RATIO
           }}>
           {totem.coords && <Totem totem={totem} />}
           {Object.keys(members).map(key => {
@@ -134,7 +135,22 @@ class MapViewer extends Component {
 
     Object.keys(members).forEach(key => {
       if (calloutsToShow[key]) {
-        this.markers[key].showCallout();
+        const { position: { lat, lng } = {}} = members[key];
+
+        if (lat && lng && this.map) {
+          const zoom = this.props.map.zoom || 8;
+          const region = {
+            latitude: lat,
+            longitude: lng,
+            latitudeDelta: 1 / (zoom * 10),
+            longitudeDelta: 1 / (zoom * 10) * this.ASPECT_RATIO
+          };
+
+          this.map.animateToRegion(region);
+        }
+        if (this.markers[key]) {
+          this.markers[key].showCallout();
+        }
       }
     });
   }

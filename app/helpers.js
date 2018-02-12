@@ -2,6 +2,25 @@ import moment from 'moment';
 
 import { firebaseKeyGen, firebaseUpdate } from './redux/actions';
 
+export function arrToObj(arr) {
+  return arr.reduce((acc, curr) => {
+    acc[curr.key] = curr;
+    return acc;
+  }, {});
+}
+
+export function objToArray(obj) {
+  const result = [];
+  const keys = Object.keys(obj);
+
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
+    result.push({ ...obj[key], key });
+  }
+
+  return result;
+}
+
 export function sortByDateAscending(itemA, itemB) {
   const aStart = moment(itemA.startTime).valueOf();
   const bStart = moment(itemB.startTime).valueOf();

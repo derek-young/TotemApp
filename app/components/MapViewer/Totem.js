@@ -22,7 +22,7 @@ const Totem = ({ totem, placeTotem }) => (
   <Marker coordinate={totem.coords}>
     <Image
       source={basecampIcon}
-      style={{ height: 80, width: 40 }}
+      style={{ height: 100, width: 50 }}
     />
     <Callout tooltip style={mapStyles['callout-container']}>
       <View style={mapStyles['callout-window']}>

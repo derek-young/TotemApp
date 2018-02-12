@@ -2,13 +2,14 @@ const defaults = {
   groupName: '',
   memberKeys: {},
   members: {},
-  venueId: '',
+  placeTotem: false,
+  sortMethod: 'proximity',
   totem: {
     coords: {},
     name: 'Basecamp',
     meetupTime: null
   },
-  placeTotem: false,
+  venueId: '',
 };
 
 export default function groupReducer(state = defaults, action) {
@@ -25,14 +26,10 @@ export default function groupReducer(state = defaults, action) {
         }
       };
     }
-    case 'USERS_SORT': {
-      const members = objToArray(state.members);
-      const sortedUsers = members.sort(action.payload.method);
+    case 'SET_USER_SORT': {
+      const { method } = action.payload;
 
-      return {
-        ...state,
-        members: arrToObj(sortedUsers)
-      };
+      return { ...state, sortMethod: method };
     }
     case 'UPDATE_GROUP_MEMBER': {
       const { user, uid } = action.payload;
@@ -70,22 +67,3 @@ export default function groupReducer(state = defaults, action) {
       return state;
   }
 };
-
-function objToArray(obj) {
-  const result = [];
-  const keys = Object.keys(obj);
-
-  for (let i = 0; i < keys.length; i += 1) {
-    const key = keys[i];
-    result.push({ ...obj[key], key });
-  }
-
-  return result;
-}
-
-function arrToObj(arr) {
-  return arr.reduce((acc, curr) => {
-    acc[curr.key] = curr;
-    return acc;
-  }, {});
-}
