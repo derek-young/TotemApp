@@ -53,3 +53,9 @@ fastlane/screenshots
 
 Pods/
 private/
+
+# jsbundle
+#
+ios/assets/
+ios/main.jsbundle
+ios/main.jsbundle.meta

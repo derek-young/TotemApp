@@ -26,6 +26,7 @@
   [GMSServices provideAPIKey:@"AIzaSyBfIR4k1nRNdwz8TKpE2bN0NN3OHi5Nx2I"];
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"TotemApp"
