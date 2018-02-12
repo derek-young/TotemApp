@@ -11,7 +11,7 @@ import store from './app/redux/store';
 /* Components */
 import App from './app/App';
 
-export default class TotemApp extends Component {
+export default class Totem extends Component {
   render() {
     return (
       <Provider store={store}>
@@ -25,4 +25,4 @@ export default class TotemApp extends Component {
   }
 }
 
-AppRegistry.registerComponent('TotemApp', () => TotemApp);
+AppRegistry.registerComponent('Totem', () => Totem);

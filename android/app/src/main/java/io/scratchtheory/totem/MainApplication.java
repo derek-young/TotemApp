@@ -1,4 +1,4 @@
-package com.totemapp;
+package io.scratchtheory.totem;
 
 import android.app.Application;
 
