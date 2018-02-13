@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   main: {
-    marginTop: 50 + 10, // Header height plus top margin
+    marginTop: 90, // Header height
     paddingBottom: 50, // Footer height
     position: 'relative',
     ...StyleSheet.absoluteFillObject,

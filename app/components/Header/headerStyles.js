@@ -14,6 +14,7 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
   },
   icon: {
+    width: 30,
     opacity: 0.6
   }
 });

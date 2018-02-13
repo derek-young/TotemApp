@@ -13,7 +13,7 @@ export default StyleSheet.create({
     resizeMode: 'contain'
   },
   button: {
-    marginTop: 20,
+    marginTop: 40,
     width: 240
   },
   loading: {

@@ -12,7 +12,7 @@ import logo from '../../img/totemlogo.png';
 
 const Header = ({ isSetupView }) => (
   <View style={headerStyles.main}>
-    <View />
+    <View style={headerStyles.icon} />
     <View>
       <Image source={logo} />
     </View>
@@ -29,7 +29,7 @@ const Header = ({ isSetupView }) => (
         />
       </TouchableHighlight>
       :
-      <View />
+      <View style={headerStyles.icon} />
     }
   </View>
 );
