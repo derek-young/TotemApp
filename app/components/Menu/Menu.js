@@ -22,7 +22,7 @@ class Menu extends Component {
             {this.getMenuItems().map(this.renderMenuItem)}
           </View>
           <Text style={{ color: 'white', textAlign: 'center' }}>
-            v0.0.0
+            v1.0.1
           </Text>
         </Animated.View>
       </TouchableHighlight>
