@@ -63,25 +63,28 @@ export function updateVenueNames(venues) {
 export function getArtist(key) {
   const currentTime = new Date().getTime();
   const { geofences, scheduleItems = {} } = store.getState().venue.venue;
-  const userGeofence = geofences[key];
 
-  const itemsArray = Object.values(scheduleItems);
+  if (geofences) {
+    const userGeofence = geofences[key];
 
-  for (let i = 0; i < itemsArray.length; i += 1) {
-    const item = itemsArray[i];
-    if (userGeofence && item) {
-      if (userGeofence.name === item.geofence) {
-        const startTime = localTimeMilliseconds(Date.parse(item.starttime));
-        const endTime = localTimeMilliseconds(Date.parse(item.endtime));
-        const timeInRange = startTime <= currentTime && currentTime < endTime;
+    const itemsArray = Object.values(scheduleItems);
 
-        if (timeInRange) {
-          return item.name.toProperCase();
+    for (let i = 0; i < itemsArray.length; i += 1) {
+      const item = itemsArray[i];
+      if (userGeofence && item) {
+        if (userGeofence.name === item.geofence) {
+          const startTime = localTimeMilliseconds(Date.parse(item.starttime));
+          const endTime = localTimeMilliseconds(Date.parse(item.endtime));
+          const timeInRange = startTime <= currentTime && currentTime < endTime;
+
+          if (timeInRange) {
+            return item.name.toProperCase();
+          }
         }
       }
     }
   }
-
+  
   return null;
 }
 
