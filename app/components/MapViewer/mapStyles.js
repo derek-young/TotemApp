@@ -5,6 +5,11 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height - 80,
   },
+  empty: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: 20
+  },
   'profile-icon': {
     height: 40,
     width: 40,

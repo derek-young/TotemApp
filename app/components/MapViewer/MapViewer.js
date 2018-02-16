@@ -44,20 +44,34 @@ class MapViewer extends Component {
   render() {
     const {
       map: {
-        center,
         bounds: { northwest, southeast } = {},
         img: mapImage,
         zoom = 8
-      },
+      } = {},
       members,
-      totem
+      position,
+      totem,
     } = this.props;
 
+    let { map: { center } = {}} = this.props;
     let NW_OVERLAY_COORD = null;
     let SE_OVERLAY_COORD = null;
 
     if (northwest) NW_OVERLAY_COORD = [ northwest.lat, northwest.lng ];
     if (southeast) SE_OVERLAY_COORD = [ southeast.lat, southeast.lng ];
+
+    // If there is no center defined, set center to user's position
+    if (!center) center = position;
+
+    if (!center || !(center.lat && center.lng)) {
+      return (
+        <View style={mapStyles.empty}>
+          <Text>
+            Your location is inaccessible at this time.
+          </Text>
+        </View>
+      );
+    }
 
     return (
       <View style={mapStyles.container}>
@@ -168,9 +182,10 @@ class MapViewer extends Component {
   }
 }
 
-export default connect(({ map, group, venue }) => ({
+export default connect(({ map, group, venue, user }) => ({
   map: venue.venue.map,
   members: group.members,
   totem: group.totem,
+  position: user.position,
   ...map
 }))(MapViewer);
