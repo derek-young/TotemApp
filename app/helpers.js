@@ -67,3 +67,14 @@ export function createGeofence() {
 
   return firebaseUpdate(updates);
 }
+
+export function createScheduleItem(scheduleItem) {
+  const venueId = 'wondergrass';
+  const scheduleItemKey = firebaseKeyGen(`/venues/${venueId}/scheduleItems`);
+  const updates = {};
+  const url =`/venues/${venueId}/scheduleItems/${scheduleItemKey}`;
+
+  updates[url] = scheduleItem;
+
+  return firebaseUpdate(updates);
+}

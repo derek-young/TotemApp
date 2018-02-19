@@ -93,7 +93,7 @@ const AgendaPopover = ({
             style={sharedPopoverStyles.button}
           >
             <Text style={sharedPopoverStyles['button-text']}>
-              {'Remove From Adgenda'.toUpperCase()}
+              {'Remove From Agenda'.toUpperCase()}
             </Text>
           </TouchableHighlight>
         </View>
