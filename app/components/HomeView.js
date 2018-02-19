@@ -9,7 +9,7 @@ import Loading from './Auth/Loading';
 class HomeView extends Component {
   componentDidUpdate() {
     const { auth, history, user } = this.props;
-    const hasGroup = !!user.groupId;
+    const hasGroup = !!user.groupKey;
 
     if (auth.authenticated && user.dataRetrieved) {
       if (hasGroup) {

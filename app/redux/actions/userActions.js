@@ -65,14 +65,14 @@ export function updateUserData(user) {
   });
 }
 
-export function updateUserGroupID(id) {
+export function updateUserGroupKey(key) {
   dispatch({
-    type: 'UPDATE_USER_GROUP_ID',
-    payload: { id }
+    type: 'UPDATE_USER_GROUP_KEY',
+    payload: { key }
   });
 
   // Add listener to group changes
-  if (id.length) {
-    firebaseOn(`/groups/${id}`, updateGroup);
+  if (key.length) {
+    firebaseOn(`/groups/${key}`, updateGroup);
   }
 }

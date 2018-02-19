@@ -161,13 +161,13 @@ function signinSuccess({ uid }) {
 
 function getUserData(uid) {
   return firebaseOnce(`users/${uid}`, data => {
-    const hasGroup = !!data.groupId;
+    const hasGroup = !!data.groupKey;
 
     updateUserData(data);
 
     if (hasGroup) {
       // Add listener to group for changes
-      firebaseOn(`/groups/${data.groupId}`, updateGroup);
+      firebaseOn(`/groups/${data.groupKey}`, updateGroup);
     }
 
     return fetchVenues(venues => {

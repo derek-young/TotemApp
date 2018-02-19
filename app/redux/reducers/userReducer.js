@@ -3,7 +3,7 @@ const defaults = {
   agendas: {},
   uid: null,
   name: null,
-  groupId: null,
+  groupKey: null,
   friendList: [],
   dataRetrieved: false,
   facebookUID: null
@@ -47,10 +47,10 @@ export default function userReducer(state = defaults, action) {
         dataRetrieved: true
       };
     }
-    case 'UPDATE_USER_GROUP_ID': {
+    case 'UPDATE_USER_GROUP_KEY': {
       return {
         ...state,
-        groupId: action.payload.id
+        groupKey: action.payload.key
       };
     }
     case 'UPDATE_USER_DATA': {

@@ -6,7 +6,7 @@ import {
   firebaseRemove,
   firebaseSet,
   firebaseUpdate,
-  updateUserGroupID,
+  updateUserGroupKey,
   updateVenue
 } from '../actions';
 
@@ -21,10 +21,10 @@ export function createGroup(groupName) {
   group.memberKeys[user.uid] = user.name;
   updates[`/groups/${groupKey}`] = group;
 
-  firebaseSet(`/users/${user.uid}/groupId`, groupKey);
+  firebaseSet(`/users/${user.uid}/groupKey`, groupKey);
 
   return firebaseUpdate(updates)
-  .then(() => updateUserGroupID(groupKey));
+  .then(() => updateUserGroupKey(groupKey));
 }
 
 export function removeUserFromGroup() {
@@ -32,13 +32,13 @@ export function removeUserFromGroup() {
   const memberCount = Object.keys(memberKeys).length;
 
   if (memberCount === 1) {
-    firebaseRemove(`groups/${user.groupId}`);
+    firebaseRemove(`groups/${user.groupKey}`);
   } else {
-    firebaseRemove(`groups/${user.groupId}/memberKeys/${user.uid}`);
+    firebaseRemove(`groups/${user.groupKey}/memberKeys/${user.uid}`);
   }
 
-  firebaseRemove(`users/${user.uid}/groupId`);
-  updateUserGroupID('');
+  firebaseRemove(`users/${user.uid}/groupKey`);
+  updateUserGroupKey('');
   resetGroup();
 }
 
@@ -115,11 +115,11 @@ export function updateTotemCoords(coords) {
 
 function updateTotemFirebase() {
   const {
-    user: { groupId },
+    user: { groupKey },
     group: { totem }
   } = store.getState();
 
-  return firebaseSet(`/groups/${groupId}/totem`, totem);
+  return firebaseSet(`/groups/${groupKey}/totem`, totem);
 }
 
 export function updateVenueId(id) {

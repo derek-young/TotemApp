@@ -142,6 +142,8 @@ class PlaceTotem extends Component {
       const meetupTime = this.convertToDate(hour, Number(minute));
 
       setMeetupTime(meetupTime);
+    } else {
+      setMeetupTime(null);
     }
 
     placeTotemOnPress(true);
