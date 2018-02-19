@@ -34,6 +34,29 @@ export function sortByDateAscending(itemA, itemB) {
   return 0;
 }
 
+export function idGenerator() {
+  // Generates an eight-digit, alpha-numeric ID. E.g.: 1QJ4LXGT
+  // Total possible combinations: 2.82 x 10^12 or 2.82 trillion
+  const ID_LENGTH = 8;
+  const characters = [
+    'A', 'B', 'C', 'D', 'E', 'F',
+    'G', 'H', 'I', 'J', 'K', 'L',
+    'M', 'N', 'O', 'P', 'Q', 'R',
+    'S', 'T', 'U', 'V', 'W', 'X',
+    'Y', 'Z', '1', '2', '3', '4',
+    '5', '6', '7', '8', '9', '0'
+  ];
+
+  let id = '';
+
+  for (let i = 0; i < ID_LENGTH; i += 1) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    id = id.concat(characters[randomIndex]);
+  }
+
+  return id;
+}
+
 
 
 /*

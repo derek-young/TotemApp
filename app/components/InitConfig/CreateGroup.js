@@ -5,10 +5,7 @@ import { withRouter } from 'react-router-native';
 import styles from '../../styles';
 import configStyles from './configStyles';
 
-/*  Actions  */
-import {
-  createGroup
-} from '../../redux/actions';
+import { createGroup } from '../../redux/actions';
 
 class ChooseVenue extends Component {
   constructor(props) {
@@ -46,7 +43,6 @@ class ChooseVenue extends Component {
             <Text>Create</Text>
           </TouchableOpacity>
         </View>
-        {/*  TODO: Add cards for groups shared by friends */}
       </View>
     );
   }
@@ -56,9 +52,7 @@ class ChooseVenue extends Component {
 
     if (this.state.groupName) {
       createGroup(groupName)
-      .then(() => {
-        this.props.history.push('group');
-      });
+      .then(() => this.props.history.push('group'));
     } else {
       this.setError('Please enter a name for your group');
     }
@@ -69,11 +63,7 @@ class ChooseVenue extends Component {
     this.setState({ groupName: text });
   }
 
-  setError = error => {
-    this.setState({
-      error
-    });
-  }
+  setError = error => this.setState({ error })
 }
 
 export default withRouter(ChooseVenue);

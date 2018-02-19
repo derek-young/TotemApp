@@ -7,7 +7,9 @@ import {
 import { connect } from 'react-redux';
 import moment from 'moment';
 
+import styles from '../sharedStyles/styles';
 import agendaStyles from './agendaStyles';
+
 import { sortByDateAscending } from '../../helpers';
 
 import Header from './AgendaHeader';
@@ -46,11 +48,12 @@ const Agenda = ({ agenda, days, geofences, scheduleItems, selectedDay }) => {
           ))
           :
           <View style={agendaStyles.empty}>
-            <Text style={agendaStyles['info-text']}>
-              No agenda items for this day
+            <Text style={styles['info-text']}>
+              Create your personal agenda in the Schedule view.
             </Text>
-            <Text style={agendaStyles['info-text']}>
-              Add agenda items in the Schedule view
+            <Text style={styles['info-text']}>
+              Add shows you&#8217;re interested in and you will be
+              notified when the show is about to start.
             </Text>
           </View>
         }

@@ -4,10 +4,20 @@ export default StyleSheet.create({
   main: {
     backgroundColor: 'black'
   },
+  id: {
+    paddingTop: 7,
+    paddingBottom: 3,
+  },
+  'id-text': {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   'top-text': {
     color: 'white',
     textAlign: 'center',
-    paddingVertical: 5
+    paddingBottom: 7,
   },
   'sort-options': {
     display: 'flex',

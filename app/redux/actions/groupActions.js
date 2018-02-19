@@ -10,6 +10,8 @@ import {
   updateVenue
 } from '../actions';
 
+import { idGenerator } from '../../helpers';
+
 const { dispatch } = store;
 
 export function createGroup(groupName) {
@@ -19,6 +21,10 @@ export function createGroup(groupName) {
 
   group.groupName = groupName;
   group.memberKeys[user.uid] = user.name;
+
+  // TODO: Temporary solution. Does not check for or handle duplicates
+  group.groupId = idGenerator();
+
   updates[`/groups/${groupKey}`] = group;
 
   firebaseSet(`/users/${user.uid}/groupKey`, groupKey);

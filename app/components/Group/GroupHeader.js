@@ -28,12 +28,17 @@ const icons = [
   { label: 'Proximity', icon: 'street-view', method: 'proximity', color: '#ffbfbf' }
 ];
 
-const GroupHeader = ({ sortMethod }) => {
+const GroupHeader = ({ id, sortMethod }) => {
   if (sortMethod === 'alphaAZ') icons[0] = alphaZA;
   if (sortMethod === 'alphaZA') icons[0] = alphaAZ;
 
   return (
     <View style={headerStyles.main}>
+      <View style={headerStyles.id}>
+        <Text style={headerStyles['id-text']}>
+          Group ID: {id}
+        </Text>
+      </View>
       <Text style={headerStyles['top-text']}>
         Sort Group Members
       </Text>
