@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import sharedConfirmStyles from '../../sharedStyles/confirmPopoverStyles';
-import sharedPopoverStyles from '../../sharedStyles/popoverStyles';
+import sharedConfirmStyles from '../../../sharedStyles/confirmPopoverStyles';
+import sharedPopoverStyles from '../../../sharedStyles/popoverStyles';
 import totemStyles from '../PlaceTotem/placeTotemStyles';
 
 import { updateTotemCoords } from '../../../redux/actions';

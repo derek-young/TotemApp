@@ -9,8 +9,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import call from 'react-native-phone-call';
 import { connect } from 'react-redux';
 
-import sharedConfirmStyles from '../../sharedStyles/confirmPopoverStyles';
-import sharedPopoverStyles from '../../sharedStyles/popoverStyles';
+import sharedConfirmStyles from '../../../sharedStyles/confirmPopoverStyles';
+import sharedPopoverStyles from '../../../sharedStyles/popoverStyles';
 import totemStyles from '../PlaceTotem/placeTotemStyles';
 
 class ContactES extends Component {

@@ -8,7 +8,7 @@ import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import scheduleStyles from './scheduleStyles';
-import sharedRowStyles from '../sharedStyles/scheduleRowStyles';
+import sharedRowStyles from '../../sharedStyles/scheduleRowStyles';
 
 const ScheduleRow = ({
   name,

@@ -33,6 +33,41 @@ export function createGroup(groupName) {
   .then(() => updateUserGroupKey(groupKey));
 }
 
+export function joinGroup(inputId) {
+  const { user } = store.getState();
+  const updates = {};
+
+  return new Promise((resolve, reject) => (
+    firebaseOnce('/groups', allGroups => {
+      const allKeys = Object.keys(allGroups);
+      let groupKey = null;
+
+      // Find group where groupId matches inputId
+      for (let i = 0; i < allKeys.length; i += 1) {
+        const key = allKeys[i];
+        const { groupId } = allGroups[key];
+
+        if (groupId === inputId.toUpperCase()) {
+          groupKey = key;
+          break;
+        }
+      }
+
+      if (groupKey) {
+        firebaseSet(`/users/${user.uid}/groupKey`, groupKey);
+
+        updates[`/groups/${groupKey}/memberKeys/${user.uid}`] = user.name;
+
+        firebaseUpdate(updates).then(() => updateUserGroupKey(groupKey));
+
+        return resolve();
+      }
+
+      return reject('No group with that ID was found');
+    })
+  ));
+}
+
 export function removeUserFromGroup() {
   const { user, group: { memberKeys }} = store.getState();
   const memberCount = Object.keys(memberKeys).length;

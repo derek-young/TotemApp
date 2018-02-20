@@ -7,7 +7,7 @@ import {
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import styles from '../sharedStyles/styles';
+import styles from '../../sharedStyles/styles';
 import agendaStyles from './agendaStyles';
 
 import { sortByDateAscending } from '../../helpers';

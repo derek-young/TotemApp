@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { withRouter } from 'react-router-native';
 
-import styles from '../../styles';
 import configStyles from './configStyles';
 
-import { createGroup } from '../../redux/actions';
+import { createGroup, joinGroup } from '../../redux/actions';
 
 class ChooseVenue extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      error: '',
+      idError: '',
+      nameError: '',
+      groupId: '',
       groupName: '',
     };
   }
@@ -26,22 +27,47 @@ class ChooseVenue extends Component {
           </Text>
         </View>
         <View style={configStyles.body}>
-          <View style={configStyles.inputWrapper}>
-            <TextInput
-              style={configStyles.input}
-              placeholder="Group Name"
-              onChangeText={this.handleValueChange}
-            />
+          <View style={{ width: '80%' }}>
+            <View style={configStyles.inputWrapper}>
+              <TextInput
+                style={configStyles.input}
+                placeholder="Group Name"
+                onChangeText={this.handleNameChange}
+              />
+            </View>
+            <TouchableOpacity
+              onPress={this.handleCreateClick}
+              style={configStyles.button}
+            >
+              <Text style={configStyles['button-text']}>
+                Create
+              </Text>
+            </TouchableOpacity>
             <Text style={configStyles.errorText}>
-              {this.state.error}
+              {this.state.nameError}
             </Text>
           </View>
-          <TouchableOpacity
-            onPress={this.handleCreateClick}
-            style={[ styles.button, configStyles.button ]}
-          >
-            <Text>Create</Text>
-          </TouchableOpacity>
+          <View style={{ width: '80%' }}>
+            <View style={configStyles.inputWrapper}>
+              <TextInput
+                autoCapitalize="characters"
+                style={configStyles.input}
+                placeholder="Group ID"
+                onChangeText={this.handleIDChange}
+              />
+            </View>
+            <TouchableOpacity
+              onPress={this.handleJoinGroup}
+              style={configStyles.button}
+            >
+              <Text style={configStyles['button-text']}>
+                Join
+              </Text>
+            </TouchableOpacity>
+            <Text style={configStyles.errorText}>
+              {this.state.idError}
+            </Text>
+          </View>
         </View>
       </View>
     );
@@ -50,20 +76,41 @@ class ChooseVenue extends Component {
   handleCreateClick = () => {
     const { groupName } = this.state;
 
-    if (this.state.groupName) {
+    if (groupName) {
       createGroup(groupName)
       .then(() => this.props.history.push('group'));
     } else {
-      this.setError('Please enter a name for your group');
+      this.setState({ nameError: 'Please enter a name for your group' });
     }
   }
 
-  handleValueChange = text => {
-    this.setError('');
-    this.setState({ groupName: text });
+  handleJoinGroup = () => {
+    const { groupId } = this.state;
+
+    if (groupId && groupId.length === 8) {
+      joinGroup(groupId, this.setIdError)
+      .then(() => this.props.history.push('group'))
+      .catch(err => this.setIdError(err));
+    } else {
+      this.setIdError('Please enter a valid group ID');
+    }
   }
 
-  setError = error => this.setState({ error })
+  handleIDChange = text => (
+    this.setState({
+      idError: '',
+      groupId: text
+    })
+  )
+
+  handleNameChange = text => (
+    this.setState({
+      nameError: '',
+      groupName: text
+    })
+  )
+
+  setIdError = error => this.setState({ idError: error });
 }
 
 export default withRouter(ChooseVenue);

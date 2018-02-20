@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 
 import { getArtist } from '../../redux/actions';
-import styles from '../../styles';
+import styles from '../../sharedStyles/styles';
 import rowStyles from './rowStyles';
 
 import Popover from './GroupPopover';

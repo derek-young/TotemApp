@@ -6,26 +6,27 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { setUserSort } from '../../redux/actions';
 import headerStyles from './headerStyles';
+import { totemBlue, totemPurple, totemOrange } from '../../colors';
+import { setUserSort } from '../../redux/actions';
 
 const alphaAZ = {
   label: 'Alphabetically',
   icon: 'sort-alpha-asc',
   method: 'alphaAZ',
-  color: '#bffffd',
+  color: totemBlue,
 };
 const alphaZA = {
   label: 'Alphabetically',
   icon: 'sort-alpha-desc',
   method: 'alphaZA',
-  color: '#bffffd'
+  color: totemBlue
 };
 
 const icons = [
   alphaAZ,
-  { label: 'Stage Name', icon: 'map-signs', method: 'geofence', color: '#e7bfff' },
-  { label: 'Proximity', icon: 'street-view', method: 'proximity', color: '#ffbfbf' }
+  { label: 'Stage Name', icon: 'map-signs', method: 'geofence', color: totemPurple },
+  { label: 'Proximity', icon: 'street-view', method: 'proximity', color: totemOrange }
 ];
 
 const GroupHeader = ({ id, sortMethod }) => {

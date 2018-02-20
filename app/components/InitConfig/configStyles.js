@@ -14,11 +14,21 @@ export default StyleSheet.create({
     padding: 10,
   },
   button: {
-    width: 100
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ddffd6',
+    borderRadius: 5,
+    height: 40
+  },
+  'button-text': {
+    fontSize: 16
   },
   errorText: {
     color: 'red',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    height: 20,
+    marginTop: 5
   },
   header: {
     display: 'flex',
@@ -65,15 +75,15 @@ export default StyleSheet.create({
   },
   input: {
     height: '100%',
-    backgroundColor: 'white',
-    padding: 5,
-    marginBottom: 5
+    backgroundColor: 'transparent',
   },
   inputWrapper: {
     marginTop: 40,
-    marginBottom: 30,
+    marginBottom: 15,
     height: 40,
-    width: '80%'
+    borderBottomColor: '#2d2d2d',
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
   },
   footer: {
     display: 'flex',

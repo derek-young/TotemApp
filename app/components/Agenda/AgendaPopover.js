@@ -13,8 +13,8 @@ import moment from 'moment';
 
 import { removeAgendaItem } from '../../redux/actions';
 
-import styles from '../../styles';
-import sharedPopoverStyles from '../sharedStyles/popoverStyles';
+import styles from '../../sharedStyles/styles';
+import sharedPopoverStyles from '../../sharedStyles/popoverStyles';
 import popoverStyles from './popoverStyles';
 
 const AgendaPopover = ({

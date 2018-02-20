@@ -6,8 +6,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { toggleMenu } from '../../redux/actions';
 import headerStyles from './headerStyles';
+import { totemBlue } from '../../colors';
+import { toggleMenu } from '../../redux/actions';
 import logo from '../../img/totemlogo.png';
 
 const Header = ({ isSetupView }) => (
@@ -20,7 +21,7 @@ const Header = ({ isSetupView }) => (
       !isSetupView ?
       <TouchableHighlight
         onPress={toggleMenu}
-        underlayColor="#bffffd"
+        underlayColor={totemBlue}
         style={headerStyles.icon}
       >
         <Icon

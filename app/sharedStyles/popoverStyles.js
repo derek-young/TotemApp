@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { popoverTransparency } from '../../colors';
+import { popoverTransparency } from '../colors';
 
 export default StyleSheet.create({
   container: {

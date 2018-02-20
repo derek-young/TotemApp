@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Popover from './AgendaPopover';
 
-import sharedRowStyles from '../sharedStyles/scheduleRowStyles';
+import sharedRowStyles from '../../sharedStyles/scheduleRowStyles';
 
 class AgendaRow extends React.Component {
   constructor(props) {

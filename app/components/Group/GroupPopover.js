@@ -11,8 +11,8 @@ import { withRouter } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import moment from 'moment';
 
-import styles from '../../styles';
-import sharedPopoverStyles from '../sharedStyles/popoverStyles';
+import styles from '../../sharedStyles/styles';
+import sharedPopoverStyles from '../../sharedStyles/popoverStyles';
 import popoverStyles from './popoverStyles';
 
 import { showUserOnMap } from '../../redux/actions';

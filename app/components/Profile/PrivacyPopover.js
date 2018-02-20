@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import sharedConfirmStyles from '../sharedStyles/confirmPopoverStyles';
-import sharedPopoverStyles from '../sharedStyles/popoverStyles';
+import sharedConfirmStyles from '../../sharedStyles/confirmPopoverStyles';
+import sharedPopoverStyles from '../../sharedStyles/popoverStyles';
 
 const headerStyle = { color: 'white', fontSize: 24, marginBottom: 15, marginTop: 20 };
 const paragraphHeader = { color: 'white', fontSize: 18, fontWeight: 'bold', marginBottom: 10, marginTop: 10 };

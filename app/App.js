@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 import LinearGradient from 'react-native-linear-gradient';
 
-import styles from './styles';
+import styles from './sharedStyles/styles';
 
 /* Components */
 import Agenda from './components/Agenda/Agenda';

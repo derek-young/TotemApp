@@ -6,8 +6,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import styles from '../sharedStyles/styles';
-import groupStyles from './groupStyles.js';
+import styles from '../../sharedStyles/styles';
+import groupStyles from './groupStyles';
 
 import { objToArray } from '../../helpers';
 import { userSortMethods } from '../../redux/actions';
