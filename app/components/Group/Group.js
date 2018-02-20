@@ -25,7 +25,7 @@ const Group = ({ id, members, sortMethod, user }) => {
         memberCount={sortedMembers.length}
         sortMethod={sortMethod}
       />
-      <ScrollView>
+      <ScrollView contentContainerStyle={groupStyles['scroll-view']}>
         {sortedMembers.map(member => {
           // Anchor current user info at top of view
           const isUser = member.key === user.uid;
