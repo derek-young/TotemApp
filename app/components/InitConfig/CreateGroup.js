@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { withRouter } from 'react-router-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import configStyles from './configStyles';
 
@@ -22,9 +23,17 @@ class ChooseVenue extends Component {
     return (
       <View style={{ height: '100%' }}>
         <View style={configStyles.header}>
-          <Text style={configStyles.headerText}>
-            {'Join or Create a Group'.toUpperCase()}
-          </Text>
+          <View style={configStyles['group-header']}>
+            <TouchableOpacity onPress={this.goBack}>
+              <Text style={configStyles.headerText}>
+                <Icon name="angle-left" size={40} />
+              </Text>
+            </TouchableOpacity>
+            <Text style={configStyles.headerText}>
+              {'Join or Create a Group'.toUpperCase()}
+            </Text>
+            <Text style={{ width: 15 }} />
+          </View>
         </View>
         <View style={configStyles.body}>
           <View style={{ width: '80%' }}>
@@ -109,6 +118,8 @@ class ChooseVenue extends Component {
       groupName: text
     })
   )
+
+  goBack = () => this.props.history.push('choose-venue')
 
   setIdError = error => this.setState({ idError: error });
 }

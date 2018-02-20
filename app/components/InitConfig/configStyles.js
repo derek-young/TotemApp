@@ -44,6 +44,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 10
   },
+  'group-header': {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '80%'
+  },
   options: {
     display: 'flex',
     flexDirection: 'row',
