@@ -92,7 +92,7 @@ export function createGeofence() {
 }
 
 export function createScheduleItem(scheduleItem) {
-  const venueId = 'wondergrass';
+  const venueId = '-Kyxi4H_sDVWV0FaXQrD'; // Coachella weekend 1
   const scheduleItemKey = firebaseKeyGen(`/venues/${venueId}/scheduleItems`);
   const updates = {};
   const url =`/venues/${venueId}/scheduleItems/${scheduleItemKey}`;

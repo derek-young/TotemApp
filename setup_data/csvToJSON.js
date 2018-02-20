@@ -1,7 +1,7 @@
 const http = require('http');
 const csv = require('csvtojson');
 
-const csvFilePath ='./Wondergrass Schedule - Sheet1.csv';
+const csvFilePath ='./schedule_coachella_1.csv';
 const data = [];
 
 csv().fromFile(csvFilePath)
