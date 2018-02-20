@@ -4,9 +4,8 @@ export default StyleSheet.create({
   main: {
     backgroundColor: 'black'
   },
-  id: {
-    paddingTop: 7,
-    paddingBottom: 3,
+  top: {
+    paddingVertical: 7,
   },
   'id-text': {
     color: 'white',
@@ -17,7 +16,7 @@ export default StyleSheet.create({
   'top-text': {
     color: 'white',
     textAlign: 'center',
-    paddingBottom: 7,
+    paddingTop: 3,
   },
   'sort-options': {
     display: 'flex',

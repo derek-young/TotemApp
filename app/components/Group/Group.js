@@ -20,7 +20,11 @@ const Group = ({ id, members, sortMethod, user }) => {
 
   return (
     <View style={{ height: '100%' }}>
-      <Header id={id} sortMethod={sortMethod} />
+      <Header
+        id={id}
+        memberCount={sortedMembers.length}
+        sortMethod={sortMethod}
+      />
       <ScrollView>
         {sortedMembers.map(member => {
           // Anchor current user info at top of view

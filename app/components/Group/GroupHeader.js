@@ -29,20 +29,32 @@ const icons = [
   { label: 'Proximity', icon: 'street-view', method: 'proximity', color: totemOrange }
 ];
 
-const GroupHeader = ({ id, sortMethod }) => {
+const GroupHeader = ({ id, memberCount, sortMethod }) => {
   if (sortMethod === 'alphaAZ') icons[0] = alphaZA;
   if (sortMethod === 'alphaZA') icons[0] = alphaAZ;
 
+  if (memberCount < 3) {
+    return (
+      <View style={headerStyles.main}>
+        <View style={headerStyles.top}>
+          <Text style={headerStyles['id-text']}>
+            Group ID: {id}
+          </Text>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View style={headerStyles.main}>
-      <View style={headerStyles.id}>
+      <View style={headerStyles.top}>
         <Text style={headerStyles['id-text']}>
           Group ID: {id}
         </Text>
+        <Text style={headerStyles['top-text']}>
+          Sort Group Members
+        </Text>
       </View>
-      <Text style={headerStyles['top-text']}>
-        Sort Group Members
-      </Text>
       <View style={headerStyles['sort-options']}>
         {icons.map(({ label, icon, method, color }) => (
           <TouchableHighlight
