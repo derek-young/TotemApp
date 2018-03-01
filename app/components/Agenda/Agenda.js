@@ -15,12 +15,12 @@ import { sortByDateAscending } from '../../helpers';
 import Header from './AgendaHeader';
 import Row from './AgendaRow';
 
-const Agenda = ({ agenda, days, geofences, scheduleItems, selectedDay }) => {
+const Agenda = ({ agenda, days, dayIndex, geofences, scheduleItems }) => {
   const displayItems = Object.keys(agenda).filter(key => {
     const { startTime } = scheduleItems[key];
     const formattedStart = moment(startTime).format('YYYYMMDD');
 
-    return formattedStart === selectedDay.format('YYYYMMDD');
+    return formattedStart === days[dayIndex].format('YYYYMMDD');
   }).sort((keyA, keyB) => {
     const itemA = scheduleItems[keyA];
     const itemB = scheduleItems[keyB];
@@ -32,7 +32,7 @@ const Agenda = ({ agenda, days, geofences, scheduleItems, selectedDay }) => {
     <View style={{ height: '100%' }}>
       <Header
         days={days}
-        selectedDay={selectedDay}
+        dayIndex={dayIndex}
       />
       <ScrollView contentContainerStyle={agendaStyles['scroll-view']}>
         {
@@ -65,7 +65,7 @@ const Agenda = ({ agenda, days, geofences, scheduleItems, selectedDay }) => {
 export default connect(({ user, schedule, venue }) => ({
   agenda: user.agenda,
   days: schedule.days,
+  dayIndex: schedule.dayIndex,
   geofences: venue.venue.geofences,
   scheduleItems: venue.venue.scheduleItems,
-  selectedDay: schedule.selectedDay
 }))(Agenda);

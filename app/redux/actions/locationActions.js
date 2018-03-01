@@ -64,7 +64,6 @@ export function getGeofence(coordinates) {
     const fence = geofences[key];
 
     if (inFenceRadius(fence, coordinates)) {
-      fence.key = key;
       return { name: fence.name, key };
     }
   }

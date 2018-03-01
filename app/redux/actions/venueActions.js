@@ -1,10 +1,7 @@
-import moment from 'moment';
-
 import {
   buildScheduleDays,
   firebaseOnce,
   setAgendaForVenue,
-  updateFilterDay,
 } from '../actions';
 import store from '../../redux/store';
 
@@ -44,7 +41,6 @@ export function updateVenue(venue) {
   });
 
   setAgendaForVenue(venue.key);
-  updateFilterDay(moment(venue.dates.startDate));
 
   if (venue.scheduleItems) {
     buildScheduleDays(Object.values(venue.scheduleItems));
@@ -84,7 +80,7 @@ export function getArtist(key) {
       }
     }
   }
-  
+
   return null;
 }
 

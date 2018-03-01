@@ -19,17 +19,23 @@ class ScheduleHeader extends Component {
     this.state = {
       menuOpen: false
     };
+
+    this.allStages = { key: 'all', name: 'All Stages' };
   }
 
   render() {
     const {
       days,
-      stages,
-      selectedDay,
+      dayIndex,
+      geofences,
       selectedStage
     } = this.props;
     const { menuOpen } = this.state;
     const toggleMenu = () => this.toggleMenu(!menuOpen);
+
+    const stages = [ this.allStages ].concat(
+      Object.values(geofences).filter(({ type }) => type === 'venue')
+    );
 
     return (
       <View style={headerStyles.main}>
@@ -38,7 +44,7 @@ class ScheduleHeader extends Component {
             onPress={toggleMenu}
             style={headerStyles.selector}>
             <Text style={headerStyles.headerText}>
-              {selectedDay.format('dddd, MM/DD')}
+              {days[dayIndex].format('dddd, MM/DD')}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -55,28 +61,28 @@ class ScheduleHeader extends Component {
             <Picker
               itemStyle={headerStyles.headerText}
               style={headerStyles.picker}
-              selectedValue={selectedDay}
+              selectedValue={dayIndex}
               onValueChange={this.handleDayChange}
             >
-              {days.map(day => (
+              {days.map((day, i) => (
                 <Picker.Item
                   key={day}
                   label={day.format('dddd, MM/DD')}
-                  value={day}
+                  value={i}
                 />
               ))}
             </Picker>
             <Picker
               itemStyle={headerStyles.headerText}
               style={headerStyles.picker}
-              selectedValue={selectedStage}
+              selectedValue={selectedStage.key}
               onValueChange={this.handleStageChange}
             >
               {stages.map(stage => (
                 <Picker.Item
                   key={stage.key}
                   label={stage.name}
-                  value={stage}
+                  value={stage.key}
                 />
               ))}
             </Picker>
@@ -86,13 +92,16 @@ class ScheduleHeader extends Component {
     );
   }
 
-  handleDayChange = day => {
-    updateFilterDay(day);
+  handleDayChange = dayIndex => {
+    updateFilterDay(dayIndex);
     this.toggleMenu(false);
   }
 
-  handleStageChange = stage => {
-    updateFilterStage(stage);
+  handleStageChange = key => {
+    const { geofences } = this.props;
+    const geofence = key === 'all' ? this.allStages : geofences[key];
+
+    updateFilterStage(geofence);
     this.toggleMenu(false);
   }
 

@@ -1,6 +1,6 @@
 const defaults = {
   days: [],
-  selectedDay: null, // Will be set to a Moment object
+  dayIndex: 0,
   selectedStage: { key: 'all', name: 'All Stages' },
 };
 
@@ -9,8 +9,7 @@ export default function scheduleReducer(state = defaults, action) {
     case 'SET_DAYS': {
       return {
         ...state,
-        days: action.payload,
-        selectedDay: action.payload[0]
+        days: action.payload
       };
     }
     case 'RESET_SCHEDULE': {
@@ -19,7 +18,7 @@ export default function scheduleReducer(state = defaults, action) {
     case 'UPDATE_FILTER_DAY': {
       return {
         ...state,
-        selectedDay: action.payload
+        dayIndex: action.payload
       };
     }
     case 'UPDATE_FILTER_STAGE': {

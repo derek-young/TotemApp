@@ -20,10 +20,11 @@ class AgendaHeader extends Component {
     };
   }
 
+
   render() {
     const {
       days,
-      selectedDay,
+      dayIndex
     } = this.props;
     const { menuOpen } = this.state;
 
@@ -34,10 +35,10 @@ class AgendaHeader extends Component {
           style={headerStyles.selector}
         >
           {
-            selectedDay
+            days[dayIndex]
             &&
             <Text style={headerStyles.headerText}>
-              {selectedDay.format('dddd, MM/DD')}
+              {days[dayIndex].format('dddd, MM/DD')}
             </Text>
           }
         </TouchableOpacity>
@@ -46,14 +47,14 @@ class AgendaHeader extends Component {
           <Picker
             itemStyle={headerStyles.headerText}
             onValueChange={this.handleDayChange}
-            selectedValue={selectedDay}
+            selectedValue={dayIndex}
             style={headerStyles.picker}
           >
-            {days.map(day => (
+            {days.map((day, i) => (
               <Picker.Item
                 key={day}
                 label={day.format('dddd, MM/DD')}
-                value={day}
+                value={i}
               />
             ))}
           </Picker>
@@ -62,8 +63,8 @@ class AgendaHeader extends Component {
     );
   }
 
-  handleDayChange = day => {
-    updateFilterDay(day);
+  handleDayChange = dayIndex => {
+    updateFilterDay(dayIndex);
     this.toggleMenu(null, false);
   }
 

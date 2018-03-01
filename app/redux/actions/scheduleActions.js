@@ -31,10 +31,10 @@ function setDays(days) {
   });
 }
 
-export function updateFilterDay(day) {
+export function updateFilterDay(dayIndex) {
   return dispatch({
     type:'UPDATE_FILTER_DAY',
-    payload: moment(day)
+    payload: dayIndex
   });
 }
 

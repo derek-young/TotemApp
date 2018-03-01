@@ -18,7 +18,8 @@ const Schedule = ({
   geofences,
   schedule,
   schedule: {
-    selectedDay,
+    days,
+    dayIndex,
     selectedStage: { key: stageKey }
   },
   scheduleItems,
@@ -26,7 +27,7 @@ const Schedule = ({
   const displayItems = Object.keys(scheduleItems).filter(key => {
     const { geofenceKey, startTime } = scheduleItems[key];
     const formattedStart = moment(startTime).format('YYYYMMDD');
-    const dateFilter = formattedStart === selectedDay.format('YYYYMMDD');
+    const dateFilter = formattedStart === days[dayIndex].format('YYYYMMDD');
     const stageFilter = stageKey === 'all' || stageKey === geofenceKey;
 
     return stageFilter && dateFilter;
@@ -37,14 +38,10 @@ const Schedule = ({
     return sortByDateAscending(itemA, itemB);
   });
 
-  const stages = [{ key: 'all', name: 'All Stages' }].concat(
-    Object.values(geofences).filter(({ type }) => type === 'venue')
-  );
-
   return (
     <View style={{ height: '100%' }}>
       <Header
-        stages={stages}
+        geofences={geofences}
         {...schedule}
       />
       <ScrollView contentContainerStyle={scheduleStyles['scroll-view']}>
