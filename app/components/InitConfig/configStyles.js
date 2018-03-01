@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { totemBlue } from '../../colors';
 
 export default StyleSheet.create({
   main: {
@@ -11,7 +12,8 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingTop: 30
   },
   button: {
     display: 'flex',
@@ -84,8 +86,7 @@ export default StyleSheet.create({
     height: '100%',
     backgroundColor: 'transparent',
   },
-  inputWrapper: {
-    marginTop: 40,
+  'input-wrapper': {
     marginBottom: 15,
     height: 40,
     borderBottomColor: '#2d2d2d',
@@ -115,9 +116,18 @@ export default StyleSheet.create({
     fontSize: 20,
     textAlign: 'center'
   },
+  'venue-card': {
+    borderRadius: 5,
+    borderWidth: 5,
+    borderColor: totemBlue,
+    borderStyle: 'solid',
+    marginHorizontal: 10,
+    marginTop: 10
+  },
   thumbnail: {
+    borderRadius: 5,
     width: '100%',
     height: 173,
     opacity: 0.90,
-  }
+  },
 });

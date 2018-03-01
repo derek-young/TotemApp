@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { withRouter } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -21,7 +21,7 @@ class ChooseVenue extends Component {
 
   render() {
     return (
-      <View style={{ height: '100%' }}>
+      <KeyboardAvoidingView behavior="padding" style={{ height: '100%' }}>
         <View style={configStyles.header}>
           <View style={configStyles['group-header']}>
             <TouchableOpacity onPress={this.goBack}>
@@ -37,7 +37,7 @@ class ChooseVenue extends Component {
         </View>
         <View style={configStyles.body}>
           <View style={{ width: '80%' }}>
-            <View style={configStyles.inputWrapper}>
+            <View style={configStyles['input-wrapper']}>
               <TextInput
                 style={configStyles.input}
                 placeholder="Group Name"
@@ -57,7 +57,7 @@ class ChooseVenue extends Component {
             </Text>
           </View>
           <View style={{ width: '80%' }}>
-            <View style={configStyles.inputWrapper}>
+            <View style={[ configStyles['input-wrapper'], { marginTop: 10 }]}>
               <TextInput
                 autoCapitalize="characters"
                 style={configStyles.input}
@@ -78,7 +78,7 @@ class ChooseVenue extends Component {
             </Text>
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 

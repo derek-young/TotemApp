@@ -103,13 +103,22 @@ class ChooseVenue extends Component {
     this.props.history.push('create-group');
   }
 
-  renderVenueCard = venue => {
+  renderVenueCard = (venue, i, array) => {
     const { key, name, thumbnail } = venue;
+
+    const addStyles = {};
+
+    if (i === array.length - 1) addStyles.marginBottom = 10;
+
+    if (venue.dates && venue.dates.endDate < (new Date()).getTime()) {
+      return null;
+    }
 
     return (
       <TouchableHighlight
         key={key}
-        onPress={() => this.handleVenueClick(key)}>
+        onPress={() => this.handleVenueClick(key)}
+        style={[ configStyles['venue-card'], addStyles ]}>
         <View>
           <Image
             style={configStyles.thumbnail}

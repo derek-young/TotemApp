@@ -73,12 +73,15 @@ class GroupPopover extends Component {
                   {/* <TouchableOpacity style={popoverStyles.action}>
                     <Icon name="comment-o" size={18} color="#757575" />
                   </TouchableOpacity> */}
-                  <TouchableOpacity
-                    onPress={this.handleLocateUserPress}
-                    style={popoverStyles.action}
-                  >
-                    <Icon name="map-marker" size={18} color="#757575" />
-                  </TouchableOpacity>
+                  {
+                    !isUser &&
+                    <TouchableOpacity
+                      onPress={this.handleLocateUserPress}
+                      style={popoverStyles.action}
+                    >
+                      <Icon name="map-marker" size={18} color="#757575" />
+                    </TouchableOpacity>
+                  }
                 </View>
               </View>
               <View style={sharedPopoverStyles['body-bottom']}>
